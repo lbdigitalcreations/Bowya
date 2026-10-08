@@ -1357,17 +1357,313 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: 0.8rem 1rem; }
-      .nav-links { display: none; }
-      .timeline::before { left: 24px; }
-      .timeline-beam { left: 24px; }
-      .timeline-item { width: 100%; padding-left: 65px; padding-right: 0; transform: translateY(30px) !important; }
-      .timeline-item:nth-child(even) { margin-left: 0; padding-left: 65px; transform: translateY(30px) !important; }
-      .timeline-badge { left: 2px !important; right: auto !important; width: 44px; height: 44px; font-size: 1.15rem; }
-      .timeline-item.in-view { transform: translateY(0) !important; }
-      .wish-box { padding: 2rem 1.5rem; }
-      .quiz-options { grid-template-columns: 1fr; }
-      .floating-audio { bottom: 1rem; right: 1rem; padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+      /* Navigation Alignment */
+      nav {
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .nav-brand {
+        font-size: 1rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        width: auto;
+      }
+      .nav-actions .btn {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.78rem;
+      }
+      .theme-picker {
+        padding: 3px 6px;
+      }
+
+      /* Container & Section Padding */
+      .main-wrap {
+        padding: 0 1rem;
+      }
+      .section-wrap {
+        padding: 3.5rem 0;
+      }
+      .section-header {
+        margin-bottom: 2rem;
+        padding: 0 0.25rem;
+      }
+      .section-title {
+        font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+      }
+      .section-desc {
+        font-size: 0.95rem;
+      }
+
+      /* Hero Section Alignment */
+      .hero-section {
+        min-height: auto;
+        padding: 3.5rem 0.25rem 2.5rem;
+      }
+      .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 1rem;
+        margin-bottom: 1.25rem;
+      }
+      h1.hero-title {
+        font-size: clamp(2rem, 8.5vw, 3.4rem);
+        margin-bottom: 1.25rem;
+        line-height: 1.15;
+      }
+      .hero-subtitle {
+        font-size: 0.98rem;
+        margin-bottom: 1.85rem;
+        padding: 0 0.5rem;
+      }
+
+      /* 4-Column Balanced Countdown Grid */
+      .countdown-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto 2rem;
+      }
+      .countdown-card {
+        min-width: unset;
+        padding: 0.65rem 0.25rem;
+        border-radius: 12px;
+      }
+      .countdown-val {
+        font-size: 1.55rem;
+      }
+      .countdown-lbl {
+        font-size: 0.62rem;
+        letter-spacing: 0.05em;
+      }
+
+      /* Hero Buttons Alignment */
+      .hero-buttons {
+        width: 100%;
+        max-width: 320px;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin: 0 auto;
+      }
+      .hero-buttons .btn {
+        width: 100%;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+      }
+
+      /* Wish Showcase Box */
+      .wish-box {
+        padding: 1.75rem 1.15rem;
+        border-radius: var(--radius-md);
+      }
+      .wish-quote-icon {
+        display: none;
+      }
+      .wish-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.5rem;
+        padding-bottom: 0.65rem;
+        margin-bottom: 1.25rem;
+        scrollbar-width: none;
+      }
+      .wish-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .wish-tab-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 0.82rem;
+        padding: 0.45rem 0.85rem;
+      }
+      .wish-text {
+        font-size: 0.98rem;
+        line-height: 1.75;
+        margin-bottom: 1.75rem;
+      }
+      .wish-signature {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+        text-align: center;
+      }
+      .wish-signature .btn {
+        width: 100%;
+      }
+
+      /* Candle Blowout Stage */
+      .candle-stage {
+        padding: 2.75rem 1rem;
+      }
+      .cake-svg {
+        width: 120px;
+        height: 120px;
+      }
+      .cake-status {
+        font-size: 1.1rem;
+      }
+
+      /* Mystery Gift Box */
+      .mystery-box-card {
+        padding: 2.5rem 1.15rem;
+      }
+      .gift-box-icon {
+        font-size: 4.2rem;
+      }
+      .gift-reveal-card {
+        padding: 1.25rem 0.85rem;
+      }
+      .gift-ticket-title {
+        font-size: 1.2rem;
+      }
+
+      /* Polaroid Memory Wall - Straightened & Centered */
+      .polaroid-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 1.5rem auto 0;
+        gap: 1.5rem;
+      }
+      .polaroid-item {
+        transform: none !important;
+        padding: 12px 12px 20px 12px;
+      }
+      .polaroid-photo-frame {
+        height: 240px;
+      }
+
+      /* Sibling Trivia Quiz */
+      .quiz-card {
+        padding: 1.75rem 1.15rem;
+      }
+      .quiz-options {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+      }
+      .quiz-btn {
+        padding: 0.8rem;
+        font-size: 0.88rem;
+      }
+
+      /* Superpowers Grid */
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .stat-card {
+        padding: 1.5rem 1.25rem;
+      }
+
+      /* Sibling Chronicles Timeline */
+      .timeline {
+        padding: 1rem 0;
+      }
+      .timeline::before {
+        left: 20px;
+      }
+      .timeline-beam {
+        left: 20px;
+      }
+      .timeline-item {
+        width: 100%;
+        padding-left: 55px;
+        padding-right: 0;
+        margin-bottom: 2.5rem;
+        transform: translateY(25px) !important;
+      }
+      .timeline-item:nth-child(even) {
+        margin-left: 0;
+        padding-left: 55px;
+        padding-right: 0;
+        transform: translateY(25px) !important;
+      }
+      .timeline-badge {
+        left: 0px !important;
+        right: auto !important;
+        top: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+      .timeline-item.in-view {
+        transform: translateY(0) !important;
+      }
+      .timeline-content {
+        padding: 1.4rem 1.15rem;
+      }
+      .timeline-title {
+        font-size: 1.15rem;
+      }
+      .timeline-body {
+        font-size: 0.9rem;
+      }
+
+      /* Certificate Container */
+      .certificate-container {
+        border-width: 6px;
+        padding: 2rem 0.85rem;
+      }
+      .cert-title {
+        font-size: 1.4rem;
+      }
+      .cert-recipient {
+        font-size: 1.75rem;
+        padding: 0 0.5rem 0.25rem;
+      }
+      .cert-body {
+        font-size: 0.92rem;
+        margin-bottom: 1.5rem;
+      }
+      .cert-footer {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      /* Wishes Wall & Form */
+      .wishes-wall-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .add-wish-box {
+        padding: 1.75rem 1.15rem;
+      }
+
+      /* Lightbox Modal */
+      .lightbox-modal {
+        padding: 1rem;
+      }
+      .lightbox-close-btn {
+        top: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+      .lightbox-img {
+        max-height: 70vh;
+        border-radius: 8px;
+      }
+      .lightbox-caption {
+        font-size: 1.25rem;
+      }
+
+      /* Floating Audio Badge */
+      .floating-audio {
+        bottom: 0.75rem;
+        right: 0.75rem;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.78rem;
+      }
     }
 
     /* Mobile & Touch Instant Response Optimization */
