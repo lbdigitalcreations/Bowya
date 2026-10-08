@@ -75,15 +75,24 @@
       scroll-behavior: smooth;
     }
 
+    html, body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+    }
+
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
       font-family: var(--font-body);
       line-height: 1.6;
-      overflow-x: hidden;
-      position: relative;
       transition: background-color 0.4s ease;
       cursor: default;
+    }
+
+    img, svg {
+      max-width: 100%;
     }
 
     /* Interactive Sparkle Canvas for Cursor */
@@ -1359,12 +1368,22 @@
     @media (max-width: 768px) {
       /* Navigation Alignment */
       nav {
-        padding: 0.75rem 1rem;
-        flex-wrap: wrap;
-        gap: 0.6rem;
+        padding: 0.65rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
       }
       .nav-brand {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        gap: 0.5rem;
+        min-width: 0;
+      }
+      .nav-brand span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .nav-links {
         display: none;
@@ -1372,83 +1391,114 @@
       .nav-actions {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
-        flex-wrap: wrap;
-        width: auto;
+        gap: 0.35rem;
+        flex-shrink: 0;
       }
       .nav-actions .btn {
-        padding: 0.45rem 0.85rem;
-        font-size: 0.78rem;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.75rem;
       }
       .theme-picker {
         padding: 3px 6px;
+        gap: 4px;
+      }
+      .theme-dot {
+        width: 12px;
+        height: 12px;
       }
 
       /* Container & Section Padding */
       .main-wrap {
         padding: 0 1rem;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
       }
       .section-wrap {
-        padding: 3.5rem 0;
+        padding: 3.25rem 0;
       }
       .section-header {
         margin-bottom: 2rem;
-        padding: 0 0.25rem;
+        padding: 0 0.5rem;
+        text-align: center;
+      }
+      .section-tag {
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
       }
       .section-title {
         font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+        line-height: 1.2;
       }
       .section-desc {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
+        line-height: 1.55;
       }
 
-      /* Hero Section Alignment */
+      /* Hero Section Alignment & Spacing */
       .hero-section {
         min-height: auto;
-        padding: 3.5rem 0.25rem 2.5rem;
+        padding: 3.5rem 1rem 2.25rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .hero-badge {
         font-size: 0.75rem;
-        padding: 0.35rem 1rem;
-        margin-bottom: 1.25rem;
+        padding: 0.35rem 0.95rem;
+        margin: 0 auto 1.25rem;
       }
       h1.hero-title {
-        font-size: clamp(2rem, 8.5vw, 3.4rem);
-        margin-bottom: 1.25rem;
+        font-size: clamp(2rem, 7.8vw, 3.2rem);
+        margin: 0 auto 1.15rem;
         line-height: 1.15;
+        text-align: center;
+        word-break: break-word;
       }
       .hero-subtitle {
-        font-size: 0.98rem;
-        margin-bottom: 1.85rem;
-        padding: 0 0.5rem;
+        font-size: 0.95rem;
+        margin: 0 auto 1.75rem;
+        padding: 0 0.25rem;
+        text-align: center;
+        max-width: 92%;
       }
 
       /* 4-Column Balanced Countdown Grid */
       .countdown-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 0.5rem;
+        gap: 0.45rem;
         width: 100%;
-        max-width: 380px;
-        margin: 0 auto 2rem;
+        max-width: 360px;
+        margin: 0 auto 1.85rem;
       }
       .countdown-card {
-        min-width: unset;
-        padding: 0.65rem 0.25rem;
+        min-width: 0;
+        min-height: 72px;
+        aspect-ratio: 1 / 1.05;
+        padding: 0.5rem 0.15rem;
         border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
       .countdown-val {
-        font-size: 1.55rem;
+        font-size: clamp(1.25rem, 4.8vw, 1.6rem);
+        line-height: 1;
       }
       .countdown-lbl {
-        font-size: 0.62rem;
-        letter-spacing: 0.05em;
+        font-size: clamp(0.52rem, 2vw, 0.65rem);
+        letter-spacing: 0.04em;
+        margin-top: 0.25rem;
       }
 
       /* Hero Buttons Alignment */
       .hero-buttons {
         width: 100%;
-        max-width: 320px;
+        max-width: 300px;
         flex-direction: column;
         gap: 0.75rem;
         margin: 0 auto;
@@ -1457,12 +1507,14 @@
         width: 100%;
         padding: 0.75rem 1.25rem;
         font-size: 0.9rem;
+        justify-content: center;
       }
 
       /* Wish Showcase Box */
       .wish-box {
-        padding: 1.75rem 1.15rem;
+        padding: 1.6rem 1.15rem;
         border-radius: var(--radius-md);
+        text-align: left;
       }
       .wish-quote-icon {
         display: none;
@@ -1472,8 +1524,8 @@
         flex-wrap: nowrap;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        gap: 0.5rem;
-        padding-bottom: 0.65rem;
+        gap: 0.45rem;
+        padding: 0.2rem 0.2rem 0.65rem;
         margin-bottom: 1.25rem;
         scrollbar-width: none;
       }
@@ -1485,184 +1537,370 @@
         flex-shrink: 0;
         font-size: 0.82rem;
         padding: 0.45rem 0.85rem;
+        border-radius: var(--radius-pill);
       }
       .wish-text {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
         line-height: 1.75;
-        margin-bottom: 1.75rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+        word-break: break-word;
       }
       .wish-signature {
         flex-direction: column;
-        align-items: stretch;
-        gap: 1.25rem;
+        align-items: center;
+        gap: 1.15rem;
         text-align: center;
+        padding-top: 1.25rem;
       }
       .wish-signature .btn {
         width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        justify-content: center;
       }
 
       /* Candle Blowout Stage */
       .candle-stage {
-        padding: 2.75rem 1rem;
+        padding: 2.5rem 1rem;
+        border-radius: var(--radius-md);
       }
       .cake-svg {
-        width: 120px;
-        height: 120px;
+        width: clamp(110px, 30vw, 135px);
+        height: clamp(110px, 30vw, 135px);
+        aspect-ratio: 1 / 1;
       }
       .cake-status {
-        font-size: 1.1rem;
+        font-size: 0.98rem;
+        padding: 0.4rem 1rem;
       }
 
       /* Mystery Gift Box */
       .mystery-box-card {
-        padding: 2.5rem 1.15rem;
+        padding: 2.25rem 1rem;
+        border-radius: var(--radius-md);
       }
       .gift-box-icon {
-        font-size: 4.2rem;
+        font-size: 3.8rem;
       }
       .gift-reveal-card {
         padding: 1.25rem 0.85rem;
+        border-radius: var(--radius-sm);
       }
       .gift-ticket-title {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        line-height: 1.3;
       }
 
-      /* Polaroid Memory Wall - Straightened & Centered */
+      /* Polaroid Memory Wall - Square Ratio & Centered */
       .polaroid-grid {
         grid-template-columns: 1fr;
-        max-width: 320px;
+        width: 100%;
+        max-width: 360px;
         margin: 1.5rem auto 0;
         gap: 1.5rem;
       }
       .polaroid-item {
         transform: none !important;
-        padding: 12px 12px 20px 12px;
+        padding: 12px 12px 18px 12px;
+        width: 100%;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       }
       .polaroid-photo-frame {
-        height: 240px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .polaroid-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .polaroid-caption {
+        font-size: 1.25rem;
+        margin-top: 10px;
+        text-align: center;
       }
 
       /* Sibling Trivia Quiz */
       .quiz-card {
-        padding: 1.75rem 1.15rem;
+        padding: 1.5rem 1rem;
+        border-radius: var(--radius-md);
+      }
+      .quiz-q-title {
+        font-size: 1.05rem;
+        line-height: 1.4;
+        gap: 0.4rem;
       }
       .quiz-options {
         grid-template-columns: 1fr;
-        gap: 0.65rem;
+        gap: 0.6rem;
       }
       .quiz-btn {
-        padding: 0.8rem;
+        padding: 0.75rem 0.9rem;
         font-size: 0.88rem;
+        text-align: left;
+        line-height: 1.35;
+        width: 100%;
       }
 
       /* Superpowers Grid */
       .stats-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 0.9rem;
       }
       .stat-card {
-        padding: 1.5rem 1.25rem;
+        padding: 1.4rem 1.15rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .stat-desc {
+        text-align: center;
+        font-size: 0.86rem;
       }
 
       /* Sibling Chronicles Timeline */
       .timeline {
-        padding: 1rem 0;
+        padding: 0.5rem 0;
+        position: relative;
+        width: 100%;
       }
       .timeline::before {
-        left: 20px;
+        left: 22px;
+        width: 3px;
+        transform: translateX(-50%);
       }
       .timeline-beam {
-        left: 20px;
+        left: 22px;
+        width: 3px;
+        transform: translateX(-50%);
       }
       .timeline-item {
         width: 100%;
-        padding-left: 55px;
+        padding-left: 52px;
         padding-right: 0;
-        margin-bottom: 2.5rem;
-        transform: translateY(25px) !important;
+        margin-left: 0;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: flex-start;
+        align-self: stretch;
+        transform: translateY(20px) !important;
       }
       .timeline-item:nth-child(even) {
         margin-left: 0;
-        padding-left: 55px;
+        padding-left: 52px;
         padding-right: 0;
-        transform: translateY(25px) !important;
+        justify-content: flex-start;
+        align-self: stretch;
+        transform: translateY(20px) !important;
       }
       .timeline-badge {
-        left: 0px !important;
+        left: 4px !important;
         right: auto !important;
-        top: 15px;
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
+        top: 14px;
+        width: 36px;
+        height: 36px;
+        font-size: 1.05rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .timeline-item.in-view {
         transform: translateY(0) !important;
       }
       .timeline-content {
-        padding: 1.4rem 1.15rem;
+        padding: 1.25rem 1rem;
+        text-align: left;
+        width: 100%;
+        border-radius: var(--radius-md);
+      }
+      .timeline-tag-pill {
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.6rem;
+        display: inline-block;
       }
       .timeline-title {
-        font-size: 1.15rem;
+        font-size: 1.08rem;
+        line-height: 1.35;
+        margin-bottom: 0.5rem;
       }
       .timeline-body {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
+        line-height: 1.65;
+        color: #cbd5e1;
       }
 
       /* Certificate Container */
       .certificate-container {
         border-width: 6px;
-        padding: 2rem 0.85rem;
+        padding: 2rem 1rem;
+        max-width: 100%;
+        border-radius: 10px;
+        margin: 0 auto;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      }
+      .cert-seal {
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
       }
       .cert-title {
-        font-size: 1.4rem;
+        font-size: clamp(1.2rem, 5vw, 1.6rem);
+        letter-spacing: 0.04em;
       }
       .cert-recipient {
-        font-size: 1.75rem;
-        padding: 0 0.5rem 0.25rem;
+        font-size: clamp(1.4rem, 6vw, 1.9rem);
+        padding: 0 0.75rem 0.25rem;
+        max-width: 100%;
+        word-break: break-word;
       }
       .cert-body {
-        font-size: 0.92rem;
-        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
       }
       .cert-footer {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.85rem;
+        align-items: center;
+        text-align: center;
+        border-top: 1px solid #fed7aa;
+        padding-top: 1rem;
       }
 
       /* Wishes Wall & Form */
       .wishes-wall-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 0.85rem;
+      }
+      .wish-note {
+        padding: 1.25rem 1rem;
       }
       .add-wish-box {
-        padding: 1.75rem 1.15rem;
+        padding: 1.5rem 1rem;
+        border-radius: var(--radius-md);
+      }
+      .form-control {
+        font-size: 16px; /* Prevents auto zoom on mobile browsers */
+        padding: 0.75rem 0.9rem;
+      }
+
+      /* Personalize Drawer */
+      .drawer-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.75rem 1.25rem;
+        border-left: none;
       }
 
       /* Lightbox Modal */
       .lightbox-modal {
-        padding: 1rem;
+        padding: 0.75rem;
       }
       .lightbox-close-btn {
-        top: 16px;
-        right: 16px;
-        width: 44px;
-        height: 44px;
-        font-size: 1.3rem;
+        top: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.25rem;
       }
       .lightbox-img {
-        max-height: 70vh;
+        max-height: 65vh;
+        max-width: 100%;
+        object-fit: contain;
         border-radius: 8px;
       }
       .lightbox-caption {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
+        margin-top: 0.75rem;
       }
 
       /* Floating Audio Badge */
       .floating-audio {
-        bottom: 0.75rem;
-        right: 0.75rem;
+        bottom: max(0.85rem, env(safe-area-inset-bottom, 0.85rem));
+        right: max(0.85rem, env(safe-area-inset-right, 0.85rem));
         padding: 0.45rem 0.85rem;
+        font-size: 0.76rem;
+      }
+
+      /* Cinematic Countdown Intro Modal on Mobile */
+      .intro-countdown-box {
+        padding: 1.8rem 1rem;
+        width: 92%;
+        max-width: 380px;
+      }
+      .intro-tag {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        margin-bottom: 0.6rem;
+      }
+      .intro-subtitle {
+        font-size: clamp(1.25rem, 5.2vw, 1.75rem);
+        margin-bottom: 1.35rem;
+        line-height: 1.25;
+      }
+      .countdown-circle-wrap {
+        width: 135px;
+        height: 135px;
+        margin-bottom: 1.35rem;
+      }
+      .intro-countdown-digit {
+        font-size: 3.5rem;
+      }
+      .intro-status-msg {
+        font-size: 0.92rem;
+        margin-bottom: 1.2rem;
+        min-height: 1.4rem;
+      }
+      .intro-skip-btn {
+        padding: 0.45rem 1rem;
         font-size: 0.78rem;
+      }
+    }
+
+    /* Ultra-narrow devices (<= 380px) */
+    @media (max-width: 380px) {
+      .nav-brand span {
+        display: none; /* Show only icon on micro screens to avoid crowding */
+      }
+      .countdown-container {
+        gap: 0.35rem;
+      }
+      .countdown-card {
+        padding: 0.4rem 0.12rem;
+        min-height: 66px;
+      }
+      .countdown-val {
+        font-size: 1.2rem;
+      }
+      .countdown-lbl {
+        font-size: 0.52rem;
+      }
+      .timeline-item, .timeline-item:nth-child(even) {
+        padding-left: 46px;
+      }
+      .timeline::before, .timeline-beam {
+        left: 18px;
+      }
+      .timeline-badge {
+        left: 2px !important;
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+      }
+      .hero-section {
+        padding: 3rem 0.5rem 2rem;
+      }
+      .main-wrap {
+        padding: 0 0.65rem;
       }
     }
 
