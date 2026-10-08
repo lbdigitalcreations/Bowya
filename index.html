@@ -93,8 +93,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      z-index: 999;
+      pointer-events: none !important;
+      z-index: 1;
     }
 
     /* Ambient Pulsing Glow Orbs */
@@ -1370,6 +1370,13 @@
       .floating-audio { bottom: 1rem; right: 1rem; padding: 0.5rem 0.9rem; font-size: 0.8rem; }
     }
 
+    /* Mobile & Touch Instant Response Optimization */
+    button, .btn, .tab-pill, .polaroid-item, .cake-container, .balloon, .quiz-btn, .wish-tab-btn, .theme-dot, .timeline-badge, .lightbox-close-btn, a {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+    }
+
     /* Cinematic 3-Second Landing Countdown Overlay */
     .intro-countdown-overlay {
       position: fixed;
@@ -1382,12 +1389,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
     }
     .intro-countdown-overlay.fade-out {
       opacity: 0;
       transform: scale(1.08);
-      pointer-events: none;
+      pointer-events: none !important;
+      visibility: hidden;
+      display: none !important;
     }
     .intro-countdown-box {
       text-align: center;
@@ -1492,7 +1502,7 @@
 <body class="theme-gold">
 
   <!-- Cinematic 3-Second Landing Countdown Overlay -->
-  <div id="introCountdownOverlay" class="intro-countdown-overlay">
+  <div id="introCountdownOverlay" class="intro-countdown-overlay" onclick="finishIntroCountdown(true)" title="Tap anywhere to enter">
     <div class="intro-countdown-box">
       <div class="intro-tag">✨ SPECIAL SURPRISE UNVEILING ✨</div>
       <h2 class="intro-subtitle">Get Ready For <span id="introBrotherName" class="intro-name-highlight">ALEX</span>'s Celebration!</h2>
@@ -2591,9 +2601,11 @@ Forever grateful and endlessly blessed to be your sister,
       
       if (nameElem) nameElem.textContent = brotherName.toUpperCase();
       
-      overlay.classList.remove('fade-out');
-      overlay.style.pointerEvents = 'auto';
-      document.body.style.overflow = 'hidden';
+      if (overlay) {
+        overlay.style.display = 'flex';
+        overlay.classList.remove('fade-out');
+        overlay.style.pointerEvents = 'auto';
+      }
 
       clearInterval(introTimerInterval);
       introSecondsLeft = 3;
@@ -2602,7 +2614,7 @@ Forever grateful and endlessly blessed to be your sister,
       void digit.offsetWidth;
       digit.style.animation = 'digitPop 1s infinite ease-out';
       
-      msg.textContent = `Unlocking something extraordinary for ${brotherName}...`;
+      msg.textContent = `Unlocking something extraordinary for ${brotherName}... (Tap to enter)`;
       
       const totalCircumference = 339.292;
       ring.style.strokeDashoffset = '0';
@@ -2626,7 +2638,7 @@ Forever grateful and endlessly blessed to be your sister,
           if (introSecondsLeft === 2) {
             msg.textContent = "Tuning the celebration vibes...";
           } else if (introSecondsLeft === 1) {
-            msg.textContent = "Almost there... Prepare for the big surprise!";
+            msg.textContent = "Almost there... Tap anywhere to jump in!";
           }
         } else {
           clearInterval(introTimerInterval);
@@ -2639,7 +2651,7 @@ Forever grateful and endlessly blessed to be your sister,
           
           setTimeout(() => {
             finishIntroCountdown(false);
-          }, 950);
+          }, 800);
         }
       }, 1000);
     }
@@ -2647,21 +2659,20 @@ Forever grateful and endlessly blessed to be your sister,
     function finishIntroCountdown(isSkipped = false) {
       clearInterval(introTimerInterval);
       const overlay = document.getElementById('introCountdownOverlay');
-      overlay.classList.add('fade-out');
+      if (overlay) {
+        overlay.classList.add('fade-out');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          overlay.style.pointerEvents = 'none';
+        }, 300);
+      }
       document.body.style.overflow = '';
       
       if (isSkipped) {
         launchConfettiStream();
       }
 
-      // Smoothly scroll and reveal the First Heartfelt Wish with typewriter animation
-      setTimeout(() => {
-        const letterSec = document.getElementById('letter');
-        if (letterSec) {
-          letterSec.scrollIntoView({ behavior: 'smooth' });
-        }
-        triggerFirstWishAnimation();
-      }, 550);
+      renderWish();
     }
 
     // Typewriter animation for the first landing wish
