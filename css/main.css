@@ -685,6 +685,7 @@ h1, h2, h3, h4, .font-heading {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 18%;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
@@ -967,6 +968,8 @@ h1, h2, h3, h4, .font-heading {
   .story-split-media {
     max-width: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -1119,8 +1122,10 @@ h1, h2, h3, h4, .font-heading {
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center top;
   border: 2px solid var(--purple-neon);
   display: block;
+  flex-shrink: 0;
 }
 
 .snapshot-pill-info {
@@ -1478,6 +1483,36 @@ footer {
   .container { padding: 0 1.1rem; }
   .countdown-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
   .letter-envelope, .mystery-box { padding: 2rem 1.1rem; border-radius: 20px; }
+
+  /* Compact Floating Audio Dock on Mobile */
+  .audio-dock {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.35rem 0.65rem 0.35rem 0.35rem;
+    gap: 0.5rem;
+    background: rgba(18, 12, 36, 0.95);
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 15px rgba(168, 85, 247, 0.3);
+  }
+  .audio-dock .audio-info {
+    display: none;
+  }
+  .audio-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+
+  /* Chapter Cards Preview Header on Mobile */
+  .chapter-media-header {
+    height: 180px;
+    margin-bottom: 1.2rem;
+  }
+  .chapter-media-header img {
+    object-position: center 18% !important;
+  }
+
+  /* Spotlight Photo Cards in Gallery */
   .spotlight-card { 
     flex-direction: column !important; 
     text-align: center; 
@@ -1488,13 +1523,18 @@ footer {
   .spotlight-photo-frame { 
     flex: 0 0 auto !important; 
     width: 100% !important; 
-    max-width: 270px; 
+    max-width: 280px; 
     margin: 0 auto; 
   }
   .spotlight-photo-frame img {
+    width: 100%;
+    height: auto;
     border-radius: 12px;
-    max-height: 350px;
+    max-height: 360px;
+    object-fit: cover;
     object-position: center top;
+    display: block;
+    margin: 0 auto;
   }
   .spotlight-content h2 {
     font-size: 1.45rem !important;
@@ -1522,12 +1562,26 @@ footer {
     justify-content: center;
   }
 
-  /* Polaroid Frames Mobile Ratio */
-  .polaroid-frame {
-    width: 100%;
-    max-width: 310px;
-    margin: 0.8rem auto;
+  /* Polaroid Frames Mobile Ratio & Proper Centered Alignment */
+  .polaroid-frame,
+  .polaroid-frame.tilt-left,
+  .polaroid-frame.tilt-right {
+    transform: none !important;
+    width: 100% !important;
+    max-width: 295px !important;
+    margin: 1.2rem auto !important;
     padding: 10px 10px 16px 10px;
+  }
+  .polaroid-img-wrap {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .polaroid-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
   .polaroid-img-wrap.portrait {
     aspect-ratio: 3 / 4;
@@ -1548,16 +1602,53 @@ footer {
     padding: 1.4rem 1.1rem;
   }
 
-  /* Gallery Grid on Mobile: 2 Columns & Always Visible Captions */
+  /* Hero Snapshots Ribbon on Mobile */
+  .hero-snapshots-ribbon {
+    gap: 0.6rem;
+    margin: 1.8rem auto 1.2rem;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0.4rem 0.2rem 0.8rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hero-snapshots-ribbon::-webkit-scrollbar {
+    display: none;
+  }
+  .snapshot-pill-card {
+    flex-shrink: 0;
+  }
+
+  /* Gallery Grid on Mobile: 2 Columns with Centered 7th Item */
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
+  }
+  .gallery-grid .photo-card:last-child:nth-child(odd) {
+    grid-column: span 2;
+    max-width: 260px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .photo-card {
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+  }
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
   }
   .photo-title {
     font-size: 0.88rem;
   }
   .photo-subtitle {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
+    color: #fcd34d !important;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
   }
   .photo-caption-overlay {
     padding: 1.2rem 0.6rem 0.6rem;
@@ -1598,22 +1689,16 @@ footer {
 }
 
 @media (max-width: 480px) {
-  /* Hero Snapshots Ribbon on Small Devices */
-  .hero-snapshots-ribbon {
-    gap: 0.5rem;
-    margin: 1.8rem auto 1rem;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding: 0.4rem 0.2rem 0.8rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  .polaroid-frame,
+  .polaroid-frame.tilt-left,
+  .polaroid-frame.tilt-right {
+    max-width: 275px !important;
   }
-  .hero-snapshots-ribbon::-webkit-scrollbar {
-    display: none;
+  .spotlight-photo-frame {
+    max-width: 250px !important;
   }
-  .snapshot-pill-card {
-    flex-shrink: 0;
+  .gallery-grid .photo-card:last-child:nth-child(odd) {
+    max-width: 235px;
   }
 
   /* Birthday Cake Mobile Scaling */
