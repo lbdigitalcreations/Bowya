@@ -126,3 +126,5 @@ const ArcadeStorage = {
     return false;
   }
 };
+
+window.ArcadeStorage = ArcadeStorage;

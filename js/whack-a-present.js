@@ -312,3 +312,5 @@ const WhackPresentGame = {
     });
   }
 };
+
+window.WhackPresentGame = WhackPresentGame;

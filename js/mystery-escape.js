@@ -433,3 +433,5 @@ const MysteryEscapeGame = {
     this.timerInterval = null;
   }
 };
+
+window.MysteryEscapeGame = MysteryEscapeGame;

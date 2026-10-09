@@ -132,3 +132,4 @@ class ArcadeSoundEngine {
 }
 
 const ArcadeSound = new ArcadeSoundEngine();
+window.ArcadeSound = ArcadeSound;

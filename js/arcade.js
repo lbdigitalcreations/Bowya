@@ -12,10 +12,10 @@ const ArcadeHub = {
     this.refreshScoresUI();
 
     // Initialize individual games
-    if (window.MemoryMatchGame) MemoryMatchGame.init();
-    if (window.WhackPresentGame) WhackPresentGame.init();
-    if (window.ThisOrThatGame) ThisOrThatGame.init();
-    if (window.MysteryEscapeGame) MysteryEscapeGame.init();
+    if (typeof MemoryMatchGame !== 'undefined') MemoryMatchGame.init();
+    if (typeof WhackPresentGame !== 'undefined') WhackPresentGame.init();
+    if (typeof ThisOrThatGame !== 'undefined') ThisOrThatGame.init();
+    if (typeof MysteryEscapeGame !== 'undefined') MysteryEscapeGame.init();
 
     // Check hash on load
     this.handleUrlHash();
@@ -108,29 +108,28 @@ const ArcadeHub = {
         stage.classList.add('active');
         stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      if (window.MemoryMatchGame) MemoryMatchGame.start();
+      if (typeof MemoryMatchGame !== 'undefined') MemoryMatchGame.start();
     } else if (gameId === 'whack') {
       const stage = document.getElementById('stageWhackPresent');
       if (stage) {
         stage.classList.add('active');
         stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      if (window.WhackPresentGame) WhackPresentGame.start();
+      if (typeof WhackPresentGame !== 'undefined') WhackPresentGame.start();
     } else if (gameId === 'this-that') {
       const stage = document.getElementById('stageThisThat');
       if (stage) {
         stage.classList.add('active');
         stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      if (window.ThisOrThatGame) ThisOrThatGame.start();
+      if (typeof ThisOrThatGame !== 'undefined') ThisOrThatGame.start();
     } else if (gameId === 'mystery') {
       const stage = document.getElementById('stageMysteryEscape');
       if (stage) {
         stage.classList.add('active');
         stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      // Start mission immediately so player enters escape room without extra barriers
-      if (window.MysteryEscapeGame) {
+      if (typeof MysteryEscapeGame !== 'undefined') {
         MysteryEscapeGame.startMission();
       }
     }
@@ -162,10 +161,10 @@ const ArcadeHub = {
   },
 
   cleanupActiveGame() {
-    if (window.MemoryMatchGame) MemoryMatchGame.cleanup();
-    if (window.WhackPresentGame) WhackPresentGame.cleanup();
-    if (window.ThisOrThatGame) ThisOrThatGame.cleanup();
-    if (window.MysteryEscapeGame) MysteryEscapeGame.cleanup();
+    if (typeof MemoryMatchGame !== 'undefined') MemoryMatchGame.cleanup();
+    if (typeof WhackPresentGame !== 'undefined') WhackPresentGame.cleanup();
+    if (typeof ThisOrThatGame !== 'undefined') ThisOrThatGame.cleanup();
+    if (typeof MysteryEscapeGame !== 'undefined') MysteryEscapeGame.cleanup();
   },
 
   refreshScoresUI() {
@@ -216,7 +215,10 @@ const ArcadeHub = {
   }
 };
 
+window.ArcadeHub = ArcadeHub;
+
 // Bootstrap when DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   ArcadeHub.init();
 });
+

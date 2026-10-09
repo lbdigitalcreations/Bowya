@@ -329,3 +329,5 @@ const MemoryMatchGame = {
     this.timerInterval = null;
   }
 };
+
+window.MemoryMatchGame = MemoryMatchGame;

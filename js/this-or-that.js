@@ -326,3 +326,5 @@ const ThisOrThatGame = {
     this.isTransitioning = false;
   }
 };
+
+window.ThisOrThatGame = ThisOrThatGame;
