@@ -79,25 +79,32 @@ const MysteryEscapeGame = {
 
     // Stage 3 Keypad clicks
     document.querySelectorAll('.numeric-keypad-grid .keypad-key').forEach(key => {
-      key.addEventListener('click', (e) => {
-        const val = e.currentTarget.dataset.val;
+      key.onclick = (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        const val = key.dataset.val;
         this.handleKeypadPress(val);
-      });
+      };
     });
 
     // Keyboard support for keypad
-    window.addEventListener('keydown', (e) => {
-      const stage3 = document.getElementById('escapeStage3');
-      if (this.isPlaying && this.currentStage === 3 && stage3 && stage3.style.display !== 'none') {
-        if (/^[0-9]$/.test(e.key)) {
-          this.handleKeypadPress(e.key);
-        } else if (e.key === 'Backspace' || e.key === 'Delete') {
-          this.handleKeypadPress('clear');
-        } else if (e.key === 'Enter') {
-          this.handleKeypadPress('enter');
+    if (!this._keyboardBound) {
+      this._keyboardBound = true;
+      window.addEventListener('keydown', (e) => {
+        const stage3 = document.getElementById('escapeStage3');
+        if (this.isPlaying && this.currentStage === 3 && stage3 && stage3.style.display !== 'none') {
+          if (/^[0-9]$/.test(e.key)) {
+            this.handleKeypadPress(e.key);
+          } else if (e.key === 'Backspace' || e.key === 'Delete') {
+            this.handleKeypadPress('clear');
+          } else if (e.key === 'Enter') {
+            this.handleKeypadPress('enter');
+          }
         }
-      }
-    });
+      });
+    }
   },
 
   startMission() {
@@ -303,7 +310,16 @@ const MysteryEscapeGame = {
     }
   },
 
+  _lastKeypadTime: 0,
+
   handleKeypadPress(val) {
+    const now = Date.now();
+    // Guard against rapid duplicate firing (e.g. mobile tap synthesis or double event listeners)
+    if (now - this._lastKeypadTime < 180) {
+      return;
+    }
+    this._lastKeypadTime = now;
+
     if (!this.isPlaying) {
       this.isPlaying = true;
       this.startTimer();
@@ -319,7 +335,7 @@ const MysteryEscapeGame = {
       this.submitCode();
     } else {
       if (this.enteredCode.length < 4) {
-        this.enteredCode += val;
+        this.enteredCode += String(val);
         ArcadeSound.keypadClick();
       }
     }

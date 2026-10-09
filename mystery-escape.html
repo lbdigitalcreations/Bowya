@@ -30,9 +30,11 @@
     }
     body {
       background: var(--arcade-navy);
-      background-image: radial-gradient(circle at 20% 20%, rgba(113, 56, 212, 0.35) 0%, transparent 45%),
-                        radial-gradient(circle at 80% 30%, rgba(240, 68, 145, 0.25) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 80%, rgba(255, 209, 102, 0.15) 0%, transparent 60%);
+      background-image: radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.25) 0%, transparent 45%),
+                        radial-gradient(circle at 80% 30%, rgba(244, 63, 94, 0.20) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(251, 191, 36, 0.12) 0%, transparent 60%),
+                        linear-gradient(180deg, #090514 0%, #120924 50%, #06030d 100%);
+      background-attachment: fixed;
       color: #fff;
       font-family: 'Plus Jakarta Sans', sans-serif;
       min-height: 100vh;
@@ -267,18 +269,18 @@
           </div>
 
           <div class="numeric-keypad-grid">
-            <button class="keypad-key" data-val="1" onclick="MysteryEscapeGame.handleKeypadPress('1')">1</button>
-            <button class="keypad-key" data-val="2" onclick="MysteryEscapeGame.handleKeypadPress('2')">2</button>
-            <button class="keypad-key" data-val="3" onclick="MysteryEscapeGame.handleKeypadPress('3')">3</button>
-            <button class="keypad-key" data-val="4" onclick="MysteryEscapeGame.handleKeypadPress('4')">4</button>
-            <button class="keypad-key" data-val="5" onclick="MysteryEscapeGame.handleKeypadPress('5')">5</button>
-            <button class="keypad-key" data-val="6" onclick="MysteryEscapeGame.handleKeypadPress('6')">6</button>
-            <button class="keypad-key" data-val="7" onclick="MysteryEscapeGame.handleKeypadPress('7')">7</button>
-            <button class="keypad-key" data-val="8" onclick="MysteryEscapeGame.handleKeypadPress('8')">8</button>
-            <button class="keypad-key" data-val="9" onclick="MysteryEscapeGame.handleKeypadPress('9')">9</button>
-            <button class="keypad-key key-clear" data-val="clear" onclick="MysteryEscapeGame.handleKeypadPress('clear')">Clear</button>
-            <button class="keypad-key" data-val="0" onclick="MysteryEscapeGame.handleKeypadPress('0')">0</button>
-            <button class="keypad-key key-enter" data-val="enter" onclick="MysteryEscapeGame.handleKeypadPress('enter')">Open</button>
+            <button type="button" class="keypad-key" data-val="1">1</button>
+            <button type="button" class="keypad-key" data-val="2">2</button>
+            <button type="button" class="keypad-key" data-val="3">3</button>
+            <button type="button" class="keypad-key" data-val="4">4</button>
+            <button type="button" class="keypad-key" data-val="5">5</button>
+            <button type="button" class="keypad-key" data-val="6">6</button>
+            <button type="button" class="keypad-key" data-val="7">7</button>
+            <button type="button" class="keypad-key" data-val="8">8</button>
+            <button type="button" class="keypad-key" data-val="9">9</button>
+            <button type="button" class="keypad-key key-clear" data-val="clear">Clear</button>
+            <button type="button" class="keypad-key" data-val="0">0</button>
+            <button type="button" class="keypad-key key-enter" data-val="enter">Open</button>
           </div>
 
           <div id="keypadFeedback"></div>
