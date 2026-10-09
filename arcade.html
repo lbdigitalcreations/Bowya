@@ -186,7 +186,7 @@
         <div class="arcade-cards-grid">
           
           <!-- Card 1: Memory Match -->
-          <div class="arcade-game-card">
+          <div class="arcade-game-card" onclick="ArcadeHub.launchGame('memory')">
             <div>
               <div class="card-top-row">
                 <span class="card-number-badge">GAME 01</span>
@@ -202,13 +202,13 @@
                 <span class="meta-tag gold">★ 1 Free Hint</span>
               </div>
             </div>
-            <button class="btn-play-game" data-launch-game="memory">
+            <button class="btn-play-game" data-launch-game="memory" onclick="event.stopPropagation(); ArcadeHub.launchGame('memory')">
               <i class="fa-solid fa-play"></i> Play Now
             </button>
           </div>
 
           <!-- Card 2: Whack-A-Present -->
-          <div class="arcade-game-card">
+          <div class="arcade-game-card" onclick="ArcadeHub.launchGame('whack')">
             <div>
               <div class="card-top-row">
                 <span class="card-number-badge">GAME 02</span>
@@ -224,13 +224,13 @@
                 <span class="meta-tag gold">👑 +50 Bonus</span>
               </div>
             </div>
-            <button class="btn-play-game" data-launch-game="whack">
+            <button class="btn-play-game" data-launch-game="whack" onclick="event.stopPropagation(); ArcadeHub.launchGame('whack')">
               <i class="fa-solid fa-play"></i> Play Now
             </button>
           </div>
 
           <!-- Card 3: This or That -->
-          <div class="arcade-game-card">
+          <div class="arcade-game-card" onclick="ArcadeHub.launchGame('this-that')">
             <div>
               <div class="card-top-row">
                 <span class="card-number-badge">GAME 03</span>
@@ -246,13 +246,13 @@
                 <span class="meta-tag gold">✨ Archetype Report</span>
               </div>
             </div>
-            <button class="btn-play-game" data-launch-game="this-that">
+            <button class="btn-play-game" data-launch-game="this-that" onclick="event.stopPropagation(); ArcadeHub.launchGame('this-that')">
               <i class="fa-solid fa-play"></i> Play Now
             </button>
           </div>
 
           <!-- Card 4: Birthday Mystery Escape (Featured) -->
-          <div class="arcade-game-card card-featured">
+          <div class="arcade-game-card card-featured" onclick="ArcadeHub.launchGame('mystery')">
             <div>
               <div class="card-top-row">
                 <span class="card-number-badge" style="border-color: rgba(255, 209, 102, 0.4); color: var(--arcade-gold);">GAME 04 &bull; FLAGSHIP</span>
@@ -268,7 +268,7 @@
                 <span class="meta-tag gold">🎁 Surprise Finale</span>
               </div>
             </div>
-            <button class="btn-play-game" data-launch-game="mystery">
+            <button class="btn-play-game" data-launch-game="mystery" onclick="event.stopPropagation(); ArcadeHub.launchGame('mystery')">
               <i class="fa-solid fa-unlock-keyhole"></i> Start Mission
             </button>
           </div>
@@ -296,7 +296,7 @@
            ==================================================================== -->
       <div class="arcade-game-stage" id="stageMemoryMatch">
         <div class="stage-top-bar">
-          <button class="btn-back-hub">
+          <button class="btn-back-hub" onclick="ArcadeHub.showHub()">
             <i class="fa-solid fa-arrow-left"></i> Back to Games
           </button>
           <div class="stage-title-wrap">
@@ -304,10 +304,10 @@
             <p class="stage-game-subtitle">Pair all matching birthday cards before time runs out</p>
           </div>
           <div class="stage-actions-right">
-            <button class="stage-mini-btn" id="memHintBtn" title="Use 1 Free Hint">
+            <button class="stage-mini-btn" id="memHintBtn" onclick="MemoryMatchGame.showHint()" title="Use 1 Free Hint">
               <i class="fa-solid fa-lightbulb"></i>
             </button>
-            <button class="stage-mini-btn" id="memRestartBtn" title="Restart Game">
+            <button class="stage-mini-btn" id="memRestartBtn" onclick="MemoryMatchGame.start()" title="Restart Game">
               <i class="fa-solid fa-rotate-right"></i>
             </button>
             <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
@@ -347,7 +347,7 @@
            ==================================================================== -->
       <div class="arcade-game-stage" id="stageWhackPresent">
         <div class="stage-top-bar">
-          <button class="btn-back-hub">
+          <button class="btn-back-hub" onclick="ArcadeHub.showHub()">
             <i class="fa-solid fa-arrow-left"></i> Back to Games
           </button>
           <div class="stage-title-wrap">
@@ -355,7 +355,7 @@
             <p class="stage-game-subtitle">Tap appearing presents! Crowns give +50, bombs deduct 15!</p>
           </div>
           <div class="stage-actions-right">
-            <button class="stage-mini-btn" id="whackRestartBtn" title="Restart Game">
+            <button class="stage-mini-btn" id="whackRestartBtn" onclick="WhackPresentGame.start()" title="Restart Game">
               <i class="fa-solid fa-rotate-right"></i>
             </button>
             <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
@@ -404,7 +404,7 @@
            ==================================================================== -->
       <div class="arcade-game-stage" id="stageThisThat">
         <div class="stage-top-bar">
-          <button class="btn-back-hub">
+          <button class="btn-back-hub" onclick="ArcadeHub.showHub()">
             <i class="fa-solid fa-arrow-left"></i> Back to Games
           </button>
           <div class="stage-title-wrap">
@@ -412,7 +412,7 @@
             <p class="stage-game-subtitle">Tap your favorite option to shape your birthday archetype</p>
           </div>
           <div class="stage-actions-right">
-            <button class="stage-mini-btn" id="thisThatRestartBtn" title="Restart Quiz">
+            <button class="stage-mini-btn" id="thisThatRestartBtn" onclick="ThisOrThatGame.start()" title="Restart Quiz">
               <i class="fa-solid fa-rotate-right"></i>
             </button>
             <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
@@ -428,7 +428,7 @@
               <div class="quiz-progress-fill" id="thisThatProgressFill"></div>
             </div>
             <div class="quiz-question-counter">
-              <button class="btn-nav-link" id="thisThatPrevBtn" style="visibility: hidden; padding: 0.3rem 0.9rem; font-size: 0.8rem;">
+              <button class="btn-nav-link" id="thisThatPrevBtn" onclick="ThisOrThatGame.previousQuestion()" style="visibility: hidden; padding: 0.3rem 0.9rem; font-size: 0.8rem;">
                 <i class="fa-solid fa-chevron-left"></i> Back
               </button>
               <span id="thisThatCounterText">Question 1 of 12</span>
@@ -440,11 +440,11 @@
           </div>
 
           <div class="this-that-options-grid">
-            <div class="choice-card-btn" id="thisThatCardA">
+            <div class="choice-card-btn" id="thisThatCardA" onclick="ThisOrThatGame.selectAnswer('A')">
               <div class="choice-emoji" id="thisThatEmojiA">🍔</div>
               <div class="choice-text" id="thisThatTextA">Juicy Burger</div>
             </div>
-            <div class="choice-card-btn" id="thisThatCardB">
+            <div class="choice-card-btn" id="thisThatCardB" onclick="ThisOrThatGame.selectAnswer('B')">
               <div class="choice-emoji" id="thisThatEmojiB">🍕</div>
               <div class="choice-text" id="thisThatTextB">Cheesy Pizza</div>
             </div>
@@ -476,7 +476,7 @@
            ==================================================================== -->
       <div class="arcade-game-stage" id="stageMysteryEscape">
         <div class="stage-top-bar">
-          <button class="btn-back-hub">
+          <button class="btn-back-hub" onclick="ArcadeHub.showHub()">
             <i class="fa-solid fa-arrow-left"></i> Back to Games
           </button>
           <div class="stage-title-wrap">
@@ -516,7 +516,7 @@
           </p>
           <div class="escape-chest-hero">🗝️</div>
           <div style="margin-top: 1.5rem;">
-            <button class="btn-main btn-primary" id="escapeStartMissionBtn" style="padding: 1rem 2.8rem; font-size: 1.15rem;">
+            <button class="btn-main btn-primary" id="escapeStartMissionBtn" onclick="MysteryEscapeGame.startMission()" style="padding: 1rem 2.8rem; font-size: 1.15rem;">
               <i class="fa-solid fa-play"></i> Start Mission 25
             </button>
           </div>
@@ -540,23 +540,23 @@
             </div>
 
             <div class="room-objects-grid">
-              <div class="room-interactive-obj" data-item="balloon">
+              <div class="room-interactive-obj" data-item="balloon" onclick="MysteryEscapeGame.inspectRoomObject('balloon', this)">
                 <span class="room-obj-emoji">🎈</span>
                 <span class="room-obj-label">Balloon</span>
               </div>
-              <div class="room-interactive-obj" data-item="frame">
+              <div class="room-interactive-obj" data-item="frame" onclick="MysteryEscapeGame.inspectRoomObject('frame', this)">
                 <span class="room-obj-emoji">🖼️</span>
                 <span class="room-obj-label">Photo Frame</span>
               </div>
-              <div class="room-interactive-obj" data-item="present">
+              <div class="room-interactive-obj" data-item="present" onclick="MysteryEscapeGame.inspectRoomObject('present', this)">
                 <span class="room-obj-emoji">🎁</span>
                 <span class="room-obj-label">Gift Box</span>
               </div>
-              <div class="room-interactive-obj" data-item="bookshelf">
+              <div class="room-interactive-obj" data-item="bookshelf" onclick="MysteryEscapeGame.inspectRoomObject('bookshelf', this)">
                 <span class="room-obj-emoji">📚</span>
                 <span class="room-obj-label">Bookshelf</span>
               </div>
-              <div class="room-interactive-obj" data-item="clock">
+              <div class="room-interactive-obj" data-item="clock" onclick="MysteryEscapeGame.inspectRoomObject('clock', this)">
                 <span class="room-obj-emoji">⏰</span>
                 <span class="room-obj-label">Clock</span>
               </div>
@@ -572,7 +572,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 2rem;">
-              <button class="btn-main btn-primary" id="advanceToStage2Btn" style="display: none; padding: 0.8rem 2.2rem;">
+              <button class="btn-main btn-primary" id="advanceToStage2Btn" onclick="MysteryEscapeGame.advanceToStage(2)" style="display: none; padding: 0.8rem 2.2rem;">
                 <i class="fa-solid fa-arrow-right"></i> Advance to Milestone Riddle
               </button>
             </div>
@@ -590,13 +590,13 @@
             </p>
             <div class="riddle-input-row">
               <input type="text" class="riddle-input" id="riddleInput" placeholder="Enter number..." autocomplete="off" />
-              <button class="btn-main btn-primary" id="riddleSubmitBtn" style="padding: 0.85rem 1.6rem;">
+              <button class="btn-main btn-primary" id="riddleSubmitBtn" onclick="MysteryEscapeGame.checkRiddleAnswer()" style="padding: 0.85rem 1.6rem;">
                 Unlock
               </button>
             </div>
             <div id="riddleFeedback"></div>
             <div style="margin-top: 1.5rem;">
-              <button class="btn-nav-link" id="riddleHintBtn" style="font-size: 0.85rem; padding: 0.35rem 1rem;">
+              <button class="btn-nav-link" id="riddleHintBtn" onclick="MysteryEscapeGame.showRiddleHint()" style="font-size: 0.85rem; padding: 0.35rem 1rem;">
                 <i class="fa-solid fa-lightbulb"></i> Need a Hint?
               </button>
               <div id="riddleHintText" style="display: none; margin-top: 0.6rem; color: var(--arcade-gold); font-size: 0.9rem;"></div>
@@ -621,18 +621,18 @@
             </div>
 
             <div class="numeric-keypad-grid">
-              <button class="keypad-key" data-val="1">1</button>
-              <button class="keypad-key" data-val="2">2</button>
-              <button class="keypad-key" data-val="3">3</button>
-              <button class="keypad-key" data-val="4">4</button>
-              <button class="keypad-key" data-val="5">5</button>
-              <button class="keypad-key" data-val="6">6</button>
-              <button class="keypad-key" data-val="7">7</button>
-              <button class="keypad-key" data-val="8">8</button>
-              <button class="keypad-key" data-val="9">9</button>
-              <button class="keypad-key key-clear" data-val="clear">Clear</button>
-              <button class="keypad-key" data-val="0">0</button>
-              <button class="keypad-key key-enter" data-val="enter">Open</button>
+              <button class="keypad-key" data-val="1" onclick="MysteryEscapeGame.handleKeypadPress('1')">1</button>
+              <button class="keypad-key" data-val="2" onclick="MysteryEscapeGame.handleKeypadPress('2')">2</button>
+              <button class="keypad-key" data-val="3" onclick="MysteryEscapeGame.handleKeypadPress('3')">3</button>
+              <button class="keypad-key" data-val="4" onclick="MysteryEscapeGame.handleKeypadPress('4')">4</button>
+              <button class="keypad-key" data-val="5" onclick="MysteryEscapeGame.handleKeypadPress('5')">5</button>
+              <button class="keypad-key" data-val="6" onclick="MysteryEscapeGame.handleKeypadPress('6')">6</button>
+              <button class="keypad-key" data-val="7" onclick="MysteryEscapeGame.handleKeypadPress('7')">7</button>
+              <button class="keypad-key" data-val="8" onclick="MysteryEscapeGame.handleKeypadPress('8')">8</button>
+              <button class="keypad-key" data-val="9" onclick="MysteryEscapeGame.handleKeypadPress('9')">9</button>
+              <button class="keypad-key key-clear" data-val="clear" onclick="MysteryEscapeGame.handleKeypadPress('clear')">Clear</button>
+              <button class="keypad-key" data-val="0" onclick="MysteryEscapeGame.handleKeypadPress('0')">0</button>
+              <button class="keypad-key key-enter" data-val="enter" onclick="MysteryEscapeGame.handleKeypadPress('enter')">Open</button>
             </div>
 
             <div id="keypadFeedback"></div>

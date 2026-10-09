@@ -113,18 +113,30 @@ const ThisOrThatGame = {
     const quizStage = document.getElementById('thisThatPlayStage');
     const resultStage = document.getElementById('thisThatResultPanel');
     if (quizStage) quizStage.style.display = 'block';
-    if (resultStage) resultStage.classList.remove('active');
+    if (resultStage) {
+      resultStage.style.display = 'none';
+      resultStage.classList.remove('active');
+    }
 
     this.renderCurrentQuestion();
   },
 
   renderCurrentQuestion() {
+    if (!this.questions || this.questions.length === 0) {
+      this.questions = [...this.QUESTION_BANK];
+    }
+
     if (this.currentIndex >= this.questions.length) {
       this.showFinalResults();
       return;
     }
 
+    this.isTransitioning = false;
     const q = this.questions[this.currentIndex];
+    if (!q) {
+      this.showFinalResults();
+      return;
+    }
     const total = this.questions.length;
 
     // Progress UI
@@ -176,42 +188,65 @@ const ThisOrThatGame = {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
 
-    const q = this.questions[this.currentIndex];
-    const selectedOption = choice === 'A' ? q.optionA : q.optionB;
+    try {
+      if (!this.questions || this.questions.length === 0) {
+        this.start();
+        return;
+      }
 
-    // Store / overwrite answer
-    this.userAnswers[this.currentIndex] = {
-      questionId: q.id,
-      questionTitle: q.title,
-      choice: choice,
-      option: selectedOption
-    };
+      if (this.currentIndex >= this.questions.length) {
+        this.showFinalResults();
+        this.isTransitioning = false;
+        return;
+      }
 
-    // UI feedback
-    const cardA = document.getElementById('thisThatCardA');
-    const cardB = document.getElementById('thisThatCardB');
-    if (choice === 'A' && cardA) {
-      cardA.classList.add('selected');
-      if (cardB) cardB.classList.remove('selected');
-    } else if (choice === 'B' && cardB) {
-      cardB.classList.add('selected');
-      if (cardA) cardA.classList.remove('selected');
-    }
+      const q = this.questions[this.currentIndex];
+      if (!q) {
+        this.showFinalResults();
+        this.isTransitioning = false;
+        return;
+      }
 
-    ArcadeSound.click();
+      const selectedOption = choice === 'A' ? q.optionA : q.optionB;
 
-    // Advance to next question after smooth pause
-    setTimeout(() => {
-      this.currentIndex++;
+      // Store / overwrite answer
+      this.userAnswers[this.currentIndex] = {
+        questionId: q.id,
+        questionTitle: q.title,
+        choice: choice,
+        option: selectedOption
+      };
+
+      // UI feedback
+      const cardA = document.getElementById('thisThatCardA');
+      const cardB = document.getElementById('thisThatCardB');
+      if (choice === 'A' && cardA) {
+        cardA.classList.add('selected');
+        if (cardB) cardB.classList.remove('selected');
+      } else if (choice === 'B' && cardB) {
+        cardB.classList.add('selected');
+        if (cardA) cardA.classList.remove('selected');
+      }
+
+      ArcadeSound.click();
+
+      // Advance to next question after smooth pause
+      setTimeout(() => {
+        this.currentIndex++;
+        this.isTransitioning = false;
+        this.renderCurrentQuestion();
+      }, 320);
+    } catch (err) {
+      console.error('Error selecting answer:', err);
       this.isTransitioning = false;
-      this.renderCurrentQuestion();
-    }, 380);
+    }
   },
 
   previousQuestion() {
-    if (this.currentIndex > 0 && !this.isTransitioning) {
+    if (this.currentIndex > 0) {
       ArcadeSound.click();
       this.currentIndex--;
+      this.isTransitioning = false;
       this.renderCurrentQuestion();
     }
   },
@@ -220,7 +255,10 @@ const ThisOrThatGame = {
     const quizStage = document.getElementById('thisThatPlayStage');
     const resultStage = document.getElementById('thisThatResultPanel');
     if (quizStage) quizStage.style.display = 'none';
-    if (resultStage) resultStage.classList.add('active');
+    if (resultStage) {
+      resultStage.style.display = 'block';
+      resultStage.classList.add('active');
+    }
 
     // Save in storage
     ArcadeStorage.saveThisThatAnswers(this.userAnswers);

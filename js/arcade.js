@@ -104,24 +104,35 @@ const ArcadeHub = {
     // Launch targeted game
     if (gameId === 'memory') {
       const stage = document.getElementById('stageMemoryMatch');
-      if (stage) stage.classList.add('active');
-      MemoryMatchGame.start();
+      if (stage) {
+        stage.classList.add('active');
+        stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (window.MemoryMatchGame) MemoryMatchGame.start();
     } else if (gameId === 'whack') {
       const stage = document.getElementById('stageWhackPresent');
-      if (stage) stage.classList.add('active');
-      WhackPresentGame.start();
+      if (stage) {
+        stage.classList.add('active');
+        stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (window.WhackPresentGame) WhackPresentGame.start();
     } else if (gameId === 'this-that') {
       const stage = document.getElementById('stageThisThat');
-      if (stage) stage.classList.add('active');
-      ThisOrThatGame.start();
+      if (stage) {
+        stage.classList.add('active');
+        stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (window.ThisOrThatGame) ThisOrThatGame.start();
     } else if (gameId === 'mystery') {
       const stage = document.getElementById('stageMysteryEscape');
-      if (stage) stage.classList.add('active');
-      // Show mission intro screen
-      document.getElementById('escapeIntro').style.display = 'block';
-      document.getElementById('escapeStage1').style.display = 'none';
-      document.getElementById('escapeStage2').style.display = 'none';
-      document.getElementById('escapeStage3').style.display = 'none';
+      if (stage) {
+        stage.classList.add('active');
+        stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Start mission immediately so player enters escape room without extra barriers
+      if (window.MysteryEscapeGame) {
+        MysteryEscapeGame.startMission();
+      }
     }
 
     ArcadeSound.click();
@@ -139,6 +150,12 @@ const ArcadeHub = {
     document.querySelectorAll('.arcade-game-stage').forEach(stage => {
       stage.classList.remove('active');
     });
+
+    // Scroll smoothly back to top of hub
+    const topAnchor = document.getElementById('arcadeHubSelection') || document.querySelector('.arcade-wrapper');
+    if (topAnchor) {
+      topAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     this.refreshScoresUI();
     ArcadeSound.click();

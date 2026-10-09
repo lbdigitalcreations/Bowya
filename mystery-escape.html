@@ -162,7 +162,7 @@
         </p>
         <div class="escape-chest-hero">🗝️</div>
         <div style="margin-top: 1.5rem;">
-          <button class="btn-main btn-primary" id="escapeStartMissionBtn" style="padding: 1rem 3rem; font-size: 1.2rem;">
+          <button class="btn-main btn-primary" id="escapeStartMissionBtn" onclick="MysteryEscapeGame.startMission()" style="padding: 1rem 3rem; font-size: 1.2rem;">
             <i class="fa-solid fa-play"></i> Start Mission 25
           </button>
         </div>
@@ -186,23 +186,23 @@
           </div>
 
           <div class="room-objects-grid">
-            <div class="room-interactive-obj" data-item="balloon">
+            <div class="room-interactive-obj" data-item="balloon" onclick="MysteryEscapeGame.inspectRoomObject('balloon', this)">
               <span class="room-obj-emoji">🎈</span>
               <span class="room-obj-label">Balloon</span>
             </div>
-            <div class="room-interactive-obj" data-item="frame">
+            <div class="room-interactive-obj" data-item="frame" onclick="MysteryEscapeGame.inspectRoomObject('frame', this)">
               <span class="room-obj-emoji">🖼️</span>
               <span class="room-obj-label">Explorer Frame</span>
             </div>
-            <div class="room-interactive-obj" data-item="present">
+            <div class="room-interactive-obj" data-item="present" onclick="MysteryEscapeGame.inspectRoomObject('present', this)">
               <span class="room-obj-emoji">🎁</span>
               <span class="room-obj-label">Gift Box</span>
             </div>
-            <div class="room-interactive-obj" data-item="bookshelf">
+            <div class="room-interactive-obj" data-item="bookshelf" onclick="MysteryEscapeGame.inspectRoomObject('bookshelf', this)">
               <span class="room-obj-emoji">📚</span>
               <span class="room-obj-label">Bookshelf</span>
             </div>
-            <div class="room-interactive-obj" data-item="clock">
+            <div class="room-interactive-obj" data-item="clock" onclick="MysteryEscapeGame.inspectRoomObject('clock', this)">
               <span class="room-obj-emoji">⏰</span>
               <span class="room-obj-label">Celebration Clock</span>
             </div>
@@ -218,7 +218,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 2rem;">
-            <button class="btn-main btn-primary" id="advanceToStage2Btn" style="display: none; padding: 0.85rem 2.4rem;">
+            <button class="btn-main btn-primary" id="advanceToStage2Btn" onclick="MysteryEscapeGame.advanceToStage(2)" style="display: none; padding: 0.85rem 2.4rem;">
               <i class="fa-solid fa-arrow-right"></i> Advance to Milestone Riddle
             </button>
           </div>
@@ -236,13 +236,13 @@
           </p>
           <div class="riddle-input-row">
             <input type="text" class="riddle-input" id="riddleInput" placeholder="Enter age number..." autocomplete="off" />
-            <button class="btn-main btn-primary" id="riddleSubmitBtn" style="padding: 0.85rem 1.6rem;">
+            <button class="btn-main btn-primary" id="riddleSubmitBtn" onclick="MysteryEscapeGame.checkRiddleAnswer()" style="padding: 0.85rem 1.6rem;">
               Unlock
             </button>
           </div>
           <div id="riddleFeedback"></div>
           <div style="margin-top: 1.5rem;">
-            <button class="btn-nav-link" id="riddleHintBtn" style="font-size: 0.85rem; padding: 0.35rem 1rem;">
+            <button class="btn-nav-link" id="riddleHintBtn" onclick="MysteryEscapeGame.showRiddleHint()" style="font-size: 0.85rem; padding: 0.35rem 1rem;">
               <i class="fa-solid fa-lightbulb"></i> Need a Hint?
             </button>
             <div id="riddleHintText" style="display: none; margin-top: 0.6rem; color: var(--arcade-gold); font-size: 0.9rem;"></div>
@@ -267,18 +267,18 @@
           </div>
 
           <div class="numeric-keypad-grid">
-            <button class="keypad-key" data-val="1">1</button>
-            <button class="keypad-key" data-val="2">2</button>
-            <button class="keypad-key" data-val="3">3</button>
-            <button class="keypad-key" data-val="4">4</button>
-            <button class="keypad-key" data-val="5">5</button>
-            <button class="keypad-key" data-val="6">6</button>
-            <button class="keypad-key" data-val="7">7</button>
-            <button class="keypad-key" data-val="8">8</button>
-            <button class="keypad-key" data-val="9">9</button>
-            <button class="keypad-key key-clear" data-val="clear">Clear</button>
-            <button class="keypad-key" data-val="0">0</button>
-            <button class="keypad-key key-enter" data-val="enter">Open</button>
+            <button class="keypad-key" data-val="1" onclick="MysteryEscapeGame.handleKeypadPress('1')">1</button>
+            <button class="keypad-key" data-val="2" onclick="MysteryEscapeGame.handleKeypadPress('2')">2</button>
+            <button class="keypad-key" data-val="3" onclick="MysteryEscapeGame.handleKeypadPress('3')">3</button>
+            <button class="keypad-key" data-val="4" onclick="MysteryEscapeGame.handleKeypadPress('4')">4</button>
+            <button class="keypad-key" data-val="5" onclick="MysteryEscapeGame.handleKeypadPress('5')">5</button>
+            <button class="keypad-key" data-val="6" onclick="MysteryEscapeGame.handleKeypadPress('6')">6</button>
+            <button class="keypad-key" data-val="7" onclick="MysteryEscapeGame.handleKeypadPress('7')">7</button>
+            <button class="keypad-key" data-val="8" onclick="MysteryEscapeGame.handleKeypadPress('8')">8</button>
+            <button class="keypad-key" data-val="9" onclick="MysteryEscapeGame.handleKeypadPress('9')">9</button>
+            <button class="keypad-key key-clear" data-val="clear" onclick="MysteryEscapeGame.handleKeypadPress('clear')">Clear</button>
+            <button class="keypad-key" data-val="0" onclick="MysteryEscapeGame.handleKeypadPress('0')">0</button>
+            <button class="keypad-key key-enter" data-val="enter" onclick="MysteryEscapeGame.handleKeypadPress('enter')">Open</button>
           </div>
 
           <div id="keypadFeedback"></div>

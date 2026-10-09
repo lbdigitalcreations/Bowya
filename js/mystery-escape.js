@@ -159,24 +159,47 @@ const MysteryEscapeGame = {
     this.currentStage = stageNum;
 
     // Tracker UI
-    document.getElementById('stageDot1').className = `stage-step-dot ${stageNum === 1 ? 'active' : (stageNum > 1 ? 'completed' : '')}`;
-    document.getElementById('stageDot2').className = `stage-step-dot ${stageNum === 2 ? 'active' : (stageNum > 2 ? 'completed' : '')}`;
-    document.getElementById('stageDot3').className = `stage-step-dot ${stageNum === 3 ? 'active' : ''}`;
+    const dot1 = document.getElementById('stageDot1');
+    const dot2 = document.getElementById('stageDot2');
+    const dot3 = document.getElementById('stageDot3');
+    if (dot1) dot1.className = `stage-step-dot ${stageNum === 1 ? 'active' : (stageNum > 1 ? 'completed' : '')}`;
+    if (dot2) dot2.className = `stage-step-dot ${stageNum === 2 ? 'active' : (stageNum > 2 ? 'completed' : '')}`;
+    if (dot3) dot3.className = `stage-step-dot ${stageNum === 3 ? 'active' : ''}`;
 
     // Panels visibility
-    document.getElementById('escapeIntro').style.display = 'none';
-    document.getElementById('escapeStage1').style.display = stageNum === 1 ? 'block' : 'none';
-    document.getElementById('escapeStage2').style.display = stageNum === 2 ? 'block' : 'none';
-    document.getElementById('escapeStage3').style.display = stageNum === 3 ? 'block' : 'none';
+    const intro = document.getElementById('escapeIntro');
+    const stage1 = document.getElementById('escapeStage1');
+    const stage2 = document.getElementById('escapeStage2');
+    const stage3 = document.getElementById('escapeStage3');
+
+    if (intro) intro.style.display = 'none';
+    if (stage1) stage1.style.display = stageNum === 1 ? 'block' : 'none';
+    if (stage2) {
+      stage2.style.display = stageNum === 2 ? 'block' : 'none';
+      if (stageNum === 2) {
+        setTimeout(() => {
+          const rInput = document.getElementById('riddleInput');
+          if (rInput) rInput.focus();
+        }, 150);
+      }
+    }
+    if (stage3) stage3.style.display = stageNum === 3 ? 'block' : 'none';
 
     ArcadeSound.click();
   },
 
   inspectRoomObject(type, element) {
-    if (!this.isPlaying || this.currentStage !== 1) return;
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      this.startTimer();
+    }
+    if (this.currentStage !== 1) {
+      this.advanceToStage(1);
+    }
 
     this.inspectedObjects[type] = true;
-    if (element) element.classList.add('inspected');
+    const targetObj = element || document.querySelector(`.room-interactive-obj[data-item="${type}"]`);
+    if (targetObj) targetObj.classList.add('inspected');
 
     const modal = document.getElementById('roomInspectionModal');
     const modalTitle = document.getElementById('inspectionModalTitle');
@@ -242,9 +265,9 @@ const MysteryEscapeGame = {
     const feedback = document.getElementById('riddleFeedback');
     if (!input) return;
 
-    const val = input.value.trim().toLowerCase();
+    const val = input.value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
 
-    if (val === this.CORRECT_RIDDLE_ANSWER || val === 'twenty five' || val === 'twenty-five') {
+    if (val === '25' || val === 'twentyfive' || val === '25th' || val === 'twentyfifth') {
       ArcadeSound.match();
       input.disabled = true;
       if (feedback) {
@@ -257,7 +280,7 @@ const MysteryEscapeGame = {
 
       setTimeout(() => {
         this.advanceToStage(3);
-      }, 1100);
+      }, 1000);
     } else {
       ArcadeSound.wrong();
       if (feedback) {
@@ -276,12 +299,18 @@ const MysteryEscapeGame = {
     const hintText = document.getElementById('riddleHintText');
     if (hintText) {
       hintText.style.display = 'block';
-      hintText.innerHTML = `💡 Hint: Born on 10/10/2001, Jihin (Chamathu) is turning 25 today!`;
+      hintText.innerHTML = `💡 Hint: Born on 10/10/2001, Jihin (Chamathu) is turning 25 today! (Answer: 25)`;
     }
   },
 
   handleKeypadPress(val) {
-    if (this.currentStage !== 3 || !this.isPlaying) return;
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      this.startTimer();
+    }
+    if (this.currentStage !== 3) {
+      this.advanceToStage(3);
+    }
 
     if (val === 'clear') {
       this.enteredCode = '';
