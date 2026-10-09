@@ -7,60 +7,103 @@ class AudioEngine {
   constructor() {
     this.ctx = null;
     this.isPlaying = false;
-    this.songTimer = null;
-    this.noteIndex = 0;
+    this.startOffset = 5; // Start playback from 5 seconds as requested
     
-    this.melody = [
-      { f: 261.63, d: 350 }, { f: 261.63, d: 200 }, { f: 293.66, d: 500 }, { f: 261.63, d: 500 }, { f: 349.23, d: 500 }, { f: 329.63, d: 900 },
-      { f: 261.63, d: 350 }, { f: 261.63, d: 200 }, { f: 293.66, d: 500 }, { f: 261.63, d: 500 }, { f: 392.00, d: 500 }, { f: 349.23, d: 900 },
-      { f: 261.63, d: 350 }, { f: 261.63, d: 200 }, { f: 523.25, d: 500 }, { f: 440.00, d: 500 }, { f: 349.23, d: 500 }, { f: 329.63, d: 500 }, { f: 293.66, d: 700 },
-      { f: 466.16, d: 350 }, { f: 466.16, d: 200 }, { f: 440.00, d: 500 }, { f: 349.23, d: 500 }, { f: 392.00, d: 500 }, { f: 349.23, d: 1100 }
-    ];
+    // HTML5 Audio element for the background soundtrack
+    this.audio = new Audio('song.mp3');
+    this.audio.preload = 'auto';
+    this.audio.loop = true;
+
+    // Ensure currentTime starts from 5 seconds on load / canplay
+    this.audio.addEventListener('loadedmetadata', () => {
+      if (this.audio.currentTime < this.startOffset) {
+        this.audio.currentTime = this.startOffset;
+      }
+    });
+
+    this.audio.addEventListener('canplay', () => {
+      if (this.audio.currentTime < this.startOffset) {
+        this.audio.currentTime = this.startOffset;
+      }
+    });
+
+    this.audio.addEventListener('play', () => {
+      this.isPlaying = true;
+      this.syncUI(true);
+      sessionStorage.setItem('bgMusicState', 'playing');
+    });
+
+    this.audio.addEventListener('pause', () => {
+      this.isPlaying = false;
+      this.syncUI(false);
+      sessionStorage.setItem('bgMusicState', 'paused');
+    });
+
+    // When looping, loop back to 5 seconds
+    this.audio.addEventListener('ended', () => {
+      this.audio.currentTime = this.startOffset;
+      this.audio.play().catch(e => console.warn('Audio loop error:', e));
+    });
+
+    // Save currentTime periodically so user experience stays continuous across navigation
+    this.audio.addEventListener('timeupdate', () => {
+      if (this.isPlaying && this.audio.currentTime >= this.startOffset) {
+        sessionStorage.setItem('bgMusicTime', this.audio.currentTime);
+      }
+    });
   }
 
   init() {
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      this.ctx = new AudioCtx();
+      if (AudioCtx) this.ctx = new AudioCtx();
     }
-    if (this.ctx.state === 'suspended') {
+    if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume();
     }
   }
 
   playTone(freq, duration = 250, type = 'sine') {
     if (!this.ctx) this.init();
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
 
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
 
-    gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration / 1000);
+      gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration / 1000);
 
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
 
-    osc.start();
-    osc.stop(this.ctx.currentTime + duration / 1000);
+      osc.start();
+      osc.stop(this.ctx.currentTime + duration / 1000);
+    } catch (e) {
+      console.warn('Audio tone error:', e);
+    }
   }
 
   playPop() {
     if (!this.ctx) this.init();
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(450, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(80, this.ctx.currentTime + 0.08);
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(450, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(80, this.ctx.currentTime + 0.08);
 
-    gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
 
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    osc.start();
-    osc.stop(this.ctx.currentTime + 0.08);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.08);
+    } catch (e) {
+      console.warn('Audio pop error:', e);
+    }
   }
 
   playWinFanfare() {
@@ -80,32 +123,56 @@ class AudioEngine {
   }
 
   startSong() {
-    this.isPlaying = true;
-    const dock = document.getElementById('audioDock');
-    const icon = document.getElementById('audioIcon');
-    if (dock) dock.classList.add('playing');
-    if (icon) icon.className = 'fa-solid fa-pause';
-    this.stepMelody();
-  }
+    this.init();
+    try {
+      const savedTime = parseFloat(sessionStorage.getItem('bgMusicTime'));
+      if (!isNaN(savedTime) && savedTime >= this.startOffset) {
+        this.audio.currentTime = savedTime;
+      } else if (this.audio.currentTime < this.startOffset || this.audio.currentTime === 0) {
+        this.audio.currentTime = this.startOffset;
+      }
+    } catch (e) {
+      // If metadata not ready, listeners will position to 5s
+    }
 
-  stepMelody() {
-    if (!this.isPlaying) return;
-    const note = this.melody[this.noteIndex];
-    this.playTone(note.f, note.d * 0.9, 'sine');
-
-    this.songTimer = setTimeout(() => {
-      this.noteIndex = (this.noteIndex + 1) % this.melody.length;
-      this.stepMelody();
-    }, note.d);
+    const playPromise = this.audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          if (this.audio.currentTime < this.startOffset) {
+            this.audio.currentTime = this.startOffset;
+          }
+          this.isPlaying = true;
+          this.syncUI(true);
+        })
+        .catch(err => {
+          console.warn('Autoplay prevented by browser:', err);
+          this.syncUI(false);
+        });
+    }
   }
 
   stopSong() {
+    if (this.audio) {
+      this.audio.pause();
+    }
     this.isPlaying = false;
-    clearTimeout(this.songTimer);
+    this.syncUI(false);
+  }
+
+  syncUI(playing) {
     const dock = document.getElementById('audioDock');
     const icon = document.getElementById('audioIcon');
-    if (dock) dock.classList.remove('playing');
-    if (icon) icon.className = 'fa-solid fa-play';
+    if (dock) {
+      if (playing) {
+        dock.classList.add('playing');
+      } else {
+        dock.classList.remove('playing');
+      }
+    }
+    if (icon) {
+      icon.className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+    }
   }
 }
 
@@ -140,6 +207,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('toggleAudioBtn');
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => sound.toggleSong());
+  }
+
+  // Seamlessly resume playback if music was active before page navigation
+  if (sessionStorage.getItem('bgMusicState') === 'playing') {
+    const resumeOnInteraction = () => {
+      if (sound && !sound.isPlaying && sessionStorage.getItem('bgMusicState') === 'playing') {
+        sound.startSong();
+      }
+      document.removeEventListener('click', resumeOnInteraction);
+      document.removeEventListener('touchstart', resumeOnInteraction);
+    };
+    sound.startSong();
+    document.addEventListener('click', resumeOnInteraction, { once: true });
+    document.addEventListener('touchstart', resumeOnInteraction, { once: true });
   }
 
   // Wire QR button
