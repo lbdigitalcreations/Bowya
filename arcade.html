@@ -101,6 +101,24 @@
 </head>
 <body>
 
+  <!-- Floating Audio Dock -->
+  <div class="audio-dock" id="audioDock">
+    <button class="audio-btn" id="toggleAudioBtn" title="Play / Pause Music">
+      <i class="fa-solid fa-play" id="audioIcon"></i>
+    </button>
+    <div class="audio-info">
+      <span>Birthday Soundtrack</span>
+      <strong>Idhayathai Yedho Ondru ✨</strong>
+    </div>
+    <div class="sound-waves">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+  </div>
+  <audio id="bgAudioElement" src="song.mp3" preload="auto" playsinline webkit-playsinline loop style="display: none;"></audio>
+
   <div class="arcade-container">
 
     <!-- Top Navigation Bar -->
@@ -704,6 +722,27 @@
 
     </div>
 
+    <!-- Arcade Site Footer -->
+    <footer class="arcade-site-footer">
+      <p style="margin-bottom: 0.5rem; font-size: 1.05rem;">
+        "Here's to 25 years of you and to all the beautiful years waiting for you." ✨
+      </p>
+      <p style="color: #f43f5e; font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin: 0.5rem 0;">
+        With lots and lots of love, Your non-blood sister ❤️
+      </p>
+      <div class="footer-brand-wrap">
+        <a href="https://lbdigitalcreations.in" target="_blank" rel="noopener noreferrer" class="footer-brand-badge" title="LB Digital Creations">
+          <img src="logo.jpeg" alt="LB Digital Creations Logo" class="footer-brand-logo" />
+          <span class="footer-brand-text">
+            Crafted with <span class="footer-heart">❤️</span> by <span class="footer-brand-domain">lbdigitalcreations.in</span>
+          </span>
+        </a>
+        <p class="footer-copyright">
+          Creating Websites for Your Special Moments &bull; Jihin Jino's 25th Birthday Celebration
+        </p>
+      </div>
+    </footer>
+
   </div>
 
   <!-- ====================================================================
@@ -1043,6 +1082,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="js/core.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/sound.js"></script>
   <script src="js/memory-match.js"></script>
