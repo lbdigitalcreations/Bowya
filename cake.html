@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Blow 25 Birthday Candles | Jihin Jino's 25th Birthday ✨</title>
+  <meta name="description" content="Interactive 25th birthday cake blowout for Jihin Jino (Chamathu) with sound physics, fanfare, and wishes." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- Ambient Space Canvas -->
+  <canvas id="spaceCanvas"></canvas>
+  <div class="aurora-bg"></div>
+
+  <!-- Floating Audio Dock -->
+  <div class="audio-dock" id="audioDock">
+    <button class="audio-btn" id="toggleAudioBtn" title="Play / Pause Music">
+      <i class="fa-solid fa-play" id="audioIcon"></i>
+    </button>
+    <div class="audio-info">
+      <span>Birthday Track</span>
+      <strong>Mid Birthday Music Box</strong>
+    </div>
+    <div class="sound-waves">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+  </div>
+
+  <!-- Floating Share Dock -->
+  <div class="floating-share-dock">
+    <a href="https://api.whatsapp.com/send?text=Happy%2025th%20Birthday%20Jihin%20Jino!%20Blow%20out%20the%20candles:%20https://lbdigitalcreations.github.io/Bowya/cake.html" target="_blank" class="floating-circle-btn whatsapp-btn" title="Share via WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="floating-circle-btn" id="openQrBtn" title="Show QR Code">
+      <i class="fa-solid fa-qrcode"></i>
+    </button>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <span style="color: var(--pink-rose);">✨</span>
+        <span>Jihin Jino's 25th</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="letter.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Letter</a></li>
+        <li><a href="mystery.html" class="nav-link"><i class="fa-solid fa-compass"></i> Mystery</a></li>
+        <li><a href="cake.html" class="nav-link active"><i class="fa-solid fa-cake-candles"></i> 25 Candles</a></li>
+        <li><a href="gallery.html" class="nav-link"><i class="fa-solid fa-images"></i> Adventures</a></li>
+        <li><a href="arcade.html" class="nav-link nav-cta"><i class="fa-solid fa-gamepad"></i> 4 Mini-Games</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Cake Section -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill"><i class="fa-solid fa-cake-candles"></i> Chapter 03 &bull; 25th Milestone</span>
+        <h1 class="section-title">Many Candles To Blow, Jihin</h1>
+        <p class="section-subtitle">Make your 25th birthday wish and tap each burning flame to blow it out!</p>
+      </div>
+
+      <div class="glass-card cake-showcase" style="max-width: 860px; margin: 0 auto;">
+        <div class="cake-stage">
+          <div class="candles-group">
+            <div class="candle" onclick="blowCandle(0)" title="Blow Candle 1"><div class="candle-flame" id="flame-0"></div></div>
+            <div class="candle" onclick="blowCandle(1)" title="Blow Candle 2"><div class="candle-flame" id="flame-1"></div></div>
+            <div class="candle" onclick="blowCandle(2)" title="Blow Candle 3"><div class="candle-flame" id="flame-2"></div></div>
+            <div class="candle" onclick="blowCandle(3)" title="Blow Candle 4"><div class="candle-flame" id="flame-3"></div></div>
+            <div class="candle" onclick="blowCandle(4)" title="Blow Candle 5"><div class="candle-flame" id="flame-4"></div></div>
+          </div>
+          <div class="cake-tier-top">
+            <div class="frosting-drips"></div>
+          </div>
+          <div class="cake-tier-mid">
+            <div class="frosting-drips"></div>
+          </div>
+          <div class="cake-base">
+            <div class="frosting-drips"></div>
+          </div>
+        </div>
+
+        <p style="font-size: 1.15rem; color: var(--purple-neon); font-weight: 600; min-height: 2rem;" id="cakeStatusText">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Tap the burning flames or click the button below to blow!
+        </p>
+        
+        <div style="margin-top: 1.8rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <button class="btn-main btn-primary" onclick="blowAllCandles()">
+            <i class="fa-solid fa-wind"></i> Blow All Candles At Once!
+          </button>
+          <button class="btn-main btn-outline" onclick="relightCandles()">
+            <i class="fa-solid fa-fire"></i> Relight Candles
+          </button>
+        </div>
+      </div>
+
+      <!-- Page-by-Page Journey Navigation -->
+      <div class="journey-nav-bar">
+        <div class="journey-step-indicator">
+          <i class="fa-solid fa-map-pin"></i> Chapter 03 of 05 &bull; 25 Candles Wish
+        </div>
+        <div class="journey-btns-group">
+          <a href="mystery.html" class="btn-main btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Chapter 02: Secret Mystery
+          </a>
+          <a href="gallery.html" class="btn-main btn-primary">
+            <span>Chapter 04: Memories & Adventures</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- QR Code Modal -->
+  <div class="qr-modal" id="qrModal">
+    <div class="qr-card">
+      <h3 style="color: #fff; margin-bottom: 0.5rem;"><i class="fa-solid fa-qrcode"></i> Scan Website QR</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">
+        Scan to view Jihin Jino's 25th Birthday Celebration on any phone!
+      </p>
+      <div class="qr-frame">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lbdigitalcreations.github.io/Bowya/cake.html&bgcolor=ffffff&color=150d28" alt="QR Code" class="qr-img" />
+      </div>
+      <div>
+        <button class="btn-main btn-outline" onclick="closeQrModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 0.5rem; font-size: 1.05rem;">
+        "Here's to 25 years of you and to all the beautiful years waiting for you." ✨
+      </p>
+      <p style="color: var(--pink-rose); font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin: 0.5rem 0;">
+        With lots and lots of love, Your non-blood sister ❤️
+      </p>
+      <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;">
+        Many candles to blow Jihin Jino &bull; LBDC Birthday Celebration Studio
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="js/core.js"></script>
+  <script>
+    let candlesBlown = [false, false, false, false, false];
+
+    function blowCandle(index) {
+      const flame = document.getElementById(`flame-${index}`);
+      if (!candlesBlown[index]) {
+        candlesBlown[index] = true;
+        flame.classList.add('blown');
+        sound.playPop();
+
+        if (candlesBlown.every(Boolean)) {
+          document.getElementById('cakeStatusText').innerHTML = '🎉 All 25th milestone candles blown! May every dream come true, Jihin (Chamathu)!';
+          sound.playWinFanfare();
+          launchConfetti();
+        }
+      }
+    }
+
+    function blowAllCandles() {
+      [0, 1, 2, 3, 4].forEach(i => blowCandle(i));
+    }
+
+    function relightCandles() {
+      candlesBlown = [false, false, false, false, false];
+      [0, 1, 2, 3, 4].forEach(i => {
+        const flame = document.getElementById(`flame-${i}`);
+        if (flame) flame.classList.remove('blown');
+      });
+      document.getElementById('cakeStatusText').innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Flames relit! Make another wish and blow them out!';
+      sound.playPop();
+    }
+  </script>
+</body>
+</html>

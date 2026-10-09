@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Adventures & Memories | Jihin Jino's 25th Birthday ✨</title>
+  <meta name="description" content="6 spotlight tributes and memory photo cards celebrating Jihin Jino (Chamathu) and his lifelong adventures." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- Ambient Space Canvas -->
+  <canvas id="spaceCanvas"></canvas>
+  <div class="aurora-bg"></div>
+
+  <!-- Floating Audio Dock -->
+  <div class="audio-dock" id="audioDock">
+    <button class="audio-btn" id="toggleAudioBtn" title="Play / Pause Music">
+      <i class="fa-solid fa-play" id="audioIcon"></i>
+    </button>
+    <div class="audio-info">
+      <span>Birthday Track</span>
+      <strong>Mid Birthday Music Box</strong>
+    </div>
+    <div class="sound-waves">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+  </div>
+
+  <!-- Floating Share Dock -->
+  <div class="floating-share-dock">
+    <a href="https://api.whatsapp.com/send?text=Happy%2025th%20Birthday%20Jihin%20Jino!%20View%20the%20adventure%20memories:%20https://lbdigitalcreations.github.io/Bowya/gallery.html" target="_blank" class="floating-circle-btn whatsapp-btn" title="Share via WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="floating-circle-btn" id="openQrBtn" title="Show QR Code">
+      <i class="fa-solid fa-qrcode"></i>
+    </button>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <span style="color: var(--pink-rose);">✨</span>
+        <span>Jihin Jino's 25th</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="letter.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Letter</a></li>
+        <li><a href="mystery.html" class="nav-link"><i class="fa-solid fa-compass"></i> Mystery</a></li>
+        <li><a href="cake.html" class="nav-link"><i class="fa-solid fa-cake-candles"></i> 25 Candles</a></li>
+        <li><a href="gallery.html" class="nav-link active"><i class="fa-solid fa-images"></i> Adventures</a></li>
+        <li><a href="arcade.html" class="nav-link nav-cta"><i class="fa-solid fa-gamepad"></i> 4 Mini-Games</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Gallery Section -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill"><i class="fa-solid fa-compass"></i> Chapter 04 &bull; Memories & Adventures</span>
+        <h1 class="section-title">Captured Moments & Future Journeys</h1>
+        <p class="section-subtitle">"From little adventures to crazy plans and unforgettable journeys."</p>
+      </div>
+
+      <!-- Spotlight 0: Featured Portrait & Sister's Vision -->
+      <div class="spotlight-card" onclick="openGalleryLightbox(0)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(30, 20, 56, 0.9), rgba(15, 8, 30, 0.98)); border: 2px solid rgba(216, 180, 254, 0.35); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), var(--glow-purple);">
+        <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--purple-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="jibin.jpg" alt="Jihin Jino (Chamathu) - Birthday Star" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+        </div>
+        <div class="spotlight-content" style="flex: 1;">
+          <span class="badge-pill" style="margin-bottom: 1.2rem;"><i class="fa-solid fa-sparkles"></i> A Sister's Vision</span>
+          <blockquote style="font-family: 'Playfair Display', serif; font-size: 1.3rem; line-height: 1.85; color: #f8fafc; font-style: italic; margin-bottom: 1.5rem;">
+            “Looking at this picture, I see someone who is just getting started. There is so much ahead of you — so many places to go, things to experience and dreams to turn into reality. I genuinely hope I get to watch you rise, succeed and build a life you’re incredibly proud of. Keep going, brother. Your best chapters are still waiting for you. ❤️✨”
+          </blockquote>
+          <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: var(--pink-rose);">
+            — Your non-blood sister ❤️
+          </div>
+          <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--purple-neon);"><i class="fa-solid fa-expand"></i> Click photo to view full quote & expand</div>
+        </div>
+      </div>
+
+      <!-- Spotlight 1: Bike Photo Explorer -->
+      <div class="spotlight-card" onclick="openGalleryLightbox(1)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(20, 30, 65, 0.9), rgba(10, 15, 40, 0.98)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row-reverse; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(56, 189, 248, 0.35);">
+        <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--cyan-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="jibin-bike.jpg" alt="Jihin Jino - The Explorer & Rider" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+        </div>
+        <div class="spotlight-content" style="flex: 1;">
+          <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--cyan-neon); color: var(--cyan-neon);"><i class="fa-solid fa-motorcycle"></i> The Explorer's Creed</span>
+          <blockquote style="font-family: 'Playfair Display', serif; font-size: 1.35rem; line-height: 1.85; color: #f8fafc; font-style: italic; margin-bottom: 1.5rem;">
+            “My wish for you is simple: may you travel far, dream fearlessly, discover endlessly, and come back with a heart full of stories. 🏍️✨”
+          </blockquote>
+          <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: var(--cyan-neon);">
+            — Keep riding towards your dreams ❤️
+          </div>
+          <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--cyan-neon);"><i class="fa-solid fa-expand"></i> Click photo to view full quote & expand</div>
+        </div>
+      </div>
+
+      <!-- Spotlight 2: Mother Tribute -->
+      <div class="spotlight-card" onclick="openGalleryLightbox(2)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(45, 25, 40, 0.92), rgba(20, 10, 25, 0.98)); border: 2px solid rgba(251, 191, 36, 0.45); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(251, 191, 36, 0.3);">
+        <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--gold-accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="jibin-mother.jpg" alt="Jihin with Mother" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+        </div>
+        <div class="spotlight-content" style="flex: 1;">
+          <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--gold-accent); color: var(--gold-accent);"><i class="fa-solid fa-heart"></i> The Heart's Sanctuary</span>
+          <blockquote style="font-family: 'Playfair Display', serif; font-size: 1.35rem; line-height: 1.85; color: #f8fafc; font-style: italic; margin-bottom: 1.5rem;">
+            “Behind the smile of this man is a heart that belongs to his mother. Every call, every little check-in, every effort to make her life easier — these are his quiet ways of saying, ‘I’m here, Mummy. Ummah..’ No matter how far life takes him, she will always be the place his heart comes home to. ❤️”
+          </blockquote>
+          <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: var(--gold-accent);">
+            — Forever A Mother’s Pride & Joy 💛
+          </div>
+          <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--gold-accent);"><i class="fa-solid fa-expand"></i> Click photo to view full quote & expand</div>
+        </div>
+      </div>
+
+      <!-- Spotlight 3: Friends Tribute -->
+      <div class="spotlight-card" onclick="openGalleryLightbox(3)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(25, 35, 60, 0.92), rgba(12, 18, 32, 0.98)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row-reverse; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(56, 189, 248, 0.3);">
+        <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--cyan-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="jibin-friends.jpg" alt="Jihin with Friends" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+        </div>
+        <div class="spotlight-content" style="flex: 1;">
+          <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--cyan-neon); color: var(--cyan-neon);"><i class="fa-solid fa-users"></i> The Rare Aura & Brotherhood</span>
+          <blockquote style="font-family: 'Playfair Display', serif; font-size: 1.3rem; line-height: 1.85; color: #f8fafc; font-style: italic; margin-bottom: 1.2rem;">
+            “He has a heart that chooses happiness, no matter what life puts him through. And somehow, wherever he goes, he leaves a little of that happiness behind in everyone around him.”
+          </blockquote>
+          <div style="font-size: 0.98rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.2rem; border-left: 2px solid var(--cyan-neon); padding-left: 1rem;">
+            <p>“Life may not always give him reasons to smile, but he still becomes the reason everyone around him does.”</p>
+            <p style="margin-top: 0.4rem;">“There’s something about his presence — he can carry his own battles silently and still make sure the people beside him are laughing.”</p>
+            <p style="margin-top: 0.4rem;">“He has this rare aura: no matter how heavy life gets, he never lets it become heavy for the people he loves.”</p>
+          </div>
+          <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: var(--cyan-neon);">
+            — The Light in Every Room 🌊✨
+          </div>
+          <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--cyan-neon);"><i class="fa-solid fa-expand"></i> Click photo to view full quote & expand</div>
+        </div>
+      </div>
+
+      <!-- Spotlight 4: Sister Bond -->
+      <div class="spotlight-card" onclick="openGalleryLightbox(4)" style="cursor: pointer; margin-bottom: 3.5rem; background: linear-gradient(135deg, rgba(42, 18, 48, 0.92), rgba(18, 8, 25, 0.98)); border: 2px solid rgba(244, 63, 94, 0.45); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(244, 63, 94, 0.35);">
+        <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--pink-rose); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="jibin-sister.png" alt="Jihin with Sister" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+        </div>
+        <div class="spotlight-content" style="flex: 1;">
+          <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--pink-rose); color: var(--pink-rose);"><i class="fa-solid fa-gem"></i> The Bond Beyond Blood</span>
+          <blockquote style="font-family: 'Playfair Display', serif; font-size: 1.28rem; line-height: 1.85; color: #f8fafc; font-style: italic; margin-bottom: 1.2rem;">
+            “Some bonds don’t need years to become special. Sometimes, a person enters your life recently, yet somehow your heart already knows where to place them. That’s exactly how I feel about you. I started seeing you as my own brother — not because we share blood, but because the bond feels just as real to me. ❤️”
+          </blockquote>
+          <div style="font-size: 0.96rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.2rem; border-left: 2px solid var(--pink-rose); padding-left: 1rem;">
+            <p>“Whenever life gets difficult, I want to be someone you can lean on, even if it's just to listen, to stand beside you, or to remind you that you don't have to carry everything by yourself. Think of me as your own sister.”</p>
+            <p style="margin-top: 0.5rem;">“You may not be my brother by blood, but in my heart, you've already earned that place. And I hope you keep me there forever.”</p>
+          </div>
+          <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: var(--pink-rose);">
+            — Forever Your Sister Beside You ❤️✨
+          </div>
+          <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--pink-rose);"><i class="fa-solid fa-expand"></i> Click photo to read full letter & tribute</div>
+        </div>
+      </div>
+
+      <!-- Spotlight 5: Stylish Portrait Formal -->
+      <div class="spotlight-card" onclick="openGalleryLightbox(5)" style="cursor: pointer; margin-bottom: 3.5rem; background: linear-gradient(135deg, rgba(32, 16, 52, 0.95), rgba(15, 8, 28, 0.98)); border: 2px solid rgba(216, 180, 254, 0.45); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row-reverse; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(168, 85, 247, 0.35);">
+        <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--purple-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img src="jibin-stylish.jpg" alt="Jihin (Chamathu) - The Brother Who Inspires" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+        </div>
+        <div class="spotlight-content" style="flex: 1;">
+          <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--gold-accent); color: var(--gold-accent);"><i class="fa-solid fa-crown"></i> The Quiet Strength & Pure Heart</span>
+          <blockquote style="font-family: 'Playfair Display', serif; font-size: 1.25rem; line-height: 1.85; color: #f8fafc; font-style: italic; margin-bottom: 1.2rem;">
+            “Some people enter our lives unexpectedly, but somehow become a part of our hearts before we even realise it. You are one of those people for me... You have carried responsibilities from such a young age and fought battles that you rarely speak about. Yet, despite everything life has placed on your shoulders, you still choose to smile, explore life, and find reasons to be happy.”
+          </blockquote>
+          <div style="font-size: 0.96rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.2rem; border-left: 2px solid var(--purple-neon); padding-left: 1rem;">
+            <p>“Somewhere along the way, your way of living changed me too. I have learned to hold myself together a little better, to look for happiness even on difficult days, and to cry much less than I used to. You may not know it, but your strength has quietly become a lesson for me.”</p>
+            <p style="margin-top: 0.5rem;">“You carry responsibilities on your shoulders, kindness in your heart and somehow still manage to carry happiness with you. For that, I’ll always be grateful.”</p>
+          </div>
+          <div style="font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: var(--gold-accent);">
+            — Forever Grateful For You, Brother ❤️✨
+          </div>
+          <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--purple-neon);"><i class="fa-solid fa-expand"></i> Click photo to read full tribute</div>
+        </div>
+      </div>
+
+      <!-- Quick Gallery Thumbnails Grid -->
+      <div class="gallery-grid" id="photosGrid">
+        <div class="photo-card" onclick="openGalleryLightbox(0)">
+          <img src="jibin.jpg" alt="Jihin - Just Getting Started" />
+          <div class="photo-caption-overlay">
+            <div class="photo-title">Just Getting Started</div>
+            <div class="photo-subtitle">Best chapters are waiting for you ✨</div>
+          </div>
+        </div>
+        <div class="photo-card" onclick="openGalleryLightbox(1)">
+          <img src="jibin-bike.jpg" alt="Jihin - The Free Spirit" />
+          <div class="photo-caption-overlay">
+            <div class="photo-title">The Free Spirit</div>
+            <div class="photo-subtitle">Travel far, dream fearlessly 🏍️</div>
+          </div>
+        </div>
+        <div class="photo-card" onclick="openGalleryLightbox(2)">
+          <img src="jibin-mother.jpg" alt="Jihin with Mother" />
+          <div class="photo-caption-overlay">
+            <div class="photo-title">Where The Heart Belongs</div>
+            <div class="photo-subtitle">A mother's unconditional love ❤️</div>
+          </div>
+        </div>
+        <div class="photo-card" onclick="openGalleryLightbox(3)">
+          <img src="jibin-friends.jpg" alt="Jihin with Friends" />
+          <div class="photo-caption-overlay">
+            <div class="photo-title">The Joy In Every Room</div>
+            <div class="photo-subtitle">A heart that chooses happiness 🌊</div>
+          </div>
+        </div>
+        <div class="photo-card" onclick="openGalleryLightbox(4)">
+          <img src="jibin-sister.png" alt="Jihin with Sister" />
+          <div class="photo-caption-overlay">
+            <div class="photo-title">Sisterhood Beyond Blood</div>
+            <div class="photo-subtitle">Chosen by the heart forever ❤️</div>
+          </div>
+        </div>
+        <div class="photo-card" onclick="openGalleryLightbox(5)">
+          <img src="jibin-stylish.jpg" alt="Jihin - The Brother Who Inspires" />
+          <div class="photo-caption-overlay">
+            <div class="photo-title">The Brother Who Inspires</div>
+            <div class="photo-subtitle">Taught me how to live happily ❤️</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page-by-Page Journey Navigation -->
+      <div class="journey-nav-bar">
+        <div class="journey-step-indicator">
+          <i class="fa-solid fa-map-pin"></i> Chapter 04 of 05 &bull; Explorer Memories
+        </div>
+        <div class="journey-btns-group">
+          <a href="cake.html" class="btn-main btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Chapter 03: Blow Candles
+          </a>
+          <a href="arcade.html" class="btn-main btn-primary">
+            <span>Chapter 05: 4 Birthday Mini-Games</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Photo Lightbox Modal -->
+  <div class="lightbox-modal" id="photoLightboxModal" onclick="handleLightboxBackdrop(event)">
+    <button class="lightbox-close-btn" onclick="closeGalleryLightbox()" title="Close (Esc)"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox-nav-btn lightbox-prev" onclick="prevLightbox(event)" title="Previous photo (←)"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lightbox-nav-btn lightbox-next" onclick="nextLightbox(event)" title="Next photo (→)"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lightbox-content-box" onclick="event.stopPropagation()">
+      <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="" alt="Jihin Tribute Photo" />
+      </div>
+      <div class="lightbox-details">
+        <span class="lightbox-badge" id="lightboxBadge"><i class="fa-solid fa-star"></i> Tribute</span>
+        <div class="lightbox-quote" id="lightboxQuote"></div>
+        <div class="lightbox-subtext" id="lightboxSubtext"></div>
+        <div class="lightbox-author" id="lightboxAuthor"></div>
+        <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+          <span style="font-size: 0.85rem; color: var(--text-muted);" id="lightboxCounter">1 of 6</span>
+          <span style="font-size: 0.82rem; color: var(--purple-neon);"><i class="fa-solid fa-keyboard"></i> Use arrow keys ← →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Code Modal -->
+  <div class="qr-modal" id="qrModal">
+    <div class="qr-card">
+      <h3 style="color: #fff; margin-bottom: 0.5rem;"><i class="fa-solid fa-qrcode"></i> Scan Website QR</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">
+        Scan to view Jihin Jino's 25th Birthday Celebration on any phone!
+      </p>
+      <div class="qr-frame">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lbdigitalcreations.github.io/Bowya/gallery.html&bgcolor=ffffff&color=150d28" alt="QR Code" class="qr-img" />
+      </div>
+      <div>
+        <button class="btn-main btn-outline" onclick="closeQrModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 0.5rem; font-size: 1.05rem;">
+        "Here's to 25 years of you and to all the beautiful years waiting for you." ✨
+      </p>
+      <p style="color: var(--pink-rose); font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin: 0.5rem 0;">
+        With lots and lots of love, Your non-blood sister ❤️
+      </p>
+      <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;">
+        Many candles to blow Jihin Jino &bull; LBDC Birthday Celebration Studio
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="js/core.js"></script>
+  <script>
+    const galleryItems = [
+      {
+        src: "jibin.jpg",
+        badge: "<i class='fa-solid fa-sparkles'></i> A Sister's Vision",
+        quote: "“Looking at this picture, I see someone who is just getting started. There is so much ahead of you — so many places to go, things to experience and dreams to turn into reality. I genuinely hope I get to watch you rise, succeed and build a life you’re incredibly proud of. Keep going, brother. Your best chapters are still waiting for you. ❤️✨”",
+        subtext: "To the man destined for great heights — stepping into 25 with limitless courage.",
+        author: "— Your non-blood sister ❤️"
+      },
+      {
+        src: "jibin-bike.jpg",
+        badge: "<i class='fa-solid fa-motorcycle'></i> The Explorer's Creed",
+        quote: "“My wish for you is simple: may you travel far, dream fearlessly, discover endlessly, and come back with a heart full of stories. 🏍️✨”",
+        subtext: "Riding fearlessly through every winding road and horizon life offers.",
+        author: "— Keep riding towards your dreams ❤️"
+      },
+      {
+        src: "jibin-mother.jpg",
+        badge: "<i class='fa-solid fa-heart'></i> The Heart's Sanctuary",
+        quote: "“Behind the smile of this man is a heart that belongs to his mother. Every call, every little check-in, every effort to make her life easier — these are his quiet ways of saying, ‘I’m here, Mummy. Ummah..’ No matter how far life takes him, she will always be the place his heart comes home to. ❤️”",
+        subtext: "A son's silent devotion and pure warmth that anchors his world.",
+        author: "— Forever A Mother’s Pride & Joy 💛"
+      },
+      {
+        src: "jibin-friends.jpg",
+        badge: "<i class='fa-solid fa-users'></i> The Rare Aura & Brotherhood",
+        quote: "“He has a heart that chooses happiness, no matter what life puts him through. And somehow, wherever he goes, he leaves a little of that happiness behind in everyone around him.”",
+        subtext: "“Life may not always give him reasons to smile, but he still becomes the reason everyone around him does.”<br><br>“There’s something about his presence — he can carry his own battles silently and still make sure the people beside him are laughing.”<br><br>“He has this rare aura: no matter how heavy life gets, he never lets it become heavy for the people he loves.”",
+        author: "— The Light in Every Room 🌊✨"
+      },
+      {
+        src: "jibin-sister.png",
+        badge: "<i class='fa-solid fa-gem'></i> The Bond Beyond Blood",
+        quote: "“Some bonds don’t need years to become special. Sometimes, a person enters your life recently, yet somehow your heart already knows where to place them. That’s exactly how I feel about you. ❤️”",
+        subtext: "I may have met you only recently, but somewhere along the way, you became much more than just someone I know. I started seeing you as my own brother — not because we share blood, but because the bond feels just as real to me.<br><br>Whenever life gets difficult, I want to be someone you can lean on. Think of me as your own sister. Just as I would reach out to my own brother, I want you to feel free to reach out to me.<br><br>You may not be my brother by blood, but in my heart, you've already earned that place. And I hope you keep me there forever. ❤️",
+        author: "— Forever Your Sister Beside You ❤️"
+      },
+      {
+        src: "jibin-stylish.jpg",
+        badge: "<i class='fa-solid fa-crown'></i> The Quiet Strength & Pure Heart",
+        quote: "“Some people enter our lives unexpectedly, but somehow become a part of our hearts before we even realise it. You are one of those people for me.”",
+        subtext: "You have carried responsibilities from such a young age and fought battles that you rarely speak about. Yet, despite everything life has placed on your shoulders, you still choose to smile, enjoy the little things, explore life and find reasons to be happy.<br><br>Somewhere along the way, your way of living changed me too. I have learned to hold myself together a little better, to look for happiness even on difficult days, and to cry much less than I used to.<br><br>You may simply think you're living your life, but somewhere along the way, you became someone who taught me how to live mine a little more happily. And for that, I'll always be grateful. ❤️",
+        author: "— Forever Your Non-Blood Sister ❤️"
+      }
+    ];
+
+    let currentLightboxIdx = 0;
+    const lightboxModal = document.getElementById('photoLightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxBadge = document.getElementById('lightboxBadge');
+    const lightboxQuote = document.getElementById('lightboxQuote');
+    const lightboxSubtext = document.getElementById('lightboxSubtext');
+    const lightboxAuthor = document.getElementById('lightboxAuthor');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    function openGalleryLightbox(idx) {
+      currentLightboxIdx = idx;
+      updateLightboxContent();
+      lightboxModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      sound.playPop();
+    }
+
+    function closeGalleryLightbox() {
+      lightboxModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightboxContent() {
+      const item = galleryItems[currentLightboxIdx];
+      lightboxImg.src = item.src;
+      lightboxBadge.innerHTML = item.badge;
+      lightboxQuote.innerHTML = item.quote;
+      lightboxSubtext.innerHTML = item.subtext;
+      lightboxAuthor.innerHTML = item.author;
+      lightboxCounter.textContent = `${currentLightboxIdx + 1} of ${galleryItems.length}`;
+    }
+
+    function nextLightbox(e) {
+      if (e) e.stopPropagation();
+      currentLightboxIdx = (currentLightboxIdx + 1) % galleryItems.length;
+      updateLightboxContent();
+      sound.playPop();
+    }
+
+    function prevLightbox(e) {
+      if (e) e.stopPropagation();
+      currentLightboxIdx = (currentLightboxIdx - 1 + galleryItems.length) % galleryItems.length;
+      updateLightboxContent();
+      sound.playPop();
+    }
+
+    function handleLightboxBackdrop(e) {
+      if (e.target === lightboxModal) {
+        closeGalleryLightbox();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxModal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeGalleryLightbox();
+      if (e.key === 'ArrowRight') nextLightbox();
+      if (e.key === 'ArrowLeft') prevLightbox();
+    });
+  </script>
+</body>
+</html>

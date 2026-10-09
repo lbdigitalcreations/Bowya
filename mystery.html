@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>The Secret Mystery | Jihin Jino's 25th Birthday ✨</title>
+  <meta name="description" content="A secret 25th birthday adventure voucher and mission planned with love for Jihin Jino (Chamathu)." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- Ambient Space Canvas -->
+  <canvas id="spaceCanvas"></canvas>
+  <div class="aurora-bg"></div>
+
+  <!-- Floating Audio Dock -->
+  <div class="audio-dock" id="audioDock">
+    <button class="audio-btn" id="toggleAudioBtn" title="Play / Pause Music">
+      <i class="fa-solid fa-play" id="audioIcon"></i>
+    </button>
+    <div class="audio-info">
+      <span>Birthday Track</span>
+      <strong>Mid Birthday Music Box</strong>
+    </div>
+    <div class="sound-waves">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+  </div>
+
+  <!-- Floating Share Dock -->
+  <div class="floating-share-dock">
+    <a href="https://api.whatsapp.com/send?text=Happy%2025th%20Birthday%20Jihin%20Jino!%20Check%20out%20the%20secret%20mystery%20adventure:%20https://lbdigitalcreations.github.io/Bowya/mystery.html" target="_blank" class="floating-circle-btn whatsapp-btn" title="Share via WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="floating-circle-btn" id="openQrBtn" title="Show QR Code">
+      <i class="fa-solid fa-qrcode"></i>
+    </button>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <span style="color: var(--pink-rose);">✨</span>
+        <span>Jihin Jino's 25th</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="letter.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Letter</a></li>
+        <li><a href="mystery.html" class="nav-link active"><i class="fa-solid fa-compass"></i> Mystery</a></li>
+        <li><a href="cake.html" class="nav-link"><i class="fa-solid fa-cake-candles"></i> 25 Candles</a></li>
+        <li><a href="gallery.html" class="nav-link"><i class="fa-solid fa-images"></i> Adventures</a></li>
+        <li><a href="arcade.html" class="nav-link nav-cta"><i class="fa-solid fa-gamepad"></i> 4 Mini-Games</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mystery Section -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill" style="border-color: var(--gold-accent); color: var(--gold-accent);">
+          <i class="fa-solid fa-gift"></i> Chapter 02 &bull; Top Secret Mission 🎁
+        </span>
+        <h1 class="section-title">The Explorer's Mystery Journey</h1>
+        <p class="section-subtitle">"There is a little something waiting for you... don't interrogate me! 😜"</p>
+      </div>
+
+      <div class="mystery-box">
+        <span class="mystery-badge">🗺️ Top Secret Mission</span>
+        <div class="mystery-content">
+There is a little something I have been planning for your 25th.
+
+You already have your gifts, so I thought...
+Why stop there??? This time I wanted to give you something more memorable.
+
+Since you're someone who loves exploring, I thought I'd plan something that truly suits you. There's a small journey waiting for you, with a couple of places, a few moments that I hope will make you smile, and one or two surprises you probably won't expect 😊
+
+I'm deliberately not giving you any details because where's the fun if I tell you everything now? 😜
+
+So don't try to investigate, don't make guesses, and definitely don't interrogate me!
+
+Just be ready, come along with me, and let the day unfold.
+        </div>
+
+        <div style="background: rgba(10, 6, 20, 0.7); border-radius: 16px; padding: 2rem; margin-top: 1.5rem; border: 1px solid rgba(251, 191, 36, 0.35);">
+          <h2 style="color: var(--gold-accent); margin-bottom: 0.8rem; font-family: 'Playfair Display', serif; font-size: 1.6rem;">
+            Final Sister's Message ✨
+          </h2>
+          <p style="font-size: 1.15rem; line-height: 1.85; color: #f1f5f9; font-style: italic;">
+            "I just hope that when the day is over, you'll have one more memory that makes you smile whenever you think about turning 25. ❤️<br /><br />
+            So get ready, explorer.<br />
+            Your birthday has a little story waiting to be written.<br />
+            Happy 25th birthday, my dear brother. ✨<br />
+            <strong>Now... let the mystery begin. 🎁</strong>"
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <button class="btn-main btn-primary" id="blastConfettiBtn">
+              <i class="fa-solid fa-party-horn"></i> Celebrate The Mystery!
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page-by-Page Journey Navigation -->
+      <div class="journey-nav-bar">
+        <div class="journey-step-indicator">
+          <i class="fa-solid fa-map-pin"></i> Chapter 02 of 05 &bull; The Secret Mystery
+        </div>
+        <div class="journey-btns-group">
+          <a href="letter.html" class="btn-main btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Chapter 01: Sister's Letter
+          </a>
+          <a href="cake.html" class="btn-main btn-primary">
+            <span>Chapter 03: Blow 25 Candles</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- QR Code Modal -->
+  <div class="qr-modal" id="qrModal">
+    <div class="qr-card">
+      <h3 style="color: #fff; margin-bottom: 0.5rem;"><i class="fa-solid fa-qrcode"></i> Scan Website QR</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">
+        Scan to view Jihin Jino's 25th Birthday Celebration on any phone!
+      </p>
+      <div class="qr-frame">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lbdigitalcreations.github.io/Bowya/mystery.html&bgcolor=ffffff&color=150d28" alt="QR Code" class="qr-img" />
+      </div>
+      <div>
+        <button class="btn-main btn-outline" onclick="closeQrModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 0.5rem; font-size: 1.05rem;">
+        "Here's to 25 years of you and to all the beautiful years waiting for you." ✨
+      </p>
+      <p style="color: var(--pink-rose); font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin: 0.5rem 0;">
+        With lots and lots of love, Your non-blood sister ❤️
+      </p>
+      <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;">
+        Many candles to blow Jihin Jino &bull; LBDC Birthday Celebration Studio
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="js/core.js"></script>
+</body>
+</html>
