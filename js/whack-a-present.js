@@ -214,18 +214,14 @@ const WhackPresentGame = {
     this.cleanup();
     const isNewRecord = ArcadeStorage.saveWhackBest(this.score, this.maxCombo);
 
-    if (this.score >= 150) {
-      ArcadeSound.fanfare();
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#FFD166', '#F04491', '#7138D4']
-        });
-      }
-    } else {
-      ArcadeSound.match();
+    ArcadeSound.fanfare();
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: isNewRecord ? 140 : 80,
+        spread: isNewRecord ? 95 : 70,
+        origin: { y: 0.6 },
+        colors: ['#FFD166', '#F04491', '#7138D4', '#38BDF8', '#FFFFFF']
+      });
     }
 
     if (window.ArcadeHub) {
@@ -258,8 +254,8 @@ const WhackPresentGame = {
     overlay.innerHTML = `
       <div class="result-badge-icon">${icon}</div>
       <h2 class="result-title">${title}</h2>
-      <p style="color: var(--arcade-lavender); margin-bottom: 0.6rem;">${subtitle}</p>
-      ${isRecord ? '<span class="badge-pill" style="border-color: var(--arcade-gold); color: var(--arcade-gold); margin-bottom: 1rem;">★ New High Score! ★</span>' : ''}
+      <p class="result-subtitle">${subtitle}</p>
+      ${isRecord ? '<div class="result-record-pill"><i class="fa-solid fa-crown"></i> ★ New High Score! ★</div>' : ''}
       <div class="result-stats-row">${statsHtml}</div>
       <div class="result-btn-row">
         <button class="btn-main btn-primary" onclick="WhackPresentGame.start()">
@@ -267,6 +263,9 @@ const WhackPresentGame = {
         </button>
         <button class="btn-main btn-outline" onclick="ArcadeHub.showHub()">
           <i class="fa-solid fa-gamepad"></i> Back to Games
+        </button>
+        <button class="btn-main btn-info-outline" onclick="ArcadeHub.openHowToPlay('whack')">
+          <i class="fa-solid fa-circle-question"></i> How to Play
         </button>
       </div>
     `;

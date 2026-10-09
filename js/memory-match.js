@@ -282,8 +282,8 @@ const MemoryMatchGame = {
     overlay.innerHTML = `
       <div class="result-badge-icon">${icon}</div>
       <h2 class="result-title">${title}</h2>
-      <p style="color: var(--arcade-lavender); margin-bottom: 0.6rem;">${subtitle}</p>
-      ${isRecord ? '<span class="badge-pill" style="border-color: var(--arcade-gold); color: var(--arcade-gold); margin-bottom: 1rem;">★ New Personal Best! ★</span>' : ''}
+      <p class="result-subtitle">${subtitle}</p>
+      ${isRecord ? '<div class="result-record-pill"><i class="fa-solid fa-crown"></i> ★ New Personal Best! ★</div>' : ''}
       <div class="result-stats-row">${statsHtml}</div>
       <div class="result-btn-row">
         <button class="btn-main btn-primary" onclick="MemoryMatchGame.start('${this.currentDifficulty}')">
@@ -291,6 +291,9 @@ const MemoryMatchGame = {
         </button>
         <button class="btn-main btn-outline" onclick="ArcadeHub.showHub()">
           <i class="fa-solid fa-gamepad"></i> Back to Games
+        </button>
+        <button class="btn-main btn-info-outline" onclick="ArcadeHub.openHowToPlay('memory')">
+          <i class="fa-solid fa-circle-question"></i> How to Play
         </button>
       </div>
     `;

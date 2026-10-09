@@ -203,15 +203,47 @@ const ArcadeHub = {
     }
   },
 
-  openInstructionsModal() {
-    const modal = document.getElementById('arcadeInstructionsModal');
-    if (modal) modal.classList.add('open');
+  openHowToPlay(gameId) {
+    const modal = document.getElementById('arcadeHowToPlayModal') || document.getElementById('arcadeInstructionsModal');
+    if (!modal) return;
+
+    // Pick target game tab: parameter, or current active game, or fallback to 'memory'
+    const targetGame = gameId || this.activeGameId || 'memory';
+    this.switchHowToPlayTab(targetGame);
+
+    modal.classList.add('open');
     ArcadeSound.click();
   },
 
-  closeInstructionsModal() {
-    const modal = document.getElementById('arcadeInstructionsModal');
+  closeHowToPlay() {
+    const modal = document.getElementById('arcadeHowToPlayModal') || document.getElementById('arcadeInstructionsModal');
     if (modal) modal.classList.remove('open');
+  },
+
+  switchHowToPlayTab(gameId) {
+    // Update tab buttons
+    document.querySelectorAll('.how-to-tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === gameId);
+    });
+
+    // Update tab panels
+    document.querySelectorAll('.how-to-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === `howToPanel-${gameId}`);
+    });
+  },
+
+  launchFromGuide(gameId) {
+    this.closeHowToPlay();
+    this.launchGame(gameId);
+  },
+
+  // Backward compatibility aliases
+  openInstructionsModal(gameId) {
+    this.openHowToPlay(gameId);
+  },
+
+  closeInstructionsModal() {
+    this.closeHowToPlay();
   }
 };
 

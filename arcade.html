@@ -115,8 +115,8 @@
         <button class="btn-nav-link arcade-sound-toggle-btn" title="Toggle Sound">
           <i class="fa-solid fa-volume-high"></i> Sound: ON
         </button>
-        <button class="btn-nav-link" onclick="ArcadeHub.openInstructionsModal()" title="Arcade Rules & Guide">
-          <i class="fa-solid fa-circle-question"></i> Rules
+        <button class="btn-nav-link" onclick="ArcadeHub.openHowToPlay()" title="Arcade How to Play & Rules">
+          <i class="fa-solid fa-circle-question"></i> How to Play
         </button>
       </div>
     </header>
@@ -143,8 +143,8 @@
             <button class="arcade-ctrl-btn arcade-sound-toggle-btn">
               <i class="fa-solid fa-volume-high"></i> Sound Effects
             </button>
-            <button class="arcade-ctrl-btn" onclick="ArcadeHub.openInstructionsModal()">
-              <i class="fa-solid fa-gamepad"></i> Game Rules
+            <button class="arcade-ctrl-btn" onclick="ArcadeHub.openHowToPlay()">
+              <i class="fa-solid fa-circle-question"></i> How to Play
             </button>
             <a href="index.html#letter" class="arcade-ctrl-btn">
               <i class="fa-solid fa-heart"></i> Personal Letter
@@ -304,6 +304,9 @@
             <p class="stage-game-subtitle">Pair all matching birthday cards before time runs out</p>
           </div>
           <div class="stage-actions-right">
+            <button class="btn-stage-how-to-play" onclick="ArcadeHub.openHowToPlay('memory')" title="How to Play Memory Match">
+              <i class="fa-solid fa-circle-question"></i> How to Play
+            </button>
             <button class="stage-mini-btn" id="memHintBtn" onclick="MemoryMatchGame.showHint()" title="Use 1 Free Hint">
               <i class="fa-solid fa-lightbulb"></i>
             </button>
@@ -314,6 +317,17 @@
               <i class="fa-solid fa-volume-high"></i>
             </button>
           </div>
+        </div>
+
+        <!-- In-Stage How to Play Banner -->
+        <div class="game-how-to-banner">
+          <div class="how-to-banner-left">
+            <span class="how-to-tag"><i class="fa-solid fa-gamepad"></i> How to Play</span>
+            <span class="how-to-text">Flip 2 cards to find matching celebration twins. Clear all pairs before the timer runs out!</span>
+          </div>
+          <button class="how-to-guide-link" onclick="ArcadeHub.openHowToPlay('memory')">
+            Full Guide <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
 
         <div class="memory-difficulty-bar" id="memDifficultyBar">
@@ -355,6 +369,9 @@
             <p class="stage-game-subtitle">Tap appearing presents! Crowns give +50, bombs deduct 15!</p>
           </div>
           <div class="stage-actions-right">
+            <button class="btn-stage-how-to-play" onclick="ArcadeHub.openHowToPlay('whack')" title="How to Play Whack-A-Present">
+              <i class="fa-solid fa-circle-question"></i> How to Play
+            </button>
             <button class="stage-mini-btn" id="whackRestartBtn" onclick="WhackPresentGame.start()" title="Restart Game">
               <i class="fa-solid fa-rotate-right"></i>
             </button>
@@ -362,6 +379,17 @@
               <i class="fa-solid fa-volume-high"></i>
             </button>
           </div>
+        </div>
+
+        <!-- In-Stage How to Play Banner -->
+        <div class="game-how-to-banner">
+          <div class="how-to-banner-left">
+            <span class="how-to-tag"><i class="fa-solid fa-gamepad"></i> How to Play</span>
+            <span class="how-to-text">Tap <strong>🎁 Present (+10)</strong> &amp; <strong>👑 Crown (+50)</strong>! Avoid <strong>💣 Bomb (-15)</strong>! Tap fast for Combo streaks!</span>
+          </div>
+          <button class="how-to-guide-link" onclick="ArcadeHub.openHowToPlay('whack')">
+            Full Guide <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
 
         <div class="game-live-stats">
@@ -412,6 +440,9 @@
             <p class="stage-game-subtitle">Tap your favorite option to shape your birthday archetype</p>
           </div>
           <div class="stage-actions-right">
+            <button class="btn-stage-how-to-play" onclick="ArcadeHub.openHowToPlay('this-that')" title="How to Play This or That">
+              <i class="fa-solid fa-circle-question"></i> How to Play
+            </button>
             <button class="stage-mini-btn" id="thisThatRestartBtn" onclick="ThisOrThatGame.start()" title="Restart Quiz">
               <i class="fa-solid fa-rotate-right"></i>
             </button>
@@ -419,6 +450,17 @@
               <i class="fa-solid fa-volume-high"></i>
             </button>
           </div>
+        </div>
+
+        <!-- In-Stage How to Play Banner -->
+        <div class="game-how-to-banner">
+          <div class="how-to-banner-left">
+            <span class="how-to-tag"><i class="fa-solid fa-gamepad"></i> How to Play</span>
+            <span class="how-to-text">Tap your favorite option in each birthday duel to reveal Jibin's personalized Birthday Archetype!</span>
+          </div>
+          <button class="how-to-guide-link" onclick="ArcadeHub.openHowToPlay('this-that')">
+            Full Guide <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
 
         <!-- Playing stage -->
@@ -467,6 +509,9 @@
             <button class="btn-main btn-outline" onclick="ArcadeHub.showHub()">
               <i class="fa-solid fa-gamepad"></i> Back to Games
             </button>
+            <button class="btn-main btn-info-outline" onclick="ArcadeHub.openHowToPlay('this-that')">
+              <i class="fa-solid fa-circle-question"></i> How to Play
+            </button>
           </div>
         </div>
       </div>
@@ -484,10 +529,24 @@
             <p class="stage-game-subtitle">Mission 25: Solve room clues and unlock the golden treasure</p>
           </div>
           <div class="stage-actions-right">
+            <button class="btn-stage-how-to-play" onclick="ArcadeHub.openHowToPlay('mystery')" title="How to Play Mystery Escape">
+              <i class="fa-solid fa-circle-question"></i> How to Play
+            </button>
             <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
               <i class="fa-solid fa-volume-high"></i>
             </button>
           </div>
+        </div>
+
+        <!-- In-Stage How to Play Banner -->
+        <div class="game-how-to-banner">
+          <div class="how-to-banner-left">
+            <span class="how-to-tag"><i class="fa-solid fa-gamepad"></i> How to Play</span>
+            <span class="how-to-text">Search 6 room items for ciphers &rarr; Solve milestone riddle &rarr; Enter keypad code <strong>2525</strong>!</span>
+          </div>
+          <button class="how-to-guide-link" onclick="ArcadeHub.openHowToPlay('mystery')">
+            Full Guide <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
 
         <!-- Mission Tracker -->
@@ -693,21 +752,289 @@
   <!-- ====================================================================
        INSTRUCTIONS MODAL
        ==================================================================== -->
-  <div class="birthday-finale-modal" id="arcadeInstructionsModal">
-    <div class="finale-card-content" style="max-width: 580px; text-align: left;">
-      <h3 style="color: var(--arcade-gold); margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: space-between;">
-        <span><i class="fa-solid fa-circle-question"></i> Arcade Rules & Guide</span>
-        <button style="background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;" onclick="ArcadeHub.closeInstructionsModal()">&times;</button>
-      </h3>
-      <div style="font-size: 0.95rem; color: var(--arcade-lavender); line-height: 1.7; display: flex; flex-direction: column; gap: 1rem;">
-        <p><strong>1. Memory Match:</strong> Flip face-down cards to match pairs. Complete before time expires to register a high score!</p>
-        <p><strong>2. Whack-A-Present:</strong> 30-second reflex challenge! Tap normal presents (+10) and golden crowns (+50). Avoid bombs (-15).</p>
-        <p><strong>3. This or That:</strong> Choose between two fun options across 12 questions to discover your personalized personality archetype.</p>
-        <p><strong>4. Birthday Mystery Escape:</strong> Search the celebration room for clues, solve the age riddle, and crack the keypad code (2525) to unlock the grand birthday finale!</p>
+  <!-- ====================================================================
+       INTERACTIVE HOW TO PLAY GUIDE MODAL
+       ==================================================================== -->
+  <div class="how-to-play-modal" id="arcadeHowToPlayModal">
+    <div class="how-to-modal-card">
+      <div class="how-to-modal-header">
+        <div class="how-to-modal-title">
+          <i class="fa-solid fa-gamepad"></i>
+          <span>How to Play &bull; Birthday Arcade</span>
+        </div>
+        <button class="how-to-modal-close" onclick="ArcadeHub.closeHowToPlay()">&times;</button>
       </div>
-      <div style="margin-top: 1.8rem; text-align: center;">
-        <button class="btn-main btn-primary" onclick="ArcadeHub.closeInstructionsModal()">
-          Got It, Let's Play!
+
+      <!-- Tab Buttons -->
+      <div class="how-to-tabs-bar">
+        <button class="how-to-tab-btn active" data-tab="whack" onclick="ArcadeHub.switchHowToPlayTab('whack')">
+          🎁 Whack-A-Present
+        </button>
+        <button class="how-to-tab-btn" data-tab="memory" onclick="ArcadeHub.switchHowToPlayTab('memory')">
+          🃏 Memory Match
+        </button>
+        <button class="how-to-tab-btn" data-tab="this-that" onclick="ArcadeHub.switchHowToPlayTab('this-that')">
+          ⚡ This or That
+        </button>
+        <button class="how-to-tab-btn" data-tab="mystery" onclick="ArcadeHub.switchHowToPlayTab('mystery')">
+          🗝️ Mystery Escape
+        </button>
+      </div>
+
+      <div class="how-to-modal-body">
+        <!-- Panel 1: Whack-A-Present -->
+        <div class="how-to-panel active" id="howToPanel-whack">
+          <div class="how-to-hero-badge">
+            <div class="how-to-hero-icon">🎁</div>
+            <div class="how-to-hero-info">
+              <h4>Whack-A-Present</h4>
+              <p>Lightning fast 30-second reflex arcade for Jihin (Chamathu)'s 25th celebration!</p>
+            </div>
+          </div>
+
+          <div class="how-to-steps-list">
+            <div class="how-to-step-card">
+              <div class="step-num-pill">1</div>
+              <div class="step-content">
+                <h5>Tap Appearing Targets Quickly</h5>
+                <p>Presents and birthday bonuses will randomly pop out of the 9 celebration holes. Tap them before they vanish back underground!</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">2</div>
+              <div class="step-content">
+                <h5>Chain Combos for Multipliers</h5>
+                <p>Every consecutive hit builds your combo streak. Reach streaks of 3, 6, and 9 to unlock up to <strong>x4 score multipliers</strong>!</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">3</div>
+              <div class="step-content">
+                <h5>Beware of Party Bombs!</h5>
+                <p>Tapping a bomb will immediately deduct <strong>15 points</strong> and reset your hard-earned combo streak back to zero.</p>
+              </div>
+            </div>
+          </div>
+
+          <h5 style="color: var(--arcade-gold); margin-bottom: 0.6rem; font-size: 0.95rem; text-transform: uppercase;">
+            Points &amp; Item Scoring:
+          </h5>
+          <div class="how-to-scoring-grid">
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">🎁</div>
+              <div class="how-to-score-label">Gift Box</div>
+              <div class="how-to-score-val">+10 pts</div>
+            </div>
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">👑</div>
+              <div class="how-to-score-label">Royal Crown</div>
+              <div class="how-to-score-val">+50 pts</div>
+            </div>
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">💣</div>
+              <div class="how-to-score-label">Party Bomb</div>
+              <div class="how-to-score-val penalty">-15 pts</div>
+            </div>
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">⚡</div>
+              <div class="how-to-score-label">Combo Boost</div>
+              <div class="how-to-score-val">Up to x4</div>
+            </div>
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">⏱️</div>
+              <div class="how-to-score-label">Time Limit</div>
+              <div class="how-to-score-val">30 Sec</div>
+            </div>
+          </div>
+
+          <div class="how-to-tip-box">
+            <i class="fa-solid fa-lightbulb"></i>
+            <div>
+              <strong>Pro Tip:</strong> Keep your fingers floating over the center holes and tap with both thumbs on mobile for peak scores!
+            </div>
+          </div>
+
+          <div style="text-align: right;">
+            <button class="btn-main btn-primary" onclick="ArcadeHub.launchFromGuide('whack')">
+              <i class="fa-solid fa-play"></i> Play Whack-A-Present Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel 2: Memory Match -->
+        <div class="how-to-panel" id="howToPanel-memory">
+          <div class="how-to-hero-badge">
+            <div class="how-to-hero-icon">🃏</div>
+            <div class="how-to-hero-info">
+              <h4>Memory Match</h4>
+              <p>Test your focus and memory by uncovering matched pairs of Jibin's birthday cards!</p>
+            </div>
+          </div>
+
+          <div class="how-to-steps-list">
+            <div class="how-to-step-card">
+              <div class="step-num-pill">1</div>
+              <div class="step-content">
+                <h5>Flip 2 Cards to Reveal</h5>
+                <p>Click or tap any face-down card to reveal its birthday symbol or memory. Tap a second card to test for a match.</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">2</div>
+              <div class="step-content">
+                <h5>Lock In Matching Pairs</h5>
+                <p>If the two cards match, they illuminate and stay revealed. If they don't match, they flip back down after a brief glance.</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">3</div>
+              <div class="step-content">
+                <h5>Clear the Board Before Time Runs Out</h5>
+                <p>Find all pairs before the countdown timer hits zero to register your new personal best score and high moves accuracy!</p>
+              </div>
+            </div>
+          </div>
+
+          <h5 style="color: var(--arcade-gold); margin-bottom: 0.6rem; font-size: 0.95rem; text-transform: uppercase;">
+            Difficulty Modes:
+          </h5>
+          <div class="how-to-scoring-grid">
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">🟢</div>
+              <div class="how-to-score-label">Easy Mode</div>
+              <div class="how-to-score-val">4 Pairs (60s)</div>
+            </div>
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">🟡</div>
+              <div class="how-to-score-label">Medium Mode</div>
+              <div class="how-to-score-val">6 Pairs (50s)</div>
+            </div>
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">🔴</div>
+              <div class="how-to-score-label">Hard Mode</div>
+              <div class="how-to-score-val">8 Pairs (45s)</div>
+            </div>
+            <div class="how-to-score-item">
+              <div class="how-to-score-emoji">💡</div>
+              <div class="how-to-score-label">Free Hint</div>
+              <div class="how-to-score-val">1 Per Game</div>
+            </div>
+          </div>
+
+          <div class="how-to-tip-box">
+            <i class="fa-solid fa-lightbulb"></i>
+            <div>
+              <strong>Pro Tip:</strong> Use the free 💡 Hint button when the clock is below 15 seconds to reveal a pair instantly!
+            </div>
+          </div>
+
+          <div style="text-align: right;">
+            <button class="btn-main btn-primary" onclick="ArcadeHub.launchFromGuide('memory')">
+              <i class="fa-solid fa-play"></i> Play Memory Match Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel 3: This or That -->
+        <div class="how-to-panel" id="howToPanel-this-that">
+          <div class="how-to-hero-badge">
+            <div class="how-to-hero-icon">⚡</div>
+            <div class="how-to-hero-info">
+              <h4>This or That</h4>
+              <p>12 rapid-fire birthday choices uncovering Jibin's ultimate lifestyle archetype!</p>
+            </div>
+          </div>
+
+          <div class="how-to-steps-list">
+            <div class="how-to-step-card">
+              <div class="step-num-pill">1</div>
+              <div class="step-content">
+                <h5>Choose Between 2 Birthday Options</h5>
+                <p>Read each duel prompt (e.g. Biryani vs Pizza, Mountain Trek vs Beach Resort) and tap the card that resonates most.</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">2</div>
+              <div class="step-content">
+                <h5>Navigate Anytime</h5>
+                <p>Changed your mind? Use the "Back" button at any stage to review and modify your earlier choices.</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">3</div>
+              <div class="step-content">
+                <h5>Unlock Your Milestone Archetype</h5>
+                <p>After 12 questions, the system reveals your special personality badge and a complete summary of your answers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-to-tip-box">
+            <i class="fa-solid fa-lightbulb"></i>
+            <div>
+              <strong>Pro Tip:</strong> Answer with your natural instinct to see whether your vibe matches Jibin (Chamathu)'s adventurous spirit!
+            </div>
+          </div>
+
+          <div style="text-align: right;">
+            <button class="btn-main btn-primary" onclick="ArcadeHub.launchFromGuide('this-that')">
+              <i class="fa-solid fa-play"></i> Play This or That Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel 4: Mystery Escape -->
+        <div class="how-to-panel" id="howToPanel-mystery">
+          <div class="how-to-hero-badge">
+            <div class="how-to-hero-icon">🗝️</div>
+            <div class="how-to-hero-info">
+              <h4>Birthday Mystery Escape (Mission 25)</h4>
+              <p>Crack 3 escape room stages to unlock Jibin's 25th milestone celebration treasure!</p>
+            </div>
+          </div>
+
+          <div class="how-to-steps-list">
+            <div class="how-to-step-card">
+              <div class="step-num-pill">1</div>
+              <div class="step-content">
+                <h5>Stage 1: Search the Room</h5>
+                <p>Tap items inside the celebration scene (Balloon, Photo Frame, Cake, Gift Box, Clock, Guitar) to discover secret cipher pieces.</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">2</div>
+              <div class="step-content">
+                <h5>Stage 2: Solve the Milestone Riddle</h5>
+                <p>Answer the special 25th birthday riddle using the clue revealed during your room investigation.</p>
+              </div>
+            </div>
+            <div class="how-to-step-card">
+              <div class="step-num-pill">3</div>
+              <div class="step-content">
+                <h5>Stage 3: Crack the Keypad Lock (2525)</h5>
+                <p>Enter the 4-digit code on the golden digital keypad to open the treasure vault and unlock the emotional celebration finale!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-to-tip-box">
+            <i class="fa-solid fa-lightbulb"></i>
+            <div>
+              <strong>Pro Tip:</strong> The master lock code represents Jibin's milestone age repeated: <strong>2525</strong>!
+            </div>
+          </div>
+
+          <div style="text-align: right;">
+            <button class="btn-main btn-primary" onclick="ArcadeHub.launchFromGuide('mystery')">
+              <i class="fa-solid fa-play"></i> Start Mission 25 Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-to-modal-footer">
+        <button class="btn-main btn-outline" onclick="ArcadeHub.closeHowToPlay()">
+          Close Guide
         </button>
       </div>
     </div>
