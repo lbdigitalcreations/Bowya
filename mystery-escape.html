@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Birthday Mystery Escape: Mission 25 | Jihin Jino ✨</title>
+  <meta name="description" content="Mission 25: Solve room clues, unlock the milestone cipher, and crack the treasure lock for Jihin Jino's 25th birthday celebration!" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Arcade & Animation Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/arcade.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background: var(--arcade-navy);
+      background-image: radial-gradient(circle at 20% 20%, rgba(113, 56, 212, 0.35) 0%, transparent 45%),
+                        radial-gradient(circle at 80% 30%, rgba(240, 68, 145, 0.25) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(255, 209, 102, 0.15) 0%, transparent 60%);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    .escape-standalone-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+    /* Nav bar */
+    .escape-top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0 2rem;
+      border-bottom: 1px solid rgba(200, 194, 232, 0.15);
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .escape-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+    .escape-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .btn-nav-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--arcade-lavender);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(200, 194, 232, 0.2);
+      transition: all 0.2s ease;
+    }
+    .btn-nav-action:hover {
+      color: #fff;
+      border-color: var(--arcade-gold);
+      transform: translateY(-2px);
+    }
+    .btn-nav-action.primary {
+      background: var(--arcade-gradient-gold);
+      color: #090B1D;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="escape-standalone-container">
+
+    <!-- Top Navigation -->
+    <header class="escape-top-nav">
+      <a href="index.html" class="escape-brand">
+        <span style="color: var(--arcade-gold);">🗝️</span>
+        <span>Mission 25 Escape</span>
+      </a>
+
+      <div class="escape-nav-actions">
+        <a href="index.html" class="btn-nav-action">
+          <i class="fa-solid fa-cake-candles"></i> Celebration Home
+        </a>
+        <a href="arcade.html" class="btn-nav-action">
+          <i class="fa-solid fa-gamepad"></i> 4 Arcade Games
+        </a>
+        <button class="btn-nav-action arcade-sound-toggle-btn" title="Toggle Sound">
+          <i class="fa-solid fa-volume-high"></i> Sound: ON
+        </button>
+      </div>
+    </header>
+
+    <!-- Mission Header Badge -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div class="arcade-badge">
+        <i class="fa-solid fa-gem"></i> Jihin Jino (Chamathu) &bull; Turning 25
+      </div>
+      <h1 class="arcade-main-title" style="font-size: clamp(2rem, 5vw, 3.2rem);">
+        Birthday <span class="arcade-gradient-heading">Mystery Escape</span> 🗝️
+      </h1>
+      <p class="arcade-subtitle" style="max-width: 620px; font-size: 1.05rem;">
+        Born on 10/10/2001. A silver jubilee surprise is locked inside the golden chest. Find the room clues, solve the milestone riddle, and crack the final padlock!
+      </p>
+    </div>
+
+    <!-- Active Escape Stage Container -->
+    <div class="arcade-game-stage active" id="stageMysteryEscape" style="display: block; max-width: 860px; margin: 0 auto;">
+      
+      <!-- Stage Tracker -->
+      <div class="escape-stage-tracker">
+        <div class="stage-step-dot active" id="stageDot1">
+          <i class="fa-solid fa-magnifying-glass"></i> Stage 1: Room Clues
+        </div>
+        <div class="stage-connector-line"></div>
+        <div class="stage-step-dot" id="stageDot2">
+          <i class="fa-solid fa-puzzle-piece"></i> Stage 2: Milestone Riddle
+        </div>
+        <div class="stage-connector-line"></div>
+        <div class="stage-step-dot" id="stageDot3">
+          <i class="fa-solid fa-lock"></i> Stage 3: Crack Lock
+        </div>
+      </div>
+
+      <!-- Stage 0: Mission Intro -->
+      <div class="escape-intro-screen" id="escapeIntro">
+        <div class="escape-mission-badge">
+          <i class="fa-solid fa-shield-halved"></i> Mission 25 Briefing
+        </div>
+        <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;" class="font-heading">The Locked Milestone</h2>
+        <p style="color: var(--arcade-lavender); max-width: 520px; margin: 0 auto 1.5rem;">
+          "A special birthday treasure for <strong>Jihin Jino (Chamathu)</strong> is locked inside. Inspect the celebration room, uncover the 10/10 milestone cipher, and unlock the final surprise before the clock expires!"
+        </p>
+        <div class="escape-chest-hero">🗝️</div>
+        <div style="margin-top: 1.5rem;">
+          <button class="btn-main btn-primary" id="escapeStartMissionBtn" style="padding: 1rem 3rem; font-size: 1.2rem;">
+            <i class="fa-solid fa-play"></i> Start Mission 25
+          </button>
+        </div>
+      </div>
+
+      <!-- Stage 1: Room Inspection -->
+      <div id="escapeStage1" style="display: none;">
+        <div class="game-live-stats">
+          <div class="live-stat-pill pill-timer" id="escapeTimerPill">
+            <i class="fa-solid fa-stopwatch"></i> Escape Clock: <span id="escapeTimerVal">4:00</span>
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-door-open"></i> Objective: Inspect room objects for Cipher Clues
+          </div>
+        </div>
+
+        <div class="escape-room-scene">
+          <div style="text-align: center; margin-bottom: 1rem;">
+            <h3 style="color: var(--arcade-gold); font-size: 1.3rem;">🎂 Chamathu's Celebration Room</h3>
+            <p style="font-size: 0.88rem; color: var(--arcade-lavender);">Tap the objects below to inspect and collect cipher fragments!</p>
+          </div>
+
+          <div class="room-objects-grid">
+            <div class="room-interactive-obj" data-item="balloon">
+              <span class="room-obj-emoji">🎈</span>
+              <span class="room-obj-label">Balloon</span>
+            </div>
+            <div class="room-interactive-obj" data-item="frame">
+              <span class="room-obj-emoji">🖼️</span>
+              <span class="room-obj-label">Explorer Frame</span>
+            </div>
+            <div class="room-interactive-obj" data-item="present">
+              <span class="room-obj-emoji">🎁</span>
+              <span class="room-obj-label">Gift Box</span>
+            </div>
+            <div class="room-interactive-obj" data-item="bookshelf">
+              <span class="room-obj-emoji">📚</span>
+              <span class="room-obj-label">Bookshelf</span>
+            </div>
+            <div class="room-interactive-obj" data-item="clock">
+              <span class="room-obj-emoji">⏰</span>
+              <span class="room-obj-label">Celebration Clock</span>
+            </div>
+          </div>
+
+          <!-- In-room Inspection Modal -->
+          <div class="room-inspection-modal" id="roomInspectionModal">
+            <h4 id="inspectionModalTitle" style="color: var(--arcade-gold); margin-bottom: 0.8rem;"></h4>
+            <div id="inspectionModalContent" style="color: #fff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.2rem;"></div>
+            <button class="btn-main btn-outline" style="padding: 0.4rem 1.4rem;" onclick="MysteryEscapeGame.closeInspectionModal()">
+              Continue Searching
+            </button>
+          </div>
+
+          <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn-main btn-primary" id="advanceToStage2Btn" style="display: none; padding: 0.85rem 2.4rem;">
+              <i class="fa-solid fa-arrow-right"></i> Advance to Milestone Riddle
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 2: Milestone Riddle -->
+      <div id="escapeStage2" style="display: none;">
+        <div class="riddle-card-box">
+          <span class="escape-mission-badge"><i class="fa-solid fa-puzzle-piece"></i> Riddle of the Jubilee</span>
+          <p class="riddle-text">
+            “I am the milestone age of Jihin (Chamathu) celebrated today.<br />
+            Born on 10/10/2001, stepping into my silver quarter-century.<br />
+            What number am I?”
+          </p>
+          <div class="riddle-input-row">
+            <input type="text" class="riddle-input" id="riddleInput" placeholder="Enter age number..." autocomplete="off" />
+            <button class="btn-main btn-primary" id="riddleSubmitBtn" style="padding: 0.85rem 1.6rem;">
+              Unlock
+            </button>
+          </div>
+          <div id="riddleFeedback"></div>
+          <div style="margin-top: 1.5rem;">
+            <button class="btn-nav-link" id="riddleHintBtn" style="font-size: 0.85rem; padding: 0.35rem 1rem;">
+              <i class="fa-solid fa-lightbulb"></i> Need a Hint?
+            </button>
+            <div id="riddleHintText" style="display: none; margin-top: 0.6rem; color: var(--arcade-gold); font-size: 0.9rem;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3: Combination Lock -->
+      <div id="escapeStage3" style="display: none;">
+        <div class="stage3-keypad-stage">
+          <div class="chest-lock-visual">🔒</div>
+          <h3 style="color: var(--arcade-gold); margin-bottom: 0.4rem;">The Final Combination Lock</h3>
+          <p style="color: var(--arcade-lavender); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Enter the 4-digit code using the Clock Formula: [Age + Age = 2525] or Birthday [1010]
+          </p>
+
+          <div class="passcode-display" id="passcodeDisplayWrap">
+            <div class="passcode-digit-slot" id="digitSlot0">•</div>
+            <div class="passcode-digit-slot" id="digitSlot1">•</div>
+            <div class="passcode-digit-slot" id="digitSlot2">•</div>
+            <div class="passcode-digit-slot" id="digitSlot3">•</div>
+          </div>
+
+          <div class="numeric-keypad-grid">
+            <button class="keypad-key" data-val="1">1</button>
+            <button class="keypad-key" data-val="2">2</button>
+            <button class="keypad-key" data-val="3">3</button>
+            <button class="keypad-key" data-val="4">4</button>
+            <button class="keypad-key" data-val="5">5</button>
+            <button class="keypad-key" data-val="6">6</button>
+            <button class="keypad-key" data-val="7">7</button>
+            <button class="keypad-key" data-val="8">8</button>
+            <button class="keypad-key" data-val="9">9</button>
+            <button class="keypad-key key-clear" data-val="clear">Clear</button>
+            <button class="keypad-key" data-val="0">0</button>
+            <button class="keypad-key key-enter" data-val="enter">Open</button>
+          </div>
+
+          <div id="keypadFeedback"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Birthday Surprise Finale Modal -->
+  <div class="birthday-finale-modal" id="birthdayFinaleModal">
+    <div class="finale-card-content">
+      <div class="finale-photo-wrap">
+        <img src="jibin-stylish.jpg" alt="Jihin Jino - 25th Birthday Star" />
+      </div>
+      <span class="escape-mission-badge" style="border-color: var(--arcade-gold);">
+        👑 Mission 25 Accomplished!
+      </span>
+      <h2 class="finale-title">Happy 25th Birthday, Jihin Jino! ✨</h2>
+      <p style="color: var(--arcade-gold); font-weight: 700; margin-bottom: 0.4rem; font-size: 1.1rem;">
+        To Chamathu &bull; Born 10/10/2001
+      </p>
+      <p class="finale-message">
+        You unlocked the secret birthday treasure! May your 25th year overflow with unforgettable motorcycle rides, limitless happiness, glorious success, and memories that shine forever. Here's to our irreplaceable brother and explorer! ❤️
+      </p>
+
+      <div class="result-stats-row">
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Time Taken</div>
+          <div class="result-stat-num" id="finaleTimeTaken">1m 45s</div>
+        </div>
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Hints Used</div>
+          <div class="result-stat-num" id="finaleHintsUsed">0</div>
+        </div>
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Rating</div>
+          <div class="result-stat-num" id="finaleStarsRating">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+
+      <div class="result-btn-row">
+        <button class="btn-main btn-primary" onclick="MysteryEscapeGame.closeFinaleModal(); MysteryEscapeGame.startMission();">
+          <i class="fa-solid fa-rotate-right"></i> Play Again
+        </button>
+        <a href="arcade.html" class="btn-main btn-outline">
+          <i class="fa-solid fa-gamepad"></i> More Games
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/mystery-escape.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      MysteryEscapeGame.init();
+      // Auto-bind sound button
+      const soundBtn = document.querySelector('.arcade-sound-toggle-btn');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+          const isMuted = ArcadeSound.toggleMute();
+          soundBtn.innerHTML = isMuted 
+            ? '<i class="fa-solid fa-volume-xmark"></i> Sound: OFF' 
+            : '<i class="fa-solid fa-volume-high"></i> Sound: ON';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

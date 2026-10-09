@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Many candles to blow Jibin | Happy 25th Birthday ✨</title>
-  <meta name="description" content="Many candles to blow Jibin - A personalized luxury 25th birthday celebration for my dearest brother and explorer." />
+  <title>Many candles to blow, Jihin | Happy 25th Birthday ✨</title>
+  <meta name="description" content="Many candles to blow, Jihin Jino (Chamathu) - A personalized luxury 25th birthday celebration for my dearest brother and explorer." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,6 +16,10 @@
 
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Arcade & Animation Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/arcade.css" />
 
   <style>
     /* -------------------------------------------------------------
@@ -882,262 +886,7 @@
       color: var(--purple-neon);
     }
 
-    /* -------------------------------------------------------------
-       10. ARCADE ZONE: 5 UNIQUE MINI-GAMES
-    -------------------------------------------------------------- */
-    .arcade-tabs {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-
-    .arcade-tab-btn {
-      padding: 0.8rem 1.6rem;
-      border-radius: var(--radius-full);
-      background: rgba(26, 18, 48, 0.7);
-      border: 1px solid rgba(216, 180, 254, 0.25);
-      color: var(--text-muted);
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      transition: var(--transition-smooth);
-    }
-
-    .arcade-tab-btn:hover {
-      color: #fff;
-      border-color: var(--purple-neon);
-    }
-
-    .arcade-tab-btn.active {
-      background: var(--gradient-cosmic);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 0 25px rgba(244, 63, 94, 0.4);
-    }
-
-    .game-panel {
-      display: none;
-      background: rgba(20, 13, 38, 0.8);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--card-border-glow);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      min-height: 480px;
-      position: relative;
-    }
-
-    .game-panel.active {
-      display: block;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .game-stats-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .stat-badge {
-      background: rgba(168, 85, 247, 0.15);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      padding: 0.4rem 1rem;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      color: #fff;
-      font-size: 0.95rem;
-    }
-
-    /* Game 1: Balloon Pop Mania */
-    #balloonArena {
-      width: 100%;
-      height: 380px;
-      background: radial-gradient(circle at center, #1b1130 0%, #0d071a 100%);
-      border-radius: var(--radius-md);
-      position: relative;
-      overflow: hidden;
-      cursor: crosshair;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .floating-balloon {
-      position: absolute;
-      bottom: -80px;
-      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: #fff;
-      user-select: none;
-      box-shadow: inset -6px -6px 15px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.1s;
-    }
-
-    .floating-balloon::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 8px solid currentColor;
-    }
-
-    /* Game 2: Cake Catcher Rush */
-    #catcherCanvas {
-      width: 100%;
-      height: 380px;
-      background: linear-gradient(to bottom, #130b24 0%, #080312 100%);
-      border-radius: var(--radius-md);
-      display: block;
-      cursor: ew-resize;
-    }
-
-    /* Game 3: Memory Match */
-    .memory-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .memory-card {
-      aspect-ratio: 1;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-
-    .memory-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.5s;
-      border-radius: var(--radius-md);
-    }
-
-    .memory-card.flipped .memory-inner { transform: rotateY(180deg); }
-
-    .memory-front, .memory-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .memory-front {
-      background: linear-gradient(135deg, #2b184a, #160d29);
-      border: 1px solid rgba(216, 180, 254, 0.3);
-      color: var(--purple-neon);
-      font-size: 1.8rem;
-    }
-
-    .memory-back {
-      background: linear-gradient(135deg, #db2777, #9333ea);
-      transform: rotateY(180deg);
-      font-size: 2.2rem;
-      box-shadow: 0 0 20px rgba(219, 39, 119, 0.5);
-    }
-
-    /* Game 4: Lucky Fortune Wheel */
-    .wheel-stage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .wheel-container {
-      position: relative;
-      width: 320px;
-      height: 320px;
-      margin-bottom: 1.5rem;
-    }
-
-    .wheel-arrow {
-      position: absolute;
-      top: -16px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 16px solid transparent;
-      border-right: 16px solid transparent;
-      border-top: 30px solid var(--gold-accent);
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
-      z-index: 10;
-    }
-
-    #fortuneCanvas {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      box-shadow: 0 0 40px rgba(168, 85, 247, 0.5), inset 0 0 20px rgba(0,0,0,0.5);
-      border: 4px solid #fff;
-    }
-
-    /* Game 5: Whack-a-Gift */
-    .whack-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .whack-hole {
-      aspect-ratio: 1;
-      background: #140b26;
-      border-radius: 50%;
-      border: 3px solid rgba(168, 85, 247, 0.3);
-      position: relative;
-      overflow: hidden;
-      box-shadow: inset 0 10px 20px rgba(0,0,0,0.8);
-    }
-
-    .whack-mole {
-      position: absolute;
-      width: 75%;
-      height: 75%;
-      top: 100%;
-      left: 12.5%;
-      border-radius: 12px;
-      background: var(--gradient-cosmic);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      cursor: pointer;
-      transition: top 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      user-select: none;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-    }
-
-    .whack-hole.up .whack-mole { top: 15%; }
+    /* Arcade styles are now loaded modularly from css/arcade.css and css/animations.css */
 
     /* -------------------------------------------------------------
        10B. PHOTO LIGHTBOX MODAL (LUXURY QUOTE PREVIEW)
@@ -1393,7 +1142,7 @@
     </div>
     <span class="badge-pill"><i class="fa-solid fa-sparkles"></i> Exclusive VIP Celebration</span>
     <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); margin: 0.8rem 0;" class="font-heading">
-      Many candles to blow, Jibin ✨
+      Many candles to blow, Jihin ✨
     </h1>
     <p style="color: var(--text-muted); max-width: 500px; font-size: 1.15rem;">
       Turn on your sound & step into the royal 25th celebration crafted with endless love by your sister!
@@ -1424,7 +1173,7 @@
 
   <!-- Floating Action Buttons: WhatsApp & QR Code -->
   <div class="floating-share-dock">
-    <a href="https://api.whatsapp.com/send?text=Happy%2025th%20Birthday%20Jibin!%20Check%20out%20this%20special%20celebration%20website%20made%20just%20for%20you:%20https://lbdigitalcreations.com" target="_blank" class="floating-circle-btn whatsapp-btn" title="Share via WhatsApp">
+    <a href="https://api.whatsapp.com/send?text=Happy%2025th%20Birthday%20Jihin%20Jino!%20Check%20out%20this%20special%20celebration%20website%20made%20just%20for%20you:%20https://lbdigitalcreations.com" target="_blank" class="floating-circle-btn whatsapp-btn" title="Share via WhatsApp">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
     <button class="floating-circle-btn" id="openQrBtn" title="Show QR Code">
@@ -1439,14 +1188,14 @@
     <div class="container nav-container">
       <a href="#" class="nav-logo">
         <span style="color: var(--pink-rose);">✨</span>
-        <span>Jibin's 25th</span>
+        <span>Jihin Jino's 25th</span>
       </a>
       <ul class="nav-links">
         <li><a href="#letter" class="nav-link">Personal Letter</a></li>
         <li><a href="#mystery" class="nav-link">Secret Mystery</a></li>
         <li><a href="#cake" class="nav-link">Blow 25 Candles</a></li>
         <li><a href="#gallery" class="nav-link">Adventures</a></li>
-        <li><a href="#arcade" class="nav-link nav-cta"><i class="fa-solid fa-gamepad"></i> 5 Birthday Games</a></li>
+        <li><a href="#arcade" class="nav-link nav-cta"><i class="fa-solid fa-gamepad"></i> 4 Birthday Mini-Games</a></li>
       </ul>
     </div>
   </nav>
@@ -1458,20 +1207,20 @@
     <div class="container">
       <div class="hero-avatar-wrap">
         <div class="crown-icon">👑</div>
-        <img src="jibin.jpg" alt="Jibin - Birthday Star" class="hero-avatar-img" id="clientHeroPhoto" />
+        <img src="jibin.jpg" alt="Jihin Jino - Birthday Star" class="hero-avatar-img" id="clientHeroPhoto" />
       </div>
 
       <div class="badge-pill">
-        <i class="fa-solid fa-stars"></i> Milestone 25th Birthday Special
+        <i class="fa-solid fa-stars"></i> Born 10/10/2001 &bull; Chamathu Turning 25
       </div>
 
       <h1 class="hero-title">
         Many candles to blow, <br />
-        <span class="gradient-text">Jibin</span> 🎂
+        <span class="gradient-text">Jihin Jino</span> 🎂
       </h1>
 
       <p class="hero-description">
-        Celebrating 25 extraordinary years of someone who has become an irreplaceable brother, adventurer, and confidant. Here’s to all the journeys waiting for us!
+        Celebrating 25 extraordinary years of Jihin Jino (Chamathu) — an irreplaceable brother, adventurer, and confidant. Born on October 10, 2001, here’s to all the journeys waiting for us!
       </p>
 
       <!-- Special Quote from Sister -->
@@ -1503,11 +1252,11 @@
         <button class="btn-main btn-primary" id="blastConfettiBtn">
           <i class="fa-solid fa-party-horn"></i> Celebrate With Confetti!
         </button>
-        <a href="https://api.whatsapp.com/send?text=Happy%2025th%20Birthday%20Jibin!%20Many%20candles%20to%20blow!" target="_blank" class="btn-main btn-whatsapp">
+        <a href="https://api.whatsapp.com/send?text=Happy%2025th%20Birthday%20Jihin%20Jino!%20Many%20candles%20to%20blow!" target="_blank" class="btn-main btn-whatsapp">
           <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
         </a>
         <a href="#arcade" class="btn-main btn-outline">
-          <i class="fa-solid fa-gamepad"></i> Play 5 Mini-Games
+          <i class="fa-solid fa-gamepad"></i> Play 4 Birthday Games
         </a>
       </div>
     </div>
@@ -1646,7 +1395,7 @@ Just be ready, come along with me, and let the day unfold.
     <div class="container">
       <div class="section-header">
         <span class="badge-pill"><i class="fa-solid fa-cake-candles"></i> 25th Milestone</span>
-        <h2 class="section-title">Many Candles To Blow, Jibin</h2>
+        <h2 class="section-title">Many Candles To Blow, Jihin</h2>
         <p class="section-subtitle">Make your 25th birthday wish and blow out the candles!</p>
       </div>
 
@@ -1696,7 +1445,7 @@ Just be ready, come along with me, and let the day unfold.
       <!-- Featured Portrait & Sister's Message -->
       <div class="spotlight-card" onclick="openGalleryLightbox(0)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(30, 20, 56, 0.9), rgba(15, 8, 30, 0.98)); border: 2px solid rgba(216, 180, 254, 0.35); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), var(--glow-purple); transition: transform 0.3s ease;">
         <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--purple-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          <img src="jibin.jpg" alt="Jibin - Birthday Star" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+          <img src="jibin.jpg" alt="Jihin Jino (Chamathu) - Birthday Star" style="width: 100%; height: auto; display: block; object-fit: cover;" />
         </div>
         <div class="spotlight-content" style="flex: 1;">
           <span class="badge-pill" style="margin-bottom: 1.2rem;"><i class="fa-solid fa-sparkles"></i> A Sister's Vision</span>
@@ -1713,7 +1462,7 @@ Just be ready, come along with me, and let the day unfold.
       <!-- Featured Explorer Portrait & Travel Wish (Bike Photo) -->
       <div class="spotlight-card" onclick="openGalleryLightbox(1)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(20, 30, 65, 0.9), rgba(10, 15, 40, 0.98)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row-reverse; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(56, 189, 248, 0.35); transition: transform 0.3s ease;">
         <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--cyan-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          <img src="jibin-bike.jpg" alt="Jibin - The Explorer & Rider" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+          <img src="jibin-bike.jpg" alt="Jihin Jino - The Explorer & Rider" style="width: 100%; height: auto; display: block; object-fit: cover;" />
         </div>
         <div class="spotlight-content" style="flex: 1;">
           <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--cyan-neon); color: var(--cyan-neon);"><i class="fa-solid fa-motorcycle"></i> The Explorer's Creed</span>
@@ -1730,7 +1479,7 @@ Just be ready, come along with me, and let the day unfold.
       <!-- Featured Mother Tribute (Mummy Love) -->
       <div class="spotlight-card" onclick="openGalleryLightbox(2)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(45, 25, 40, 0.92), rgba(20, 10, 25, 0.98)); border: 2px solid rgba(251, 191, 36, 0.45); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(251, 191, 36, 0.3); transition: transform 0.3s ease;">
         <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--gold-accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          <img src="jibin-mother.jpg" alt="Jibin with Mother" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+          <img src="jibin-mother.jpg" alt="Jihin with Mother" style="width: 100%; height: auto; display: block; object-fit: cover;" />
         </div>
         <div class="spotlight-content" style="flex: 1;">
           <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--gold-accent); color: var(--gold-accent);"><i class="fa-solid fa-heart"></i> The Heart's Sanctuary</span>
@@ -1747,7 +1496,7 @@ Just be ready, come along with me, and let the day unfold.
       <!-- Featured Friends & Aura Tribute -->
       <div class="spotlight-card" onclick="openGalleryLightbox(3)" style="cursor: pointer; margin-bottom: 2.5rem; background: linear-gradient(135deg, rgba(25, 35, 60, 0.92), rgba(12, 18, 32, 0.98)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row-reverse; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(56, 189, 248, 0.3); transition: transform 0.3s ease;">
         <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--cyan-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          <img src="jibin-friends.jpg" alt="Jibin with Friends" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+          <img src="jibin-friends.jpg" alt="Jihin with Friends" style="width: 100%; height: auto; display: block; object-fit: cover;" />
         </div>
         <div class="spotlight-content" style="flex: 1;">
           <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--cyan-neon); color: var(--cyan-neon);"><i class="fa-solid fa-users"></i> The Rare Aura & Brotherhood</span>
@@ -1769,7 +1518,7 @@ Just be ready, come along with me, and let the day unfold.
       <!-- Featured Sister & Brother Chosen Bond -->
       <div class="spotlight-card" onclick="openGalleryLightbox(4)" style="cursor: pointer; margin-bottom: 3.5rem; background: linear-gradient(135deg, rgba(42, 18, 48, 0.92), rgba(18, 8, 25, 0.98)); border: 2px solid rgba(244, 63, 94, 0.45); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 35px rgba(244, 63, 94, 0.35); transition: transform 0.3s ease;">
         <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--pink-rose); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          <img src="jibin-sister.png" alt="Jibin with Sister" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+          <img src="jibin-sister.png" alt="Jihin with Sister" style="width: 100%; height: auto; display: block; object-fit: cover;" />
         </div>
         <div class="spotlight-content" style="flex: 1;">
           <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--pink-rose); color: var(--pink-rose);"><i class="fa-solid fa-gem"></i> The Bond Beyond Blood</span>
@@ -1790,7 +1539,7 @@ Just be ready, come along with me, and let the day unfold.
       <!-- Featured Stylish Portrait & Deep Sister Gratitude (Purple Shirt) -->
       <div class="spotlight-card" onclick="openGalleryLightbox(5)" style="cursor: pointer; margin-bottom: 3.5rem; background: linear-gradient(135deg, rgba(32, 16, 52, 0.95), rgba(15, 8, 28, 0.98)); border: 2px solid rgba(216, 180, 254, 0.45); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; flex-direction: row-reverse; gap: 2.5rem; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(168, 85, 247, 0.35); transition: transform 0.3s ease;">
         <div class="spotlight-photo-frame" style="flex: 0 0 300px; max-width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 3px solid var(--purple-neon); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          <img src="jibin-stylish.jpg" alt="Jibin - The Brother Who Inspires" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+          <img src="jibin-stylish.jpg" alt="Jihin (Chamathu) - The Brother Who Inspires" style="width: 100%; height: auto; display: block; object-fit: cover;" />
         </div>
         <div class="spotlight-content" style="flex: 1;">
           <span class="badge-pill" style="margin-bottom: 1.2rem; border-color: var(--gold-accent); color: var(--gold-accent);"><i class="fa-solid fa-crown"></i> The Quiet Strength & Pure Heart</span>
@@ -1810,42 +1559,42 @@ Just be ready, come along with me, and let the day unfold.
 
       <div class="gallery-grid" id="photosGrid">
         <div class="photo-card" onclick="openGalleryLightbox(0)">
-          <img src="jibin.jpg" alt="Jibin - Just Getting Started" />
+          <img src="jibin.jpg" alt="Jihin - Just Getting Started" />
           <div class="photo-caption-overlay">
             <div class="photo-title">Just Getting Started</div>
             <div class="photo-subtitle">Best chapters are waiting for you ✨</div>
           </div>
         </div>
         <div class="photo-card" onclick="openGalleryLightbox(1)">
-          <img src="jibin-bike.jpg" alt="Jibin - The Free Spirit" />
+          <img src="jibin-bike.jpg" alt="Jihin - The Free Spirit" />
           <div class="photo-caption-overlay">
             <div class="photo-title">The Free Spirit</div>
             <div class="photo-subtitle">Travel far, dream fearlessly 🏍️</div>
           </div>
         </div>
         <div class="photo-card" onclick="openGalleryLightbox(2)">
-          <img src="jibin-mother.jpg" alt="Jibin with Mother" />
+          <img src="jibin-mother.jpg" alt="Jihin with Mother" />
           <div class="photo-caption-overlay">
             <div class="photo-title">Where The Heart Belongs</div>
             <div class="photo-subtitle">A mother's unconditional love ❤️</div>
           </div>
         </div>
         <div class="photo-card" onclick="openGalleryLightbox(3)">
-          <img src="jibin-friends.jpg" alt="Jibin with Friends" />
+          <img src="jibin-friends.jpg" alt="Jihin with Friends" />
           <div class="photo-caption-overlay">
             <div class="photo-title">The Joy In Every Room</div>
             <div class="photo-subtitle">A heart that chooses happiness 🌊</div>
           </div>
         </div>
         <div class="photo-card" onclick="openGalleryLightbox(4)">
-          <img src="jibin-sister.png" alt="Jibin with Sister" />
+          <img src="jibin-sister.png" alt="Jihin with Sister" />
           <div class="photo-caption-overlay">
             <div class="photo-title">Sisterhood Beyond Blood</div>
             <div class="photo-subtitle">Chosen by the heart forever ❤️</div>
           </div>
         </div>
         <div class="photo-card" onclick="openGalleryLightbox(5)">
-          <img src="jibin-stylish.jpg" alt="Jibin - The Brother Who Inspires" />
+          <img src="jibin-stylish.jpg" alt="Jihin - The Brother Who Inspires" />
           <div class="photo-caption-overlay">
             <div class="photo-title">The Brother Who Inspires</div>
             <div class="photo-subtitle">Taught me how to live happily ❤️</div>
@@ -1856,147 +1605,581 @@ Just be ready, come along with me, and let the day unfold.
   </section>
 
   <!-- -------------------------------------------------------------
-       SECTION: ARCADE ZONE (5 UNIQUE MINI-GAMES)
-  -------------------------------------------------------------- */
-  -->
-  <section class="section" id="arcade">
+       SECTION: THE BIRTHDAY ARCADE (4 MINI-GAMES FOR JIHIN JINO)
+  -------------------------------------------------------------- -->
+  <section class="section arcade-wrapper" id="arcade">
     <div class="container">
-      <div class="section-header">
-        <span class="badge-pill"><i class="fa-solid fa-gamepad"></i> The Birthday Arcade</span>
-        <h2 class="section-title">5 Birthday Mini-Games For Jibin</h2>
-        <p class="section-subtitle">Play, compete, pop balloons, catch cakes, and spin the lucky fortune wheel!</p>
-      </div>
 
-      <!-- Arcade Tabs -->
-      <div class="arcade-tabs">
-        <button class="arcade-tab-btn active" onclick="switchGame(0)">
-          <i class="fa-solid fa-balloon"></i> 1. Balloon Pop Mania
-        </button>
-        <button class="arcade-tab-btn" onclick="switchGame(1)">
-          <i class="fa-solid fa-cake-candles"></i> 2. Cake Catcher Rush
-        </button>
-        <button class="arcade-tab-btn" onclick="switchGame(2)">
-          <i class="fa-solid fa-brain"></i> 3. Memory Match
-        </button>
-        <button class="arcade-tab-btn" onclick="switchGame(3)">
-          <i class="fa-solid fa-dharmachakra"></i> 4. Lucky Fortune Wheel
-        </button>
-        <button class="arcade-tab-btn" onclick="switchGame(4)">
-          <i class="fa-solid fa-hand-fist"></i> 5. Whack-A-Present
-        </button>
-      </div>
-
-      <!-- GAME 1: BALLOON POP MANIA -->
-      <div class="game-panel active" id="gamePanel-0">
-        <div class="game-stats-bar">
-          <div>
-            <h3 style="color: var(--pink-rose);"><i class="fa-solid fa-balloon"></i> Balloon Pop Mania</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Pop rising balloons! Golden balloons give 50 pts!</p>
+      <!-- ====================================================================
+           ARCADE HUB SELECTION VIEW
+           ==================================================================== -->
+      <div id="arcadeHubSelection">
+        <!-- Hero Header -->
+        <section class="arcade-hero">
+          <div class="arcade-badge">
+            <i class="fa-solid fa-stars"></i> Milestone 25th Birthday Special
           </div>
-          <div style="display: flex; gap: 0.8rem;">
-            <span class="stat-badge">⏱️ Time: <span id="g1Time">30</span>s</span>
-            <span class="stat-badge" style="border-color: var(--pink-rose);">🎯 Score: <span id="g1Score">0</span></span>
-            <button class="btn-main btn-primary" style="padding: 0.4rem 1.2rem; font-size: 0.9rem;" onclick="startBalloonGame()">
-              <i class="fa-solid fa-play"></i> Start Game
+          <h2 class="arcade-main-title">
+            Jihin Jino's <span class="arcade-gradient-heading">25th Birthday</span> 🎂
+          </h2>
+          <p class="arcade-subtitle">
+            Four Games. One Birthday Legend.
+          </p>
+
+          <div class="arcade-controls-bar">
+            <button class="arcade-ctrl-btn arcade-sound-toggle-btn" title="Toggle Sound Effects">
+              <i class="fa-solid fa-volume-high"></i> Sound Effects
+            </button>
+            <button class="arcade-ctrl-btn" onclick="ArcadeHub.openInstructionsModal()" title="View Game Rules">
+              <i class="fa-solid fa-gamepad"></i> Game Rules
+            </button>
+            <a href="arcade.html" class="arcade-ctrl-btn" title="Open Fullscreen Arcade Page">
+              <i class="fa-solid fa-expand"></i> Theater Mode
+            </a>
+          </div>
+        </section>
+
+        <!-- Compact Score Summary Board -->
+        <div class="arcade-score-summary">
+          <div class="score-summary-title">
+            <span><i class="fa-solid fa-trophy"></i> Personal Best Hall of Fame</span>
+            <span style="font-size: 0.78rem; color: var(--arcade-lavender); text-transform: none; letter-spacing: 0;">Saved locally</span>
+          </div>
+          <div class="score-summary-grid">
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">🧠</div>
+              <div class="summary-stat-name">Memory Match</div>
+              <div class="summary-stat-val" id="summaryMemoryBest">--</div>
+            </div>
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">🎁</div>
+              <div class="summary-stat-name">Whack-A-Present</div>
+              <div class="summary-stat-val" id="summaryWhackBest">--</div>
+            </div>
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">⚖️</div>
+              <div class="summary-stat-name">This or That</div>
+              <div class="summary-stat-val" id="summaryThisThatBest">--</div>
+            </div>
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">🗝️</div>
+              <div class="summary-stat-name">Mystery Escape</div>
+              <div class="summary-stat-val" id="summaryEscapeBest">--</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Four Game Cards Grid -->
+        <div class="arcade-cards-grid">
+          
+          <!-- Card 1: Memory Match -->
+          <div class="arcade-game-card">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge">GAME 01</span>
+                <div class="card-icon-bubble">🧠</div>
+              </div>
+              <h3 class="card-title">Memory Match</h3>
+              <p class="card-desc">
+                Flip and pair up hidden birthday cake slices, golden crowns, balloons, and keys before the clock expires!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag">⏱️ 45-60s Timer</span>
+                <span class="meta-tag">3 Difficulties</span>
+                <span class="meta-tag gold">★ 1 Free Hint</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="memory">
+              <i class="fa-solid fa-play"></i> Play Now
             </button>
           </div>
-        </div>
-        <div id="balloonArena">
-          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: var(--text-muted);" id="g1OverlayMsg">
-            <i class="fa-solid fa-play" style="font-size: 3rem; margin-bottom: 1rem; color: var(--purple-neon);"></i>
-            <h3>Click "Start Game" To Play!</h3>
-          </div>
-        </div>
-      </div>
 
-      <!-- GAME 2: CAKE CATCHER RUSH -->
-      <div class="game-panel" id="gamePanel-1">
-        <div class="game-stats-bar">
-          <div>
-            <h3 style="color: var(--gold-accent);"><i class="fa-solid fa-cake-candles"></i> Cake Catcher Rush</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Catch falling cake slices (🍰) & cupcakes (🧁)! Avoid rain clouds (🌧️)!</p>
-          </div>
-          <div style="display: flex; gap: 0.8rem;">
-            <span class="stat-badge">⏱️ Time: <span id="g2Time">30</span>s</span>
-            <span class="stat-badge" style="border-color: var(--gold-accent);">🍰 Score: <span id="g2Score">0</span></span>
-            <button class="btn-main btn-primary" style="padding: 0.4rem 1.2rem; font-size: 0.9rem;" onclick="startCatcherGame()">
-              <i class="fa-solid fa-play"></i> Start Game
+          <!-- Card 2: Whack-A-Present -->
+          <div class="arcade-game-card">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge">GAME 02</span>
+                <div class="card-icon-bubble">🎁</div>
+              </div>
+              <h3 class="card-title">Whack-A-Present</h3>
+              <p class="card-desc">
+                Tap appearing mystery gifts across 9 cosmic portals! Collect golden crowns for 50 pts and dodge explosive bombs!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag">⏱️ 30s Rapid Blitz</span>
+                <span class="meta-tag">Combo Multipliers</span>
+                <span class="meta-tag gold">👑 +50 Bonus</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="whack">
+              <i class="fa-solid fa-play"></i> Play Now
             </button>
           </div>
-        </div>
-        <canvas id="catcherCanvas" width="900" height="380"></canvas>
-      </div>
 
-      <!-- GAME 3: MEMORY MATCH -->
-      <div class="game-panel" id="gamePanel-2">
-        <div class="game-stats-bar">
-          <div>
-            <h3 style="color: var(--cyan-neon);"><i class="fa-solid fa-brain"></i> Birthday Memory Match</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Flip cards to match the party symbols!</p>
-          </div>
-          <div style="display: flex; gap: 0.8rem;">
-            <span class="stat-badge">🔄 Moves: <span id="g3Moves">0</span></span>
-            <span class="stat-badge">✨ Pairs: <span id="g3Pairs">0</span>/8</span>
-            <button class="btn-main btn-primary" style="padding: 0.4rem 1.2rem; font-size: 0.9rem;" onclick="initMemoryGame()">
-              <i class="fa-solid fa-rotate-right"></i> New Game
+          <!-- Card 3: This or That -->
+          <div class="arcade-game-card">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge">GAME 03</span>
+                <div class="card-icon-bubble">⚖️</div>
+              </div>
+              <h3 class="card-title">This or That</h3>
+              <p class="card-desc">
+                12 fun, personalized lifestyle & adventure questions. Choose your favorites and reveal your birthday archetype!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag">12 Questions</span>
+                <span class="meta-tag">Back Navigation</span>
+                <span class="meta-tag gold">✨ Archetype Report</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="this-that">
+              <i class="fa-solid fa-play"></i> Play Now
             </button>
           </div>
+
+          <!-- Card 4: Birthday Mystery Escape (Featured) -->
+          <div class="arcade-game-card card-featured">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge" style="border-color: rgba(255, 209, 102, 0.4); color: var(--arcade-gold);">GAME 04 &bull; FLAGSHIP</span>
+                <div class="card-icon-bubble" style="background: rgba(255, 209, 102, 0.2); border-color: var(--arcade-gold);">🗝️</div>
+              </div>
+              <h3 class="card-title">Birthday Mystery Escape</h3>
+              <p class="card-desc">
+                Mission 25: Solve room clues, crack the milestone riddle, and unlock the final golden chest to reveal Jihin's birthday surprise!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag gold">3 Mystery Stages</span>
+                <span class="meta-tag">Cipher Keypad</span>
+                <span class="meta-tag gold">🎁 Surprise Finale</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="mystery">
+              <i class="fa-solid fa-unlock-keyhole"></i> Start Mission
+            </button>
+          </div>
+
         </div>
-        <div class="memory-grid" id="memoryGrid"></div>
       </div>
 
-      <!-- GAME 4: LUCKY FORTUNE WHEEL -->
-      <div class="game-panel" id="gamePanel-3">
-        <div class="game-stats-bar">
-          <div>
-            <h3 style="color: var(--purple-neon);"><i class="fa-solid fa-dharmachakra"></i> Lucky Fortune Wheel</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Spin the cosmic wheel to claim your special birthday privilege!</p>
-          </div>
-          <div>
-            <span class="stat-badge" id="wheelResultBadge">🎁 Spin To Win!</span>
-          </div>
-        </div>
-        <div class="wheel-stage">
-          <div class="wheel-container">
-            <div class="wheel-arrow"></div>
-            <canvas id="fortuneCanvas" width="400" height="400"></canvas>
-          </div>
-          <button class="btn-main btn-primary" id="spinWheelBtn" onclick="spinFortuneWheel()">
-            <i class="fa-solid fa-rotate"></i> Spin The Fortune Wheel!
+      <!-- ====================================================================
+           GAME 1 STAGE: MEMORY MATCH
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageMemoryMatch">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
           </button>
-        </div>
-      </div>
-
-      <!-- GAME 5: WHACK-A-PRESENT -->
-      <div class="game-panel" id="gamePanel-4">
-        <div class="game-stats-bar">
-          <div>
-            <h3 style="color: var(--pink-neon);"><i class="fa-solid fa-hand-fist"></i> Whack-A-Present</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Tap the gifts as soon as they pop up from the cosmic portals!</p>
+          <div class="stage-title-wrap">
+            <h3 class="stage-game-title">Memory Match</h3>
+            <p class="stage-game-subtitle">Pair all matching birthday cards before time runs out</p>
           </div>
-          <div style="display: flex; gap: 0.8rem;">
-            <span class="stat-badge">⏱️ Time: <span id="g5Time">25</span>s</span>
-            <span class="stat-badge">🎁 Whacked: <span id="g5Score">0</span></span>
-            <button class="btn-main btn-primary" style="padding: 0.4rem 1.2rem; font-size: 0.9rem;" onclick="startWhackGame()">
-              <i class="fa-solid fa-play"></i> Start Game
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn" id="memHintBtn" title="Use 1 Free Hint">
+              <i class="fa-solid fa-lightbulb"></i>
+            </button>
+            <button class="stage-mini-btn" id="memRestartBtn" title="Restart Game">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
             </button>
           </div>
         </div>
-        <div class="whack-grid" id="whackGrid">
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">🎁</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">🎂</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">🎈</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">👑</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">💖</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">🧁</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">⭐</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">🎉</div></div>
-          <div class="whack-hole"><div class="whack-mole" onclick="bonkPresent(this)">💎</div></div>
+
+        <div class="memory-difficulty-bar" id="memDifficultyBar">
+          <button class="diff-btn" data-diff="easy">Easy (4 Pairs)</button>
+          <button class="diff-btn active" data-diff="medium">Medium (6 Pairs)</button>
+          <button class="diff-btn" data-diff="hard">Hard (8 Pairs)</button>
         </div>
+
+        <div class="game-live-stats">
+          <div class="live-stat-pill pill-timer" id="memTimerPill">
+            <i class="fa-solid fa-stopwatch"></i> Time: <span id="memTimerVal">50</span>s
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-hand-pointer"></i> Moves: <span id="memMovesVal">0</span>
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-star"></i> Pairs: <span id="memPairsVal">0/6</span>
+          </div>
+        </div>
+
+        <div class="memory-board-wrap">
+          <div class="memory-grid medium" id="memoryGrid"></div>
+        </div>
+
+        <!-- Victory / Game Over Overlay -->
+        <div class="game-result-overlay" id="memOverlay"></div>
+      </div>
+
+      <!-- ====================================================================
+           GAME 2 STAGE: WHACK-A-PRESENT
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageWhackPresent">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
+          </button>
+          <div class="stage-title-wrap">
+            <h3 class="stage-game-title">Whack-A-Present</h3>
+            <p class="stage-game-subtitle">Tap appearing presents! Crowns give +50, bombs deduct 15!</p>
+          </div>
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn" id="whackRestartBtn" title="Restart Game">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="game-live-stats">
+          <div class="live-stat-pill pill-timer" id="whackTimerPill">
+            <i class="fa-solid fa-stopwatch"></i> Time: <span id="whackTimerVal">30</span>s
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-bullseye"></i> Score: <span id="whackScoreVal">0</span>
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-bolt"></i> Streak: <span id="whackComboVal">x0</span>
+          </div>
+        </div>
+
+        <div class="whack-arena">
+          <div class="whack-combo-meter">
+            <span>🎁 Tap fast for Combo Multipliers!</span>
+            <span class="combo-badge">Max Streak: x4</span>
+          </div>
+
+          <div class="whack-grid-3x3" id="whackGrid">
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+          </div>
+        </div>
+
+        <!-- Victory / Game Over Overlay -->
+        <div class="game-result-overlay" id="whackOverlay"></div>
+      </div>
+
+      <!-- ====================================================================
+           GAME 3 STAGE: THIS OR THAT
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageThisThat">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
+          </button>
+          <div class="stage-title-wrap">
+            <h3 class="stage-game-title">This or That</h3>
+            <p class="stage-game-subtitle">Tap your favorite option to shape your birthday archetype</p>
+          </div>
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn" id="thisThatRestartBtn" title="Restart Quiz">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Playing stage -->
+        <div id="thisThatPlayStage">
+          <div class="quiz-progress-wrap">
+            <div class="quiz-progress-bar-bg">
+              <div class="quiz-progress-fill" id="thisThatProgressFill"></div>
+            </div>
+            <div class="quiz-question-counter">
+              <button class="btn-nav-link" id="thisThatPrevBtn" style="visibility: hidden; padding: 0.3rem 0.9rem; font-size: 0.8rem;">
+                <i class="fa-solid fa-chevron-left"></i> Back
+              </button>
+              <span id="thisThatCounterText">Question 1 of 12</span>
+            </div>
+          </div>
+
+          <div class="quiz-question-box">
+            <h4 class="quiz-q-title" id="thisThatQuestionTitle">Fast Food Craving</h4>
+          </div>
+
+          <div class="this-that-options-grid">
+            <div class="choice-card-btn" id="thisThatCardA">
+              <div class="choice-emoji" id="thisThatEmojiA">🍔</div>
+              <div class="choice-text" id="thisThatTextA">Juicy Burger</div>
+            </div>
+            <div class="choice-card-btn" id="thisThatCardB">
+              <div class="choice-emoji" id="thisThatEmojiB">🍕</div>
+              <div class="choice-text" id="thisThatTextB">Cheesy Pizza</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final Result Panel -->
+        <div class="this-that-result-panel" id="thisThatResultPanel">
+          <div class="result-badge-icon">👑</div>
+          <h3 class="result-title" id="thisThatResultTitle">The 25th Milestone Legend</h3>
+          <p class="finale-message" id="thisThatResultDesc" style="margin-bottom: 1.5rem;"></p>
+          <h4 style="color: var(--arcade-gold); margin-bottom: 0.8rem; font-size: 0.95rem; text-transform: uppercase;">
+            Your Selected Answers:
+          </h4>
+          <div id="thisThatAnswersList" style="margin-bottom: 2rem;"></div>
+          <div class="result-btn-row">
+            <button class="btn-main btn-primary" onclick="ThisOrThatGame.start()">
+              <i class="fa-solid fa-rotate-right"></i> Play Again
+            </button>
+            <button class="btn-main btn-outline" onclick="ArcadeHub.showHub()">
+              <i class="fa-solid fa-gamepad"></i> Back to Games
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           GAME 4 STAGE: BIRTHDAY MYSTERY ESCAPE (MISSION 25)
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageMysteryEscape">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
+          </button>
+          <div class="stage-title-wrap">
+            <h3 class="stage-game-title">Birthday Mystery Escape</h3>
+            <p class="stage-game-subtitle">Mission 25: Solve room clues and unlock the golden treasure</p>
+          </div>
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mission Tracker -->
+        <div class="escape-stage-tracker">
+          <div class="stage-step-dot active" id="stageDot1">
+            <i class="fa-solid fa-magnifying-glass"></i> Stage 1: Room Clues
+          </div>
+          <div class="stage-connector-line"></div>
+          <div class="stage-step-dot" id="stageDot2">
+            <i class="fa-solid fa-puzzle-piece"></i> Stage 2: Milestone Riddle
+          </div>
+          <div class="stage-connector-line"></div>
+          <div class="stage-step-dot" id="stageDot3">
+            <i class="fa-solid fa-lock"></i> Stage 3: Crack Lock
+          </div>
+        </div>
+
+        <!-- Intro Mission Screen -->
+        <div class="escape-intro-screen" id="escapeIntro">
+          <div class="escape-mission-badge">
+            <i class="fa-solid fa-shield-halved"></i> Mission 25 Briefing
+          </div>
+          <h3 style="font-size: 2.3rem; margin-bottom: 0.5rem;" class="font-heading">The Locked Surprise</h3>
+          <p style="color: var(--arcade-lavender); max-width: 500px; margin: 0 auto 1.5rem;">
+            "A special 25th birthday treasure is locked away. Find the hidden room clues, solve the milestone riddle, and crack the golden lock before time runs out!"
+          </p>
+          <div class="escape-chest-hero">🗝️</div>
+          <div style="margin-top: 1.5rem;">
+            <button class="btn-main btn-primary" id="escapeStartMissionBtn" style="padding: 1rem 2.8rem; font-size: 1.15rem;">
+              <i class="fa-solid fa-play"></i> Start Mission 25
+            </button>
+          </div>
+        </div>
+
+        <!-- Stage 1: Room Search -->
+        <div id="escapeStage1" style="display: none;">
+          <div class="game-live-stats">
+            <div class="live-stat-pill pill-timer" id="escapeTimerPill">
+              <i class="fa-solid fa-stopwatch"></i> Escape Clock: <span id="escapeTimerVal">4:00</span>
+            </div>
+            <div class="live-stat-pill pill-score">
+              <i class="fa-solid fa-door-open"></i> Objective: Inspect room objects for Cipher Clues
+            </div>
+          </div>
+
+          <div class="escape-room-scene">
+            <div style="text-align: center; margin-bottom: 1rem;">
+              <h4 style="color: var(--arcade-gold); font-size: 1.25rem;">🎂 Birthday Celebration Room</h4>
+              <p style="font-size: 0.88rem; color: var(--arcade-lavender);">Tap objects to search for hidden cipher pieces!</p>
+            </div>
+
+            <div class="room-objects-grid">
+              <div class="room-interactive-obj" data-item="balloon">
+                <span class="room-obj-emoji">🎈</span>
+                <span class="room-obj-label">Balloon</span>
+              </div>
+              <div class="room-interactive-obj" data-item="frame">
+                <span class="room-obj-emoji">🖼️</span>
+                <span class="room-obj-label">Photo Frame</span>
+              </div>
+              <div class="room-interactive-obj" data-item="present">
+                <span class="room-obj-emoji">🎁</span>
+                <span class="room-obj-label">Gift Box</span>
+              </div>
+              <div class="room-interactive-obj" data-item="bookshelf">
+                <span class="room-obj-emoji">📚</span>
+                <span class="room-obj-label">Bookshelf</span>
+              </div>
+              <div class="room-interactive-obj" data-item="clock">
+                <span class="room-obj-emoji">⏰</span>
+                <span class="room-obj-label">Clock</span>
+              </div>
+            </div>
+
+            <!-- In-room Inspection Dialog -->
+            <div class="room-inspection-modal" id="roomInspectionModal">
+              <h4 id="inspectionModalTitle" style="color: var(--arcade-gold); margin-bottom: 0.8rem;"></h4>
+              <div id="inspectionModalContent" style="color: #fff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.2rem;"></div>
+              <button class="btn-main btn-outline" style="padding: 0.4rem 1.4rem;" onclick="MysteryEscapeGame.closeInspectionModal()">
+                Continue Searching
+              </button>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+              <button class="btn-main btn-primary" id="advanceToStage2Btn" style="display: none; padding: 0.8rem 2.2rem;">
+                <i class="fa-solid fa-arrow-right"></i> Advance to Milestone Riddle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2: Solve Birthday Riddle -->
+        <div id="escapeStage2" style="display: none;">
+          <div class="riddle-card-box">
+            <span class="escape-mission-badge"><i class="fa-solid fa-puzzle-piece"></i> Riddle of the Jubilee</span>
+            <p class="riddle-text">
+              “I am the milestone age of our birthday legend.<br />
+              A silver quarter-century celebrated today.<br />
+              What number am I?”
+            </p>
+            <div class="riddle-input-row">
+              <input type="text" class="riddle-input" id="riddleInput" placeholder="Enter number..." autocomplete="off" />
+              <button class="btn-main btn-primary" id="riddleSubmitBtn" style="padding: 0.85rem 1.6rem;">
+                Unlock
+              </button>
+            </div>
+            <div id="riddleFeedback"></div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn-nav-link" id="riddleHintBtn" style="font-size: 0.85rem; padding: 0.35rem 1rem;">
+                <i class="fa-solid fa-lightbulb"></i> Need a Hint?
+              </button>
+              <div id="riddleHintText" style="display: none; margin-top: 0.6rem; color: var(--arcade-gold); font-size: 0.9rem;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 3: Crack Final Lock -->
+        <div id="escapeStage3" style="display: none;">
+          <div class="stage3-keypad-stage">
+            <div class="chest-lock-visual">🔒</div>
+            <h4 style="color: var(--arcade-gold); margin-bottom: 0.4rem; font-size: 1.2rem;">The Final Combination Lock</h4>
+            <p style="color: var(--arcade-lavender); font-size: 0.9rem; margin-bottom: 1.2rem;">
+              Enter the 4-digit code using the Clock Formula: [Age + Age]
+            </p>
+
+            <div class="passcode-display" id="passcodeDisplayWrap">
+              <div class="passcode-digit-slot" id="digitSlot0">•</div>
+              <div class="passcode-digit-slot" id="digitSlot1">•</div>
+              <div class="passcode-digit-slot" id="digitSlot2">•</div>
+              <div class="passcode-digit-slot" id="digitSlot3">•</div>
+            </div>
+
+            <div class="numeric-keypad-grid">
+              <button class="keypad-key" data-val="1">1</button>
+              <button class="keypad-key" data-val="2">2</button>
+              <button class="keypad-key" data-val="3">3</button>
+              <button class="keypad-key" data-val="4">4</button>
+              <button class="keypad-key" data-val="5">5</button>
+              <button class="keypad-key" data-val="6">6</button>
+              <button class="keypad-key" data-val="7">7</button>
+              <button class="keypad-key" data-val="8">8</button>
+              <button class="keypad-key" data-val="9">9</button>
+              <button class="keypad-key key-clear" data-val="clear">Clear</button>
+              <button class="keypad-key" data-val="0">0</button>
+              <button class="keypad-key key-enter" data-val="enter">Open</button>
+            </div>
+
+            <div id="keypadFeedback"></div>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </section>
+
+  <!-- ====================================================================
+       BIRTHDAY FINALE MODAL (CHEST OPEN SURPRISE)
+       ==================================================================== -->
+  <div class="birthday-finale-modal" id="birthdayFinaleModal">
+    <div class="finale-card-content">
+      <div class="finale-photo-wrap">
+        <img src="jibin-stylish.jpg" alt="Jihin Jino - 25th Birthday Star" />
+      </div>
+      <span class="escape-mission-badge" style="border-color: var(--arcade-gold);">
+        👑 Mission 25 Accomplished!
+      </span>
+      <h2 class="finale-title">Happy 25th Birthday, Jihin Jino! ✨</h2>
+      <p class="finale-message">
+        You unlocked the secret birthday treasure! May your 25th year overflow with endless highway rides, limitless happiness, grand triumphs, and memories that shine forever. Here's to Chamathu, our irreplaceable brother and explorer! ❤️
+      </p>
+
+      <div class="result-stats-row">
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Time Taken</div>
+          <div class="result-stat-num" id="finaleTimeTaken">1m 45s</div>
+        </div>
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Hints Used</div>
+          <div class="result-stat-num" id="finaleHintsUsed">0</div>
+        </div>
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Rating</div>
+          <div class="result-stat-num" id="finaleStarsRating">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+
+      <div class="result-btn-row">
+        <button class="btn-main btn-primary" onclick="MysteryEscapeGame.closeFinaleModal(); MysteryEscapeGame.startMission();">
+          <i class="fa-solid fa-rotate-right"></i> Play Again
+        </button>
+        <button class="btn-main btn-outline" onclick="MysteryEscapeGame.closeFinaleModal(); ArcadeHub.showHub();">
+          <i class="fa-solid fa-gamepad"></i> Back to Games
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       INSTRUCTIONS MODAL
+       ==================================================================== -->
+  <div class="birthday-finale-modal" id="arcadeInstructionsModal">
+    <div class="finale-card-content" style="max-width: 580px; text-align: left;">
+      <h3 style="color: var(--arcade-gold); margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: space-between;">
+        <span><i class="fa-solid fa-circle-question"></i> Arcade Rules & Guide</span>
+        <button style="background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;" onclick="ArcadeHub.closeInstructionsModal()">&times;</button>
+      </h3>
+      <div style="font-size: 0.95rem; color: var(--arcade-lavender); line-height: 1.7; display: flex; flex-direction: column; gap: 1rem;">
+        <p><strong>1. Memory Match:</strong> Flip face-down cards to match pairs. Complete before time expires to register a high score!</p>
+        <p><strong>2. Whack-A-Present:</strong> 30-second reflex challenge! Tap normal presents (+10) and golden crowns (+50). Avoid bombs (-15).</p>
+        <p><strong>3. This or That:</strong> Choose between two fun options across 12 questions to discover your personalized personality archetype.</p>
+        <p><strong>4. Birthday Mystery Escape:</strong> Search the celebration room for clues, solve the age riddle, and crack the keypad code (2525) to unlock the grand birthday finale!</p>
+      </div>
+      <div style="margin-top: 1.8rem; text-align: center;">
+        <button class="btn-main btn-primary" onclick="ArcadeHub.closeInstructionsModal()">
+          Got It, Let's Play!
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- -------------------------------------------------------------
        PHOTO LIGHTBOX MODAL WITH FULL HEARTFELT QUOTES
@@ -2007,7 +2190,7 @@ Just be ready, come along with me, and let the day unfold.
     <button class="lightbox-nav-btn lightbox-next" onclick="nextLightbox(event)" title="Next photo (→)"><i class="fa-solid fa-chevron-right"></i></button>
     <div class="lightbox-content-box" onclick="event.stopPropagation()">
       <div class="lightbox-img-wrap">
-        <img id="lightboxImg" src="" alt="Jibin Tribute Photo" />
+        <img id="lightboxImg" src="" alt="Jihin Tribute Photo" />
       </div>
       <div class="lightbox-details">
         <span class="lightbox-badge" id="lightboxBadge"><i class="fa-solid fa-star"></i> Tribute</span>
@@ -2029,7 +2212,7 @@ Just be ready, come along with me, and let the day unfold.
     <div class="qr-card">
       <h3 style="color: #fff; margin-bottom: 0.5rem;"><i class="fa-solid fa-qrcode"></i> Scan Website QR</h3>
       <p style="color: var(--text-muted); font-size: 0.9rem;">
-        Scan to view Jibin's 25th Birthday Celebration on any phone!
+        Scan to view Jihin Jino's 25th Birthday Celebration on any phone!
       </p>
       <div class="qr-frame">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://lbdigitalcreations.com&bgcolor=ffffff&color=150d28" alt="QR Code" class="qr-img" />
@@ -2052,7 +2235,7 @@ Just be ready, come along with me, and let the day unfold.
         With lots and lots of love, Your non-blood sister ❤️
       </p>
       <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;">
-        Many candles to blow Jibin &bull; LBDC Birthday Celebration Studio
+        Many candles to blow Jihin Jino &bull; LBDC Birthday Celebration Studio
       </p>
     </div>
   </footer>
@@ -2224,9 +2407,9 @@ Just be ready, come along with me, and let the day unfold.
     drawStars();
 
     /* -------------------------------------------------------------
-       LIVE COUNTDOWN TIMER (Defaults to 25th celebration date)
+       LIVE COUNTDOWN TIMER (Defaults to 25th celebration date: Oct 10, 2026)
     -------------------------------------------------------------- */
-    const targetDate = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+    const targetDate = new Date('2026-10-10T00:00:00');
 
     function updateCountdown() {
       const diff = targetDate.getTime() - Date.now();
@@ -2283,7 +2466,7 @@ Just be ready, come along with me, and let the day unfold.
         sound.playPop();
 
         if (candlesBlown.every(Boolean)) {
-          document.getElementById('cakeStatusText').innerHTML = '🎉 All 25th milestone candles blown! May every dream come true, Jibin!';
+          document.getElementById('cakeStatusText').innerHTML = '🎉 All 25th milestone candles blown! May every dream come true, Jihin (Chamathu)!';
           sound.playWinFanfare();
           launchConfetti();
         }
@@ -2294,419 +2477,8 @@ Just be ready, come along with me, and let the day unfold.
       [0, 1, 2, 3, 4].forEach(i => blowCandle(i));
     }
 
-    /* -------------------------------------------------------------
-       ARCADE TABS NAVIGATION
-    -------------------------------------------------------------- */
-    function switchGame(index) {
-      document.querySelectorAll('.arcade-tab-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
-      });
-      document.querySelectorAll('.game-panel').forEach((panel, i) => {
-        panel.classList.toggle('active', i === index);
-      });
-      if (index === 2) initMemoryGame();
-      if (index === 3) drawWheel();
-    }
-
-    /* -------------------------------------------------------------
-       GAME 1: BALLOON POP MANIA
-    -------------------------------------------------------------- */
-    let g1Timer = null;
-    let g1SpawnTimer = null;
-    let g1Score = 0;
-    let g1TimeLeft = 30;
-    let g1Active = false;
-
-    function startBalloonGame() {
-      if (g1Active) return;
-      g1Active = true;
-      g1Score = 0;
-      g1TimeLeft = 30;
-      document.getElementById('g1Score').textContent = '0';
-      document.getElementById('g1Time').textContent = '30';
-      document.getElementById('g1OverlayMsg').style.display = 'none';
-
-      const arena = document.getElementById('balloonArena');
-      arena.querySelectorAll('.floating-balloon').forEach(b => b.remove());
-
-      g1Timer = setInterval(() => {
-        g1TimeLeft--;
-        document.getElementById('g1Time').textContent = g1TimeLeft;
-        if (g1TimeLeft <= 0) {
-          endBalloonGame();
-        }
-      }, 1000);
-
-      g1SpawnTimer = setInterval(spawnBalloon, 450);
-    }
-
-    function spawnBalloon() {
-      if (!g1Active) return;
-      const arena = document.getElementById('balloonArena');
-      const b = document.createElement('div');
-      b.className = 'floating-balloon';
-
-      const isGold = Math.random() < 0.25;
-      const points = isGold ? 50 : 10;
-      const size = Math.floor(Math.random() * 20) + 48;
-      const left = Math.floor(Math.random() * (arena.clientWidth - size));
-
-      b.style.width = size + 'px';
-      b.style.height = (size * 1.25) + 'px';
-      b.style.left = left + 'px';
-      b.style.background = isGold ? 'var(--gradient-gold)' : (Math.random() < 0.5 ? 'var(--gradient-cosmic)' : 'var(--gradient-aurora)');
-      b.innerHTML = isGold ? '⭐' : '🎈';
-
-      b.onclick = () => {
-        g1Score += points;
-        document.getElementById('g1Score').textContent = g1Score;
-        sound.playPop();
-        b.remove();
-      };
-
-      arena.appendChild(b);
-
-      let pos = -80;
-      const speed = Math.random() * 2.5 + 2.5;
-      const moveInt = setInterval(() => {
-        pos += speed;
-        b.style.bottom = pos + 'px';
-        if (pos > arena.clientHeight + 80) {
-          clearInterval(moveInt);
-          b.remove();
-        }
-      }, 25);
-    }
-
-    function endBalloonGame() {
-      g1Active = false;
-      clearInterval(g1Timer);
-      clearInterval(g1SpawnTimer);
-      sound.playWinFanfare();
-      launchConfetti();
-      document.getElementById('g1OverlayMsg').style.display = 'block';
-      document.getElementById('g1OverlayMsg').innerHTML = `
-        <h2 style="color: var(--pink-rose);">🎉 Game Over, Explorer!</h2>
-        <p style="font-size: 1.2rem; margin: 0.5rem 0;">You scored: <strong>${g1Score} Points!</strong></p>
-        <button class="btn-main btn-primary" onclick="startBalloonGame()">Play Again</button>
-      `;
-    }
-
-    /* -------------------------------------------------------------
-       GAME 2: CAKE CATCHER RUSH
-    -------------------------------------------------------------- */
-    const catcherCanvas = document.getElementById('catcherCanvas');
-    const cCtx = catcherCanvas.getContext('2d');
-    let g2Score = 0;
-    let g2TimeLeft = 30;
-    let g2Active = false;
-    let g2Timer = null;
-    let basket = { x: 400, y: 340, width: 110, height: 22 };
-    let drops = [];
-
-    function startCatcherGame() {
-      if (g2Active) return;
-      g2Active = true;
-      g2Score = 0;
-      g2TimeLeft = 30;
-      drops = [];
-      document.getElementById('g2Score').textContent = '0';
-      document.getElementById('g2Time').textContent = '30';
-
-      g2Timer = setInterval(() => {
-        g2TimeLeft--;
-        document.getElementById('g2Time').textContent = g2TimeLeft;
-        if (g2TimeLeft <= 0) {
-          g2Active = false;
-          clearInterval(g2Timer);
-          sound.playWinFanfare();
-          launchConfetti();
-        }
-      }, 1000);
-
-      requestAnimationFrame(updateCatcherLoop);
-    }
-
-    catcherCanvas.addEventListener('mousemove', (e) => {
-      const rect = catcherCanvas.getBoundingClientRect();
-      const scaleX = catcherCanvas.width / rect.width;
-      basket.x = (e.clientX - rect.left) * scaleX - basket.width / 2;
-    });
-
-    catcherCanvas.addEventListener('touchmove', (e) => {
-      const rect = catcherCanvas.getBoundingClientRect();
-      const scaleX = catcherCanvas.width / rect.width;
-      basket.x = (e.touches[0].clientX - rect.left) * scaleX - basket.width / 2;
-    });
-
-    function updateCatcherLoop() {
-      if (!g2Active) {
-        cCtx.clearRect(0, 0, catcherCanvas.width, catcherCanvas.height);
-        cCtx.fillStyle = '#cbd5e1';
-        cCtx.font = '24px Outfit';
-        cCtx.textAlign = 'center';
-        cCtx.fillText('Final Score: ' + g2Score + ' Slices! Click Start to Play Again!', catcherCanvas.width / 2, catcherCanvas.height / 2);
-        return;
-      }
-
-      cCtx.clearRect(0, 0, catcherCanvas.width, catcherCanvas.height);
-
-      cCtx.fillStyle = '#fbbf24';
-      cCtx.shadowColor = '#fbbf24';
-      cCtx.shadowBlur = 15;
-      cCtx.beginPath();
-      cCtx.roundRect(basket.x, basket.y, basket.width, basket.height, 12);
-      cCtx.fill();
-      cCtx.shadowBlur = 0;
-
-      if (Math.random() < 0.05) {
-        const isBad = Math.random() < 0.25;
-        drops.push({
-          x: Math.random() * (catcherCanvas.width - 40) + 20,
-          y: -20,
-          speed: Math.random() * 3 + 3,
-          emoji: isBad ? '🌧️' : (Math.random() < 0.5 ? '🍰' : '🧁'),
-          isBad: isBad
-        });
-      }
-
-      for (let i = drops.length - 1; i >= 0; i--) {
-        const d = drops[i];
-        d.y += d.speed;
-
-        cCtx.font = '28px sans-serif';
-        cCtx.fillText(d.emoji, d.x, d.y);
-
-        if (d.y >= basket.y && d.y <= basket.y + basket.height + 15 && d.x >= basket.x - 15 && d.x <= basket.x + basket.width + 15) {
-          if (d.isBad) {
-            g2Score = Math.max(0, g2Score - 5);
-            sound.playTone(180, 200, 'sawtooth');
-          } else {
-            g2Score += 10;
-            sound.playTone(587.33, 120, 'sine');
-          }
-          document.getElementById('g2Score').textContent = g2Score;
-          drops.splice(i, 1);
-          continue;
-        }
-
-        if (d.y > catcherCanvas.height + 30) {
-          drops.splice(i, 1);
-        }
-      }
-
-      requestAnimationFrame(updateCatcherLoop);
-    }
-
-    /* -------------------------------------------------------------
-       GAME 3: BIRTHDAY MEMORY MATCH
-    -------------------------------------------------------------- */
-    const memorySymbols = ['🎂', '🎁', '🎈', '👑', '🧭', '💖', '🧁', '⭐'];
-    let memCards = [];
-    let memFlipped = [];
-    let memMatchedCount = 0;
-    let memMoves = 0;
-
-    function initMemoryGame() {
-      const grid = document.getElementById('memoryGrid');
-      grid.innerHTML = '';
-      memFlipped = [];
-      memMatchedCount = 0;
-      memMoves = 0;
-      document.getElementById('g3Moves').textContent = '0';
-      document.getElementById('g3Pairs').textContent = '0';
-
-      const deck = [...memorySymbols, ...memorySymbols].sort(() => Math.random() - 0.5);
-
-      deck.forEach((sym, index) => {
-        const card = document.createElement('div');
-        card.className = 'memory-card';
-        card.dataset.sym = sym;
-        card.dataset.index = index;
-        card.innerHTML = `
-          <div class="memory-inner">
-            <div class="memory-front">✨</div>
-            <div class="memory-back">${sym}</div>
-          </div>
-        `;
-        card.onclick = () => flipMemoryCard(card);
-        grid.appendChild(card);
-      });
-    }
-
-    function flipMemoryCard(card) {
-      if (memFlipped.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
-
-      card.classList.add('flipped');
-      sound.playTone(400, 100, 'sine');
-      memFlipped.push(card);
-
-      if (memFlipped.length === 2) {
-        memMoves++;
-        document.getElementById('g3Moves').textContent = memMoves;
-
-        const [c1, c2] = memFlipped;
-        if (c1.dataset.sym === c2.dataset.sym) {
-          c1.classList.add('matched');
-          c2.classList.add('matched');
-          memFlipped = [];
-          memMatchedCount++;
-          document.getElementById('g3Pairs').textContent = memMatchedCount;
-          sound.playTone(800, 200, 'sine');
-
-          if (memMatchedCount === 8) {
-            sound.playWinFanfare();
-            launchConfetti();
-          }
-        } else {
-          setTimeout(() => {
-            c1.classList.remove('flipped');
-            c2.classList.remove('flipped');
-            memFlipped = [];
-          }, 800);
-        }
-      }
-    }
-
-    /* -------------------------------------------------------------
-       GAME 4: LUCKY FORTUNE WHEEL
-    -------------------------------------------------------------- */
-    const fortuneCanvas = document.getElementById('fortuneCanvas');
-    const fCtx = fortuneCanvas.getContext('2d');
-    const wheelSegments = [
-      'Mystery Roadtrip',
-      'VIP Explorer Pass',
-      'Unlimited Treats',
-      'Big Win Journey',
-      'Free Hugs Forever',
-      'Crazy Adventure',
-      'King For The Day',
-      '365 Days Smiles'
-    ];
-    let wheelAngle = 0;
-    let isSpinning = false;
-
-    function drawWheel() {
-      const numSegs = wheelSegments.length;
-      const arc = (Math.PI * 2) / numSegs;
-      const radius = fortuneCanvas.width / 2;
-
-      fCtx.clearRect(0, 0, fortuneCanvas.width, fortuneCanvas.height);
-
-      wheelSegments.forEach((text, i) => {
-        const segAngle = wheelAngle + i * arc;
-        fCtx.beginPath();
-        fCtx.fillStyle = i % 2 === 0 ? '#9333ea' : '#db2777';
-        fCtx.moveTo(radius, radius);
-        fCtx.arc(radius, radius, radius, segAngle, segAngle + arc);
-        fCtx.lineTo(radius, radius);
-        fCtx.fill();
-
-        fCtx.save();
-        fCtx.translate(radius, radius);
-        fCtx.rotate(segAngle + arc / 2);
-        fCtx.textAlign = 'right';
-        fCtx.fillStyle = '#ffffff';
-        fCtx.font = 'bold 15px Outfit';
-        fCtx.fillText(text, radius - 20, 5);
-        fCtx.restore();
-      });
-
-      fCtx.beginPath();
-      fCtx.arc(radius, radius, 22, 0, Math.PI * 2);
-      fCtx.fillStyle = '#fbbf24';
-      fCtx.fill();
-    }
-
-    function spinFortuneWheel() {
-      if (isSpinning) return;
-      isSpinning = true;
-      document.getElementById('spinWheelBtn').disabled = true;
-
-      const spins = Math.floor(Math.random() * 5) + 6;
-      const targetDeg = Math.random() * 360 + spins * 360;
-      const startAngle = wheelAngle;
-      const totalRad = (targetDeg * Math.PI) / 180;
-      const duration = 4000;
-      const startTime = performance.now();
-
-      function animateSpin(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-
-        wheelAngle = startAngle + totalRad * easeOut;
-        drawWheel();
-
-        if (progress < 1) {
-          requestAnimationFrame(animateSpin);
-        } else {
-          isSpinning = false;
-          document.getElementById('spinWheelBtn').disabled = false;
-          sound.playWinFanfare();
-          launchConfetti();
-
-          const normalized = ((wheelAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-          const index = Math.floor(((Math.PI * 2 - normalized + (Math.PI * 3 / 2)) % (Math.PI * 2)) / ((Math.PI * 2) / wheelSegments.length));
-          const winner = wheelSegments[index % wheelSegments.length];
-          document.getElementById('wheelResultBadge').innerHTML = '🎁 Prize: <strong>' + winner + '</strong>!';
-        }
-      }
-      requestAnimationFrame(animateSpin);
-    }
-
-    /* -------------------------------------------------------------
-       GAME 5: WHACK-A-PRESENT
-    -------------------------------------------------------------- */
-    let g5Score = 0;
-    let g5TimeLeft = 25;
-    let g5Active = false;
-    let g5Timer = null;
-    let g5PopTimer = null;
-
-    function startWhackGame() {
-      if (g5Active) return;
-      g5Active = true;
-      g5Score = 0;
-      g5TimeLeft = 25;
-      document.getElementById('g5Score').textContent = '0';
-      document.getElementById('g5Time').textContent = '25';
-
-      g5Timer = setInterval(() => {
-        g5TimeLeft--;
-        document.getElementById('g5Time').textContent = g5TimeLeft;
-        if (g5TimeLeft <= 0) {
-          g5Active = false;
-          clearInterval(g5Timer);
-          clearInterval(g5PopTimer);
-          document.querySelectorAll('.whack-hole').forEach(h => h.classList.remove('up'));
-          sound.playWinFanfare();
-          launchConfetti();
-        }
-      }, 1000);
-
-      g5PopTimer = setInterval(popRandomHole, 700);
-    }
-
-    function popRandomHole() {
-      if (!g5Active) return;
-      const holes = document.querySelectorAll('.whack-hole');
-      holes.forEach(h => h.classList.remove('up'));
-      const randHole = holes[Math.floor(Math.random() * holes.length)];
-      randHole.classList.add('up');
-      setTimeout(() => randHole.classList.remove('up'), 600);
-    }
-
-    function bonkPresent(moleElem) {
-      if (!g5Active) return;
-      const hole = moleElem.parentElement;
-      if (hole.classList.contains('up')) {
-        g5Score++;
-        document.getElementById('g5Score').textContent = g5Score;
-        sound.playPop();
-        hole.classList.remove('up');
-      }
-    }
+    /* Note: Birthday Arcade Mini-Games (Memory Match, Whack-A-Present, This or That, Mystery Escape)
+       are modularly loaded from js/memory-match.js, js/whack-a-present.js, js/this-or-that.js, js/mystery-escape.js, js/arcade.js */
 
     /* -------------------------------------------------------------
        QR CODE MODAL HANDLERS
@@ -2847,5 +2619,14 @@ Just be ready, come along with me, and let the day unfold.
       if (e.key === 'ArrowRight') nextLightbox();
     });
   </script>
+
+  <!-- Birthday Arcade Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/memory-match.js"></script>
+  <script src="js/whack-a-present.js"></script>
+  <script src="js/this-or-that.js"></script>
+  <script src="js/mystery-escape.js"></script>
+  <script src="js/arcade.js"></script>
 </body>
 </html>

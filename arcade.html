@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Jibin's 25th Birthday | The Birthday Arcade 🎮✨</title>
+  <meta name="description" content="Four Games. One Birthday Legend. The official 25th birthday arcade made with endless love for Jibin!" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Arcade & Animation Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/arcade.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background: var(--arcade-navy);
+      background-image: radial-gradient(circle at 15% 20%, rgba(113, 56, 212, 0.28) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 30%, rgba(240, 68, 145, 0.22) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    .arcade-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+    /* Top Header Bar */
+    .arcade-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0 2.5rem;
+      border-bottom: 1px solid rgba(200, 194, 232, 0.12);
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-logo-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+    .nav-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .btn-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--arcade-lavender);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(200, 194, 232, 0.2);
+      transition: all 0.2s ease;
+    }
+    .btn-nav-link:hover {
+      color: #fff;
+      border-color: var(--arcade-gold);
+      transform: translateY(-2px);
+    }
+    .btn-nav-home {
+      background: var(--arcade-gradient-pink);
+      border: none;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(240, 68, 145, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="arcade-container">
+
+    <!-- Top Navigation Bar -->
+    <header class="arcade-nav-header">
+      <a href="index.html" class="nav-logo-brand">
+        <span style="color: var(--arcade-gold);">👑</span>
+        <span>Jihin Jino's Arcade</span>
+      </a>
+
+      <div class="nav-actions-group">
+        <a href="index.html" class="btn-nav-link btn-nav-home">
+          <i class="fa-solid fa-cake-candles"></i> Celebration Home
+        </a>
+        <button class="btn-nav-link arcade-sound-toggle-btn" title="Toggle Sound">
+          <i class="fa-solid fa-volume-high"></i> Sound: ON
+        </button>
+        <button class="btn-nav-link" onclick="ArcadeHub.openInstructionsModal()" title="Arcade Rules & Guide">
+          <i class="fa-solid fa-circle-question"></i> Rules
+        </button>
+      </div>
+    </header>
+
+    <div class="arcade-wrapper">
+
+      <!-- ====================================================================
+           ARCADE HUB SELECTION VIEW
+           ==================================================================== -->
+      <div id="arcadeHubSelection">
+        <!-- Hero Header -->
+        <section class="arcade-hero">
+          <div class="arcade-badge">
+            <i class="fa-solid fa-stars"></i> Born 10/10/2001 &bull; Chamathu Turning 25
+          </div>
+          <h1 class="arcade-main-title">
+            Jihin Jino's <span class="arcade-gradient-heading">25th Birthday</span> 🎂
+          </h1>
+          <p class="arcade-subtitle">
+            Four Games. One Birthday Legend.
+          </p>
+
+          <div class="arcade-controls-bar">
+            <button class="arcade-ctrl-btn arcade-sound-toggle-btn">
+              <i class="fa-solid fa-volume-high"></i> Sound Effects
+            </button>
+            <button class="arcade-ctrl-btn" onclick="ArcadeHub.openInstructionsModal()">
+              <i class="fa-solid fa-gamepad"></i> Game Rules
+            </button>
+            <a href="index.html#letter" class="arcade-ctrl-btn">
+              <i class="fa-solid fa-heart"></i> Personal Letter
+            </a>
+          </div>
+        </section>
+
+        <!-- Compact Score Summary Board -->
+        <div class="arcade-score-summary">
+          <div class="score-summary-title">
+            <span><i class="fa-solid fa-trophy"></i> Personal Best Hall of Fame</span>
+            <span style="font-size: 0.78rem; color: var(--arcade-lavender); text-transform: none; letter-spacing: 0;">Saved locally</span>
+          </div>
+          <div class="score-summary-grid">
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">🧠</div>
+              <div class="summary-stat-name">Memory Match</div>
+              <div class="summary-stat-val" id="summaryMemoryBest">--</div>
+            </div>
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">🎁</div>
+              <div class="summary-stat-name">Whack-A-Present</div>
+              <div class="summary-stat-val" id="summaryWhackBest">--</div>
+            </div>
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">⚖️</div>
+              <div class="summary-stat-name">This or That</div>
+              <div class="summary-stat-val" id="summaryThisThatBest">--</div>
+            </div>
+            <div class="summary-stat-box">
+              <div class="summary-stat-icon">🗝️</div>
+              <div class="summary-stat-name">Mystery Escape</div>
+              <div class="summary-stat-val" id="summaryEscapeBest">--</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Four Game Cards Grid -->
+        <div class="arcade-cards-grid">
+          
+          <!-- Card 1: Memory Match -->
+          <div class="arcade-game-card">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge">GAME 01</span>
+                <div class="card-icon-bubble">🧠</div>
+              </div>
+              <h2 class="card-title">Memory Match</h2>
+              <p class="card-desc">
+                Flip and pair up hidden birthday cake slices, golden crowns, balloons, and keys before the clock expires!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag">⏱️ 45-60s Timer</span>
+                <span class="meta-tag">3 Difficulties</span>
+                <span class="meta-tag gold">★ 1 Free Hint</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="memory">
+              <i class="fa-solid fa-play"></i> Play Now
+            </button>
+          </div>
+
+          <!-- Card 2: Whack-A-Present -->
+          <div class="arcade-game-card">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge">GAME 02</span>
+                <div class="card-icon-bubble">🎁</div>
+              </div>
+              <h2 class="card-title">Whack-A-Present</h2>
+              <p class="card-desc">
+                Tap appearing mystery gifts across 9 cosmic portals! Collect golden crowns for 50 pts and dodge explosive bombs!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag">⏱️ 30s Rapid Blitz</span>
+                <span class="meta-tag">Combo Multipliers</span>
+                <span class="meta-tag gold">👑 +50 Bonus</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="whack">
+              <i class="fa-solid fa-play"></i> Play Now
+            </button>
+          </div>
+
+          <!-- Card 3: This or That -->
+          <div class="arcade-game-card">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge">GAME 03</span>
+                <div class="card-icon-bubble">⚖️</div>
+              </div>
+              <h2 class="card-title">This or That</h2>
+              <p class="card-desc">
+                12 fun, personalized lifestyle & adventure questions. Choose your favorites and reveal your birthday archetype!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag">12 Questions</span>
+                <span class="meta-tag">Back Navigation</span>
+                <span class="meta-tag gold">✨ Archetype Report</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="this-that">
+              <i class="fa-solid fa-play"></i> Play Now
+            </button>
+          </div>
+
+          <!-- Card 4: Birthday Mystery Escape (Featured) -->
+          <div class="arcade-game-card card-featured">
+            <div>
+              <div class="card-top-row">
+                <span class="card-number-badge" style="border-color: rgba(255, 209, 102, 0.4); color: var(--arcade-gold);">GAME 04 &bull; FLAGSHIP</span>
+                <div class="card-icon-bubble" style="background: rgba(255, 209, 102, 0.2); border-color: var(--arcade-gold);">🗝️</div>
+              </div>
+              <h2 class="card-title">Birthday Mystery Escape</h2>
+              <p class="card-desc">
+                Mission 25: Solve room clues, crack the milestone riddle, and unlock the final golden chest to reveal Jibin's birthday surprise!
+              </p>
+              <div class="card-meta-tags">
+                <span class="meta-tag gold">3 Mystery Stages</span>
+                <span class="meta-tag">Cipher Keypad</span>
+                <span class="meta-tag gold">🎁 Surprise Finale</span>
+              </div>
+            </div>
+            <button class="btn-play-game" data-launch-game="mystery">
+              <i class="fa-solid fa-unlock-keyhole"></i> Start Mission
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           GAME 1 STAGE: MEMORY MATCH
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageMemoryMatch">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
+          </button>
+          <div class="stage-title-wrap">
+            <h2 class="stage-game-title">Memory Match</h2>
+            <p class="stage-game-subtitle">Pair all matching birthday cards before time runs out</p>
+          </div>
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn" id="memHintBtn" title="Use 1 Free Hint">
+              <i class="fa-solid fa-lightbulb"></i>
+            </button>
+            <button class="stage-mini-btn" id="memRestartBtn" title="Restart Game">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="memory-difficulty-bar" id="memDifficultyBar">
+          <button class="diff-btn" data-diff="easy">Easy (4 Pairs)</button>
+          <button class="diff-btn active" data-diff="medium">Medium (6 Pairs)</button>
+          <button class="diff-btn" data-diff="hard">Hard (8 Pairs)</button>
+        </div>
+
+        <div class="game-live-stats">
+          <div class="live-stat-pill pill-timer" id="memTimerPill">
+            <i class="fa-solid fa-stopwatch"></i> Time: <span id="memTimerVal">50</span>s
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-hand-pointer"></i> Moves: <span id="memMovesVal">0</span>
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-star"></i> Pairs: <span id="memPairsVal">0/6</span>
+          </div>
+        </div>
+
+        <div class="memory-board-wrap">
+          <div class="memory-grid medium" id="memoryGrid"></div>
+        </div>
+
+        <!-- Victory / Game Over Overlay -->
+        <div class="game-result-overlay" id="memOverlay"></div>
+      </div>
+
+      <!-- ====================================================================
+           GAME 2 STAGE: WHACK-A-PRESENT
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageWhackPresent">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
+          </button>
+          <div class="stage-title-wrap">
+            <h2 class="stage-game-title">Whack-A-Present</h2>
+            <p class="stage-game-subtitle">Tap appearing presents! Crowns give +50, bombs deduct 15!</p>
+          </div>
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn" id="whackRestartBtn" title="Restart Game">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="game-live-stats">
+          <div class="live-stat-pill pill-timer" id="whackTimerPill">
+            <i class="fa-solid fa-stopwatch"></i> Time: <span id="whackTimerVal">30</span>s
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-bullseye"></i> Score: <span id="whackScoreVal">0</span>
+          </div>
+          <div class="live-stat-pill pill-score">
+            <i class="fa-solid fa-bolt"></i> Streak: <span id="whackComboVal">x0</span>
+          </div>
+        </div>
+
+        <div class="whack-arena">
+          <div class="whack-combo-meter">
+            <span>🎁 Tap fast for Combo Multipliers!</span>
+            <span class="combo-badge">Max Streak: x4</span>
+          </div>
+
+          <div class="whack-grid-3x3" id="whackGrid">
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+            <div class="whack-hole-box"><div class="whack-target-item"></div></div>
+          </div>
+        </div>
+
+        <!-- Victory / Game Over Overlay -->
+        <div class="game-result-overlay" id="whackOverlay"></div>
+      </div>
+
+      <!-- ====================================================================
+           GAME 3 STAGE: THIS OR THAT
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageThisThat">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
+          </button>
+          <div class="stage-title-wrap">
+            <h2 class="stage-game-title">This or That</h2>
+            <p class="stage-game-subtitle">Tap your favorite option to shape your birthday archetype</p>
+          </div>
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn" id="thisThatRestartBtn" title="Restart Quiz">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Playing stage -->
+        <div id="thisThatPlayStage">
+          <div class="quiz-progress-wrap">
+            <div class="quiz-progress-bar-bg">
+              <div class="quiz-progress-fill" id="thisThatProgressFill"></div>
+            </div>
+            <div class="quiz-question-counter">
+              <button class="btn-nav-link" id="thisThatPrevBtn" style="visibility: hidden; padding: 0.3rem 0.9rem; font-size: 0.8rem;">
+                <i class="fa-solid fa-chevron-left"></i> Back
+              </button>
+              <span id="thisThatCounterText">Question 1 of 12</span>
+            </div>
+          </div>
+
+          <div class="quiz-question-box">
+            <h3 class="quiz-q-title" id="thisThatQuestionTitle">Fast Food Craving</h3>
+          </div>
+
+          <div class="this-that-options-grid">
+            <div class="choice-card-btn" id="thisThatCardA">
+              <div class="choice-emoji" id="thisThatEmojiA">🍔</div>
+              <div class="choice-text" id="thisThatTextA">Juicy Burger</div>
+            </div>
+            <div class="choice-card-btn" id="thisThatCardB">
+              <div class="choice-emoji" id="thisThatEmojiB">🍕</div>
+              <div class="choice-text" id="thisThatTextB">Cheesy Pizza</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final Result Panel -->
+        <div class="this-that-result-panel" id="thisThatResultPanel">
+          <div class="result-badge-icon">👑</div>
+          <h2 class="result-title" id="thisThatResultTitle">The 25th Milestone Legend</h2>
+          <p class="finale-message" id="thisThatResultDesc" style="margin-bottom: 1.5rem;"></p>
+          <h4 style="color: var(--arcade-gold); margin-bottom: 0.8rem; font-size: 0.95rem; text-transform: uppercase;">
+            Your Selected Answers:
+          </h4>
+          <div id="thisThatAnswersList" style="margin-bottom: 2rem;"></div>
+          <div class="result-btn-row">
+            <button class="btn-main btn-primary" onclick="ThisOrThatGame.start()">
+              <i class="fa-solid fa-rotate-right"></i> Play Again
+            </button>
+            <button class="btn-main btn-outline" onclick="ArcadeHub.showHub()">
+              <i class="fa-solid fa-gamepad"></i> Back to Games
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           GAME 4 STAGE: BIRTHDAY MYSTERY ESCAPE (MISSION 25)
+           ==================================================================== -->
+      <div class="arcade-game-stage" id="stageMysteryEscape">
+        <div class="stage-top-bar">
+          <button class="btn-back-hub">
+            <i class="fa-solid fa-arrow-left"></i> Back to Games
+          </button>
+          <div class="stage-title-wrap">
+            <h2 class="stage-game-title">Birthday Mystery Escape</h2>
+            <p class="stage-game-subtitle">Mission 25: Solve room clues and unlock the golden treasure</p>
+          </div>
+          <div class="stage-actions-right">
+            <button class="stage-mini-btn arcade-sound-toggle-btn" title="Toggle Sound">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mission Tracker -->
+        <div class="escape-stage-tracker">
+          <div class="stage-step-dot active" id="stageDot1">
+            <i class="fa-solid fa-magnifying-glass"></i> Stage 1: Room Clues
+          </div>
+          <div class="stage-connector-line"></div>
+          <div class="stage-step-dot" id="stageDot2">
+            <i class="fa-solid fa-puzzle-piece"></i> Stage 2: Milestone Riddle
+          </div>
+          <div class="stage-connector-line"></div>
+          <div class="stage-step-dot" id="stageDot3">
+            <i class="fa-solid fa-lock"></i> Stage 3: Crack Lock
+          </div>
+        </div>
+
+        <!-- Intro Mission Screen -->
+        <div class="escape-intro-screen" id="escapeIntro">
+          <div class="escape-mission-badge">
+            <i class="fa-solid fa-shield-halved"></i> Mission 25 Briefing
+          </div>
+          <h2 style="font-size: 2.3rem; margin-bottom: 0.5rem;" class="font-heading">The Locked Surprise</h2>
+          <p style="color: var(--arcade-lavender); max-width: 500px; margin: 0 auto 1.5rem;">
+            "A special 25th birthday treasure is locked away. Find the hidden room clues, solve the milestone riddle, and crack the golden lock before time runs out!"
+          </p>
+          <div class="escape-chest-hero">🗝️</div>
+          <div style="margin-top: 1.5rem;">
+            <button class="btn-main btn-primary" id="escapeStartMissionBtn" style="padding: 1rem 2.8rem; font-size: 1.15rem;">
+              <i class="fa-solid fa-play"></i> Start Mission 25
+            </button>
+          </div>
+        </div>
+
+        <!-- Stage 1: Room Search -->
+        <div id="escapeStage1" style="display: none;">
+          <div class="game-live-stats">
+            <div class="live-stat-pill pill-timer" id="escapeTimerPill">
+              <i class="fa-solid fa-stopwatch"></i> Escape Clock: <span id="escapeTimerVal">4:00</span>
+            </div>
+            <div class="live-stat-pill pill-score">
+              <i class="fa-solid fa-door-open"></i> Objective: Inspect room objects for Cipher Clues
+            </div>
+          </div>
+
+          <div class="escape-room-scene">
+            <div style="text-align: center; margin-bottom: 1rem;">
+              <h3 style="color: var(--arcade-gold);">🎂 Birthday Celebration Room</h3>
+              <p style="font-size: 0.88rem; color: var(--arcade-lavender);">Tap objects to search for hidden cipher pieces!</p>
+            </div>
+
+            <div class="room-objects-grid">
+              <div class="room-interactive-obj" data-item="balloon">
+                <span class="room-obj-emoji">🎈</span>
+                <span class="room-obj-label">Balloon</span>
+              </div>
+              <div class="room-interactive-obj" data-item="frame">
+                <span class="room-obj-emoji">🖼️</span>
+                <span class="room-obj-label">Photo Frame</span>
+              </div>
+              <div class="room-interactive-obj" data-item="present">
+                <span class="room-obj-emoji">🎁</span>
+                <span class="room-obj-label">Gift Box</span>
+              </div>
+              <div class="room-interactive-obj" data-item="bookshelf">
+                <span class="room-obj-emoji">📚</span>
+                <span class="room-obj-label">Bookshelf</span>
+              </div>
+              <div class="room-interactive-obj" data-item="clock">
+                <span class="room-obj-emoji">⏰</span>
+                <span class="room-obj-label">Clock</span>
+              </div>
+            </div>
+
+            <!-- In-room Inspection Dialog -->
+            <div class="room-inspection-modal" id="roomInspectionModal">
+              <h4 id="inspectionModalTitle" style="color: var(--arcade-gold); margin-bottom: 0.8rem;"></h4>
+              <div id="inspectionModalContent" style="color: #fff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.2rem;"></div>
+              <button class="btn-main btn-outline" style="padding: 0.4rem 1.4rem;" onclick="MysteryEscapeGame.closeInspectionModal()">
+                Continue Searching
+              </button>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+              <button class="btn-main btn-primary" id="advanceToStage2Btn" style="display: none; padding: 0.8rem 2.2rem;">
+                <i class="fa-solid fa-arrow-right"></i> Advance to Milestone Riddle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2: Solve Birthday Riddle -->
+        <div id="escapeStage2" style="display: none;">
+          <div class="riddle-card-box">
+            <span class="escape-mission-badge"><i class="fa-solid fa-puzzle-piece"></i> Riddle of the Jubilee</span>
+            <p class="riddle-text">
+              “I am the milestone age of our birthday legend.<br />
+              A silver quarter-century celebrated today.<br />
+              What number am I?”
+            </p>
+            <div class="riddle-input-row">
+              <input type="text" class="riddle-input" id="riddleInput" placeholder="Enter number..." autocomplete="off" />
+              <button class="btn-main btn-primary" id="riddleSubmitBtn" style="padding: 0.85rem 1.6rem;">
+                Unlock
+              </button>
+            </div>
+            <div id="riddleFeedback"></div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn-nav-link" id="riddleHintBtn" style="font-size: 0.85rem; padding: 0.35rem 1rem;">
+                <i class="fa-solid fa-lightbulb"></i> Need a Hint?
+              </button>
+              <div id="riddleHintText" style="display: none; margin-top: 0.6rem; color: var(--arcade-gold); font-size: 0.9rem;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 3: Crack Final Lock -->
+        <div id="escapeStage3" style="display: none;">
+          <div class="stage3-keypad-stage">
+            <div class="chest-lock-visual">🔒</div>
+            <h3 style="color: var(--arcade-gold); margin-bottom: 0.4rem;">The Final Combination Lock</h3>
+            <p style="color: var(--arcade-lavender); font-size: 0.9rem; margin-bottom: 1.2rem;">
+              Enter the 4-digit code using the Clock Formula: [Age + Age]
+            </p>
+
+            <div class="passcode-display" id="passcodeDisplayWrap">
+              <div class="passcode-digit-slot" id="digitSlot0">•</div>
+              <div class="passcode-digit-slot" id="digitSlot1">•</div>
+              <div class="passcode-digit-slot" id="digitSlot2">•</div>
+              <div class="passcode-digit-slot" id="digitSlot3">•</div>
+            </div>
+
+            <div class="numeric-keypad-grid">
+              <button class="keypad-key" data-val="1">1</button>
+              <button class="keypad-key" data-val="2">2</button>
+              <button class="keypad-key" data-val="3">3</button>
+              <button class="keypad-key" data-val="4">4</button>
+              <button class="keypad-key" data-val="5">5</button>
+              <button class="keypad-key" data-val="6">6</button>
+              <button class="keypad-key" data-val="7">7</button>
+              <button class="keypad-key" data-val="8">8</button>
+              <button class="keypad-key" data-val="9">9</button>
+              <button class="keypad-key key-clear" data-val="clear">Clear</button>
+              <button class="keypad-key" data-val="0">0</button>
+              <button class="keypad-key key-enter" data-val="enter">Open</button>
+            </div>
+
+            <div id="keypadFeedback"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ====================================================================
+       BIRTHDAY FINALE MODAL (CHEST OPEN SURPRISE)
+       ==================================================================== -->
+  <div class="birthday-finale-modal" id="birthdayFinaleModal">
+    <div class="finale-card-content">
+      <div class="finale-photo-wrap">
+        <img src="jibin-stylish.jpg" alt="Jibin - 25th Birthday Star" />
+      </div>
+      <span class="escape-mission-badge" style="border-color: var(--arcade-gold);">
+        👑 Mission 25 Accomplished!
+      </span>
+      <h2 class="finale-title">Happy 25th Birthday, Jihin Jino! ✨</h2>
+      <p style="color: var(--arcade-gold); font-weight: 700; margin-bottom: 0.4rem; font-size: 1.1rem;">
+        To Chamathu &bull; Born 10/10/2001
+      </p>
+      <p class="finale-message">
+        You unlocked the secret birthday treasure! May your 25th year overflow with unforgettable motorcycle rides, limitless happiness, glorious success, and memories that shine forever. Here's to our irreplaceable brother and explorer! ❤️
+      </p>
+
+      <div class="result-stats-row">
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Time Taken</div>
+          <div class="result-stat-num" id="finaleTimeTaken">1m 45s</div>
+        </div>
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Hints Used</div>
+          <div class="result-stat-num" id="finaleHintsUsed">0</div>
+        </div>
+        <div class="result-stat-pill">
+          <div class="result-stat-lbl">Rating</div>
+          <div class="result-stat-num" id="finaleStarsRating">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+
+      <div class="result-btn-row">
+        <button class="btn-main btn-primary" onclick="MysteryEscapeGame.closeFinaleModal(); MysteryEscapeGame.startMission();">
+          <i class="fa-solid fa-rotate-right"></i> Play Again
+        </button>
+        <button class="btn-main btn-outline" onclick="MysteryEscapeGame.closeFinaleModal(); ArcadeHub.showHub();">
+          <i class="fa-solid fa-gamepad"></i> Back to Games
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       INSTRUCTIONS MODAL
+       ==================================================================== -->
+  <div class="birthday-finale-modal" id="arcadeInstructionsModal">
+    <div class="finale-card-content" style="max-width: 580px; text-align: left;">
+      <h3 style="color: var(--arcade-gold); margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: space-between;">
+        <span><i class="fa-solid fa-circle-question"></i> Arcade Rules & Guide</span>
+        <button style="background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;" onclick="ArcadeHub.closeInstructionsModal()">&times;</button>
+      </h3>
+      <div style="font-size: 0.95rem; color: var(--arcade-lavender); line-height: 1.7; display: flex; flex-direction: column; gap: 1rem;">
+        <p><strong>1. Memory Match:</strong> Flip face-down cards to match pairs. Complete before time expires to register a high score!</p>
+        <p><strong>2. Whack-A-Present:</strong> 30-second reflex challenge! Tap normal presents (+10) and golden crowns (+50). Avoid bombs (-15).</p>
+        <p><strong>3. This or That:</strong> Choose between two fun options across 12 questions to discover your personalized personality archetype.</p>
+        <p><strong>4. Birthday Mystery Escape:</strong> Search the celebration room for clues, solve the age riddle, and crack the keypad code (2525) to unlock the grand birthday finale!</p>
+      </div>
+      <div style="margin-top: 1.8rem; text-align: center;">
+        <button class="btn-main btn-primary" onclick="ArcadeHub.closeInstructionsModal()">
+          Got It, Let's Play!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/memory-match.js"></script>
+  <script src="js/whack-a-present.js"></script>
+  <script src="js/this-or-that.js"></script>
+  <script src="js/mystery-escape.js"></script>
+  <script src="js/arcade.js"></script>
+</body>
+</html>
