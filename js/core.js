@@ -1,51 +1,71 @@
 /* ==========================================================================
    JIHIN JINO (CHAMATHU) 25TH BIRTHDAY - SHARED CORE LOGIC
-   Web Audio Synthesizer, Starfield Canvas, Confetti & Navigation
+   Web Audio Synthesizer, Mobile-Optimized Soundtrack Engine,
+   Starfield Canvas, Confetti & Navigation
    ========================================================================== */
 
 class AudioEngine {
   constructor() {
     this.ctx = null;
     this.isPlaying = false;
-    this.startOffset = 5; // Start playback from 5 seconds as requested
-    
-    // HTML5 Audio element for the background soundtrack
-    this.audio = new Audio('song.mp3');
-    this.audio.preload = 'auto';
-    this.audio.loop = true;
+    this.startOffset = 5; // Start playback from 5 seconds
+    this.audioUnlocked = false;
 
-    // Ensure currentTime starts from 5 seconds on load / canplay
-    this.audio.addEventListener('loadedmetadata', () => {
-      if (this.audio.currentTime < this.startOffset) {
-        this.audio.currentTime = this.startOffset;
+    // Set up or reuse the DOM audio element for rock-solid mobile compatibility
+    this.audio = this.setupAudioElement();
+    this.bindAudioEvents();
+  }
+
+  setupAudioElement() {
+    let el = document.getElementById('bgAudioElement');
+    if (!el) {
+      el = document.createElement('audio');
+      el.id = 'bgAudioElement';
+      el.src = 'song.mp3';
+      el.preload = 'auto';
+      el.loop = true;
+      el.setAttribute('playsinline', '');
+      el.setAttribute('webkit-playsinline', '');
+      el.style.display = 'none';
+      if (document.body) {
+        document.body.appendChild(el);
+      } else {
+        document.addEventListener('DOMContentLoaded', () => {
+          if (!document.getElementById('bgAudioElement')) {
+            document.body.appendChild(el);
+          }
+        });
       }
-    });
+    }
+    el.volume = 1.0;
+    return el;
+  }
 
-    this.audio.addEventListener('canplay', () => {
-      if (this.audio.currentTime < this.startOffset) {
-        this.audio.currentTime = this.startOffset;
-      }
-    });
-
+  bindAudioEvents() {
     this.audio.addEventListener('play', () => {
       this.isPlaying = true;
       this.syncUI(true);
       sessionStorage.setItem('bgMusicState', 'playing');
+      sessionStorage.removeItem('bgMusicUserPaused');
     });
 
     this.audio.addEventListener('pause', () => {
       this.isPlaying = false;
       this.syncUI(false);
-      sessionStorage.setItem('bgMusicState', 'paused');
+      if (sessionStorage.getItem('bgMusicUserPaused') === 'true') {
+        sessionStorage.setItem('bgMusicState', 'paused');
+      }
     });
 
-    // When looping, loop back to 5 seconds
+    // Seamless loop back to startOffset (5 seconds)
     this.audio.addEventListener('ended', () => {
-      this.audio.currentTime = this.startOffset;
-      this.audio.play().catch(e => console.warn('Audio loop error:', e));
+      try {
+        this.audio.currentTime = this.startOffset;
+      } catch (e) {}
+      this.audio.play().catch(e => console.warn('Audio loop play prevented:', e));
     });
 
-    // Save currentTime periodically so user experience stays continuous across navigation
+    // Track currentTime across navigation
     this.audio.addEventListener('timeupdate', () => {
       if (this.isPlaying && this.audio.currentTime >= this.startOffset) {
         sessionStorage.setItem('bgMusicTime', this.audio.currentTime);
@@ -53,18 +73,36 @@ class AudioEngine {
     });
   }
 
-  init() {
+  // Wakes up WebAudio AudioContext and unlocks mobile Safari audio subsystem
+  unlock() {
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (AudioCtx) this.ctx = new AudioCtx();
     }
     if (this.ctx && this.ctx.state === 'suspended') {
-      this.ctx.resume();
+      this.ctx.resume().catch(() => {});
+    }
+
+    // Play a 1-sample silent buffer to unlock iOS Safari WebAudio hardware
+    if (this.ctx && !this.audioUnlocked) {
+      try {
+        const buffer = this.ctx.createBuffer(1, 1, 22050);
+        const source = this.ctx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(this.ctx.destination);
+        source.start(0);
+        this.audioUnlocked = true;
+      } catch (e) {}
     }
   }
 
+  init() {
+    this.unlock();
+  }
+
   playTone(freq, duration = 250, type = 'sine') {
-    if (!this.ctx) this.init();
+    this.unlock();
+    if (!this.ctx) return;
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
@@ -86,7 +124,8 @@ class AudioEngine {
   }
 
   playPop() {
-    if (!this.ctx) this.init();
+    this.unlock();
+    if (!this.ctx) return;
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
@@ -114,39 +153,65 @@ class AudioEngine {
   }
 
   toggleSong() {
-    this.init();
+    this.unlock();
     if (this.isPlaying) {
+      sessionStorage.setItem('bgMusicUserPaused', 'true');
+      sessionStorage.setItem('bgMusicState', 'paused');
       this.stopSong();
     } else {
+      sessionStorage.removeItem('bgMusicUserPaused');
+      sessionStorage.setItem('bgMusicState', 'playing');
       this.startSong();
     }
   }
 
   startSong() {
-    this.init();
-    try {
-      const savedTime = parseFloat(sessionStorage.getItem('bgMusicTime'));
-      if (!isNaN(savedTime) && savedTime >= this.startOffset) {
-        this.audio.currentTime = savedTime;
-      } else if (this.audio.currentTime < this.startOffset || this.audio.currentTime === 0) {
-        this.audio.currentTime = this.startOffset;
+    this.unlock();
+
+    // Determine target offset safely
+    const savedTime = parseFloat(sessionStorage.getItem('bgMusicTime'));
+    const targetTime = (!isNaN(savedTime) && savedTime >= this.startOffset) ? savedTime : this.startOffset;
+
+    // Mobile safe seek helper: ONLY seek when readyState >= 1 to prevent mobile abort errors
+    const safeSeek = () => {
+      try {
+        if (this.audio.readyState >= 1 && (this.audio.currentTime < this.startOffset - 0.5 || Math.abs(this.audio.currentTime - targetTime) > 0.5)) {
+          this.audio.currentTime = targetTime;
+        }
+      } catch (e) {
+        console.warn('Deferred seek notice:', e);
       }
-    } catch (e) {
-      // If metadata not ready, listeners will position to 5s
+    };
+
+    if (this.audio.readyState >= 1) {
+      safeSeek();
+    } else {
+      const onReady = () => {
+        safeSeek();
+        this.audio.removeEventListener('loadedmetadata', onReady);
+        this.audio.removeEventListener('canplay', onReady);
+      };
+      this.audio.addEventListener('loadedmetadata', onReady, { once: true });
+      this.audio.addEventListener('canplay', onReady, { once: true });
     }
 
     const playPromise = this.audio.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          if (this.audio.currentTime < this.startOffset) {
-            this.audio.currentTime = this.startOffset;
-          }
           this.isPlaying = true;
           this.syncUI(true);
+          sessionStorage.setItem('bgMusicState', 'playing');
+          sessionStorage.removeItem('bgMusicUserPaused');
+
+          // Ensure audio starts from 5s on mobile if started from 0
+          if (this.audio.currentTime < this.startOffset - 0.2) {
+            safeSeek();
+          }
         })
         .catch(err => {
-          console.warn('Autoplay prevented by browser:', err);
+          console.warn('Autoplay waiting for mobile user touch:', err);
+          this.isPlaying = false;
           this.syncUI(false);
         });
     }
@@ -203,25 +268,41 @@ function closeQrModal() {
 
 // Global initialization on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  // Wire audio toggle button
-  const toggleBtn = document.getElementById('toggleAudioBtn');
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => sound.toggleSong());
+  // Wire floating audio dock (tapping button, text or waves toggles audio)
+  const audioDock = document.getElementById('audioDock');
+  if (audioDock) {
+    let lastToggle = 0;
+    const handleDockToggle = (e) => {
+      e.stopPropagation();
+      const now = Date.now();
+      if (now - lastToggle < 350) return; // Debounce mobile ghost clicks
+      lastToggle = now;
+      sound.toggleSong();
+    };
+
+    audioDock.addEventListener('click', handleDockToggle);
+    audioDock.addEventListener('touchend', handleDockToggle, { passive: true });
   }
 
-  // Seamlessly resume playback if music was active before page navigation
-  if (sessionStorage.getItem('bgMusicState') === 'playing') {
-    const resumeOnInteraction = () => {
-      if (sound && !sound.isPlaying && sessionStorage.getItem('bgMusicState') === 'playing') {
-        sound.startSong();
-      }
-      document.removeEventListener('click', resumeOnInteraction);
-      document.removeEventListener('touchstart', resumeOnInteraction);
-    };
+  // Mobile & Global Autoplay Unlock:
+  // If user hasn't explicitly clicked pause, the first interaction starts the song seamlessly
+  const unlockAndPlay = () => {
+    if (sessionStorage.getItem('bgMusicUserPaused') === 'true') return;
+    if (!sound.isPlaying) {
+      sound.unlock();
+      sound.startSong();
+    }
+  };
+
+  // Attempt immediate playback (works on desktop or continued browsing)
+  if (sessionStorage.getItem('bgMusicUserPaused') !== 'true') {
     sound.startSong();
-    document.addEventListener('click', resumeOnInteraction, { once: true });
-    document.addEventListener('touchstart', resumeOnInteraction, { once: true });
   }
+
+  // One-time gesture listener to unlock on mobile (touches, taps, scrolls)
+  window.addEventListener('click', unlockAndPlay, { once: true });
+  window.addEventListener('touchstart', unlockAndPlay, { once: true, passive: true });
+  window.addEventListener('touchend', unlockAndPlay, { once: true, passive: true });
 
   // Wire QR button
   const openQr = document.getElementById('openQrBtn');
@@ -238,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Highlight active navbar link
+  // Highlight active navbar link (including letter-part2.html)
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {

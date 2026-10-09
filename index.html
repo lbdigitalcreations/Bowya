@@ -61,6 +61,7 @@
       <div class="sound-bar"></div>
     </div>
   </div>
+  <audio id="bgAudioElement" src="song.mp3" preload="auto" playsinline webkit-playsinline loop style="display: none;"></audio>
 
   <!-- -------------------------------------------------------------
        NAVBAR
@@ -342,24 +343,32 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <script src="js/core.js"></script>
   <script>
-    /* Curtain entrance handler */
+    /* Curtain entrance handler with direct mobile touch support */
     const curtain = document.getElementById('curtainOverlay');
     const enterBtn = document.getElementById('enterCelebrationBtn');
     const curtainOrb = document.getElementById('curtainOrb');
 
+    function openCurtainAndPlay() {
+      if (curtain) curtain.classList.add('hidden');
+      sound.unlock();
+      sound.startSong();
+      launchConfetti();
+    }
+
     if (enterBtn) {
-      enterBtn.addEventListener('click', () => {
-        curtain.classList.add('hidden');
-        sound.init();
-        sound.startSong();
-        launchConfetti();
-      });
+      enterBtn.addEventListener('click', openCurtainAndPlay);
+      enterBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        openCurtainAndPlay();
+      }, { passive: false });
     }
 
     if (curtainOrb) {
-      curtainOrb.addEventListener('click', () => {
-        if (enterBtn) enterBtn.click();
-      });
+      curtainOrb.addEventListener('click', openCurtainAndPlay);
+      curtainOrb.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        openCurtainAndPlay();
+      }, { passive: false });
     }
 
     /* Live Countdown to 25th Birthday (October 10, 2026) */

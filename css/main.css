@@ -187,10 +187,9 @@ h1, h2, h3, h4, .font-heading {
    ========================================================================== */
 #curtainOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background: radial-gradient(circle at center, #1b0e35 0%, #090514 100%);
   z-index: 99999;
   display: flex;
@@ -199,6 +198,7 @@ h1, h2, h3, h4, .font-heading {
   justify-content: center;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
 }
 
@@ -221,6 +221,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 0 60px rgba(244, 63, 94, 0.6), 0 0 100px rgba(168, 85, 247, 0.4);
   animation: pulsePop 2.4s infinite ease-in-out;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes pulsePop {
@@ -243,11 +244,37 @@ h1, h2, h3, h4, .font-heading {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .curtain-btn:hover {
   transform: scale(1.06) translateY(-3px);
   box-shadow: 0 0 55px rgba(236, 72, 153, 0.9);
+}
+
+@media (max-width: 640px) {
+  #curtainOverlay {
+    padding: 1.5rem 1rem;
+  }
+  #curtainOverlay h1 {
+    font-size: 1.8rem !important;
+  }
+  #curtainOverlay p {
+    font-size: 0.95rem !important;
+  }
+  .curtain-pulse-orb {
+    width: 100px;
+    height: 100px;
+    font-size: 2.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .curtain-btn {
+    padding: 0.95rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 290px;
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================
@@ -1552,13 +1579,17 @@ footer {
 
   /* Compact Floating Audio Dock on Mobile */
   .audio-dock {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.35rem 0.65rem 0.35rem 0.35rem;
-    gap: 0.5rem;
-    background: rgba(18, 12, 36, 0.95);
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    right: calc(1rem + env(safe-area-inset-right, 0px));
+    padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+    gap: 0.55rem;
+    background: rgba(18, 12, 36, 0.96);
     border-radius: 999px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 15px rgba(168, 85, 247, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 18px rgba(168, 85, 247, 0.4);
+    z-index: 9999;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   .audio-dock .audio-info {
     display: none;
@@ -1567,6 +1598,14 @@ footer {
     width: 38px;
     height: 38px;
     font-size: 0.9rem;
+    pointer-events: none; /* Allows the entire audio-dock pill to be tapped effortlessly */
+  }
+  .audio-dock:not(.playing) .audio-btn {
+    animation: dockPulse 2.2s infinite ease-in-out;
+  }
+  @keyframes dockPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(236, 72, 153, 0.5); }
+    50% { box-shadow: 0 0 22px rgba(168, 85, 247, 0.95); transform: scale(1.04); }
   }
 
   /* Chapter Cards Preview Header on Mobile */
