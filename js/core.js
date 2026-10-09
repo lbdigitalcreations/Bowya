@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+    if (href === currentPath || (currentPath === '' && href === 'index.html') || (currentPath === 'letter-part2.html' && href === 'letter.html')) {
       link.classList.add('active');
     }
   });
